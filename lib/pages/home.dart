@@ -32,7 +32,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               TextButton(
                 child: const Text("Dice Games"),
                 onPressed: () {
-                  // Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PoopPage(title: "")));
+                  // Navigator.of(context).push(MaterialPageRoute(builder: (_) => const Page(title: "")));
                 },
               ),
               TextButton(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'alphabet_game_page.dart';
 import 'magic_8_ball.dart';
+import 'poker_hands.dart';
 
 //TODO: Add the game 10,000 to the app under the dice games
 
@@ -44,6 +45,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                 child: const Text("Alphabet Game"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AlphabetGamePage()));
+                },
+              ),
+             TextButton(
+                child: const Text("Poker Hands"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PokerGame()));
                 },
               ),
             ],

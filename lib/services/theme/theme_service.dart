@@ -15,8 +15,6 @@ const primaryVariant = Colors.lightBlue;
 class ThemeService extends _$ThemeService {
   static const colorScheme = FlexScheme.dellGenoa;
 
-  FlexSchemeData get schemeData => FlexColor.schemes[colorScheme]!;
-
   @override
   ThemeState build() {
     return ThemeState(

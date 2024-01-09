@@ -1,29 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'alphabet_game_page.dart';
 import 'magic_8_ball.dart';
 import 'poker_hands.dart';
 
 //TODO: Add the game 10,000 to the app under the dice games
 
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-
-class HomePage extends ConsumerStatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  ConsumerState<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: const Text('Games for Bored People'),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -47,8 +37,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AlphabetGamePage()));
                 },
               ),
-             TextButton(
-                child: const Text("Poker Hands"),
+              TextButton(
+                child: const Text("Poker"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PokerGame()));
                 },

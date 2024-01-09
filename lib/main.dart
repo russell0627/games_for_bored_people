@@ -17,12 +17,12 @@ class App extends ConsumerWidget {
     final themeState = ref.watch(themeServiceProvider);
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Games!',
       theme: themeState.light,
       darkTheme: themeState.dark,
       themeMode: themeState.mode,
       debugShowCheckedModeBanner: false,
-      home: const HomePage(title: 'Games for Bored People'),
+      home: const HomePage(),
     );
   }
 }

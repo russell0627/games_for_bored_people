@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'alphabet_game_page.dart';
+import 'dice_games_page.dart';
 import 'magic_8_ball.dart';
 import 'poker_hands.dart';
 
@@ -22,7 +23,7 @@ class HomePage extends StatelessWidget {
               TextButton(
                 child: const Text("Dice Games"),
                 onPressed: () {
-                  // Navigator.of(context).push(MaterialPageRoute(builder: (_) => const Page(title: "")));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DiceGamesPage()));
                 },
               ),
               TextButton(
@@ -37,12 +38,12 @@ class HomePage extends StatelessWidget {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AlphabetGamePage()));
                 },
               ),
-              TextButton(
-                child: const Text("Poker"),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PokerGame()));
-                },
-              ),
+              // TextButton(
+              //   child: const Text("Poker"),
+              //   onPressed: () {
+              //     Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PokerGame()));
+              //   },
+              // ),
             ],
           ),
         ),

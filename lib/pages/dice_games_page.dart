@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../games/20_rollers.dart';
+import '../games/20_rollers/presentation/die_selection_dialog.dart';
 
 class DiceGamesPage extends StatefulWidget {
   const DiceGamesPage({super.key});
@@ -19,7 +19,14 @@ class _DiceGamesPageState extends State<DiceGamesPage> {
       body: Center(
         child: Column(
           children: [
-            TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DieTypeSelectionPage())), child: const Text("20 Rollers"),)
+            TextButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const DieSelectionDialog(),
+                ),
+              ),
+              child: const Text("20 Rollers"),
+            )
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../games/ttt/presentation/ttt_page.dart';
 import 'alphabet_game_page.dart';
 import 'dice_games_page.dart';
 import 'magic_8_ball.dart';
@@ -36,6 +37,12 @@ class HomePage extends StatelessWidget {
                 child: const Text("Alphabet Game"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AlphabetGamePage()));
+                },
+              ),
+              TextButton(
+                child: const Text("Tic-Tac-Toe"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TTTPage()));
                 },
               ),
               // TextButton(

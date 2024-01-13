@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../models/20_rollers_card.dart';
 
-class TwentyRollersState extends StatefulWidget {
-  const TwentyRollersState({super.key});
+class TwentyRollersPage extends StatefulWidget {
+  const TwentyRollersPage({super.key});
 
   @override
-  State<TwentyRollersState> createState() => _TwentyRollersStateState();
+  State<TwentyRollersPage> createState() => _TwentyRollersPageState();
 }
 
-class _TwentyRollersStateState extends State<TwentyRollersState> {
+class _TwentyRollersPageState extends State<TwentyRollersPage> {
   @override
   void initState() {
     generateDeck();

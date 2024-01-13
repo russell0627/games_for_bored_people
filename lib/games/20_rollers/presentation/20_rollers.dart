@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/roller.dart';
 
-final List<TwentyRollersCard> deck = [];
-final List<TwentyRollersCard> player1Hand = [];
-final List<TwentyRollersCard> player2Hand = [];
+// final List<TwentyRollersCard> deck = [];
+// final List<TwentyRollersCard> player1Hand = [];
+// final List<TwentyRollersCard> player2Hand = [];
 CurrentDie currentDie = CurrentDie.d20;
 
 class DieTypeSelectionPage extends StatelessWidget {
@@ -148,22 +148,22 @@ class _TwentyRollersGameState extends State<TwentyRollersGame> {
   }
 
   void generateDeck() {
-    for (int i = 0; i > 15; i++) {
-      deck.add(TwentyRollersCard(cardName: "+1 Card", cardEffect: CardEffect.plus1));
-    }
-    for (int i = 0; i > 15; i++) {
-      deck.add(TwentyRollersCard(cardName: "-1 Card", cardEffect: CardEffect.minus1));
-    }
-    for (int i = 0; i > 10; i++) {
-      deck.add(TwentyRollersCard(cardName: "+2 Card", cardEffect: CardEffect.plus2));
-    }
-    for (int i = 0; i > 10; i++) {
-      deck.add(TwentyRollersCard(cardName: "-2 Card", cardEffect: CardEffect.minus2));
-    }
-    for (int i = 0; i > 5; i++) {
-      deck.add(TwentyRollersCard(cardName: "Switch Numbers Card", cardEffect: CardEffect.switchNumbers));
-    }
-    deck.shuffle();
+    // for (int i = 0; i > 15; i++) {
+    //   deck.add(TwentyRollersCard(cardName: "+1 Card", cardEffect: CardEffect.plus1));
+    // }
+    // for (int i = 0; i > 15; i++) {
+    //   deck.add(TwentyRollersCard(cardName: "-1 Card", cardEffect: CardEffect.minus1));
+    // }
+    // for (int i = 0; i > 10; i++) {
+    //   deck.add(TwentyRollersCard(cardName: "+2 Card", cardEffect: CardEffect.plus2));
+    // }
+    // for (int i = 0; i > 10; i++) {
+    //   deck.add(TwentyRollersCard(cardName: "-2 Card", cardEffect: CardEffect.minus2));
+    // }
+    // for (int i = 0; i > 5; i++) {
+    //   deck.add(TwentyRollersCard(cardName: "Switch Numbers Card", cardEffect: CardEffect.switchNumbers));
+    // }
+    // deck.shuffle();
   }
 }
 

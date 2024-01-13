@@ -52,12 +52,6 @@ class DieTypeSelectionPage extends StatelessWidget {
   }
 }
 
-class TwentyRollersCard {
-  final String cardName;
-  final CardEffect cardEffect;
-
-  TwentyRollersCard({required this.cardName, required this.cardEffect});
-}
 
 class TwentyRollersGame extends StatefulWidget {
   const TwentyRollersGame({super.key});
@@ -213,12 +207,6 @@ class UseItemsDialog extends StatelessWidget {
   }
 }
 
-enum WinType {
-  p1Win,
-  p2Win,
-  tie;
-}
-
 enum CardEffect {
   plus1,
   minus1,
@@ -226,6 +214,14 @@ enum CardEffect {
   minus2,
   switchNumbers;
 }
+
+
+enum WinType {
+  p1Win,
+  p2Win,
+  tie;
+}
+
 
 enum CurrentDie {
   d6,

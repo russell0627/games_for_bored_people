@@ -9,7 +9,7 @@ class TTTBoardState {
     [1, 4, 7], // col 2
     [2, 5, 8], // col 3
     [0, 4, 8], // diag 1
-    [2, 4, 6]  // diag 2
+    [2, 4, 6], // diag 2
   ];
 
   final List<Piece> grid;
@@ -18,11 +18,18 @@ class TTTBoardState {
     required this.grid,
   });
 
-  factory TTTBoardState.empty() {
-    return TTTBoardState(
-      grid: List.unmodifiable(List.filled(gridSize, Piece.none)),
-    );
-  }
+  const TTTBoardState.empty()
+      : grid = const [
+          Piece.none,
+          Piece.none,
+          Piece.none,
+          Piece.none,
+          Piece.none,
+          Piece.none,
+          Piece.none,
+          Piece.none,
+          Piece.none,
+        ];
 
   TTTBoardState copyWith({
     List<Piece>? grid,

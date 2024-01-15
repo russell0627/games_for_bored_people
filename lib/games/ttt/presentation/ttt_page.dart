@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../utils/screen_utils.dart';
 import '../../../widgets/grid_layout.dart';
+import '../controllers/ttt_board_ctrl.dart';
 import '../controllers/ttt_board_state.dart';
 
 class TTTPage extends ConsumerWidget {
@@ -13,27 +15,47 @@ class TTTPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text("Tic-Tac-Toe"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: GridLayout(
-          children: List.generate(
-            9,
-            (index) {
-              return PieceDisplay(
-                index: index,
-                piece: Piece.x,
-                onSelected: (_) => null,
-              );
-            },
-          ),
-        ),
+      body: const Padding(
+        padding: paddingAllM,
+        child: Board(currentPlayer: Piece.x),
+      ),
+    );
+  }
+}
+
+class Board extends ConsumerWidget {
+  final Piece currentPlayer;
+
+  const Board({super.key, required this.currentPlayer});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(tTTBoardCtrlProvider);
+
+    return GridLayout(
+      children: List.generate(
+        9,
+        (index) {
+          return PieceDisplay(
+            index: index,
+            piece: state[index],
+            onSelected: (index) => ref.read(tTTBoardCtrlProvider.notifier).move(
+                  index,
+                  currentPlayer,
+                ),
+          );
+        },
       ),
     );
   }
 }
 
 class PieceDisplay extends StatelessWidget {
-  static const borderSide = BorderSide(color: Colors.grey, width: 1.0, style: BorderStyle.solid);
+  static const borderSide = BorderSide(
+    color: Colors.grey,
+    width: 1.0,
+    style: BorderStyle.solid,
+  );
 
   final int index;
   final Piece piece;
@@ -50,12 +72,19 @@ class PieceDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //Color: #000a01
-      decoration: BoxDecoration(
-        border: _determineBorder(index, borderSide),
+    return GestureDetector(
+      onTap: () => onSelected(index),
+      child: Container(
+        //Color: #000a01
+        decoration: BoxDecoration(
+          border: _determineBorder(index, borderSide),
+        ),
+        child: piece != Piece.none
+            ? FittedBox(
+                child: Text(piece.toString()),
+              )
+            : null,
       ),
-      child: FittedBox(child: Text(index.toString())),
     );
   }
 

@@ -7,7 +7,7 @@ part 'ttt_board_ctrl.g.dart';
 @riverpod
 class TTTBoardCtrl extends _$TTTBoardCtrl {
   @override
-  TTTBoardState build() => TTTBoardState.empty();
+  TTTBoardState build() => const TTTBoardState.empty();
 
   void move(int cellID, Piece piece) {
     final grid = state.grid.toList();

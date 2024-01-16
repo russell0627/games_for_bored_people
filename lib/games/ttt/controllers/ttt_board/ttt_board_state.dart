@@ -39,6 +39,8 @@ class TTTBoardState {
     );
   }
 
+  bool isAvailable(int cellID) => this[cellID] == Piece.none;
+
   int get moveCount => grid.fold(
         0,
         (count, piece) => count + (piece != Piece.none ? 1 : 0),

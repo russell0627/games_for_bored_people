@@ -3,21 +3,47 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../utils/screen_utils.dart';
 import '../../../widgets/grid_layout.dart';
-import '../controllers/ttt_board_ctrl.dart';
-import '../controllers/ttt_board_state.dart';
+import '../controllers/game/game_ctrl.dart';
+import '../controllers/game/game_state.dart';
+import '../controllers/ttt_board/ttt_board_ctrl.dart';
+import '../controllers/ttt_board/ttt_board_state.dart';
 
 class TTTPage extends ConsumerWidget {
   const TTTPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(gameCtrlProvider);
+
+    final message = switch (state.status) {
+      GameStatus.playing => "Player: ${state.currentPlayer}",
+      GameStatus.xWins => "X Wins!",
+      GameStatus.oWins => "O Wins!",
+      GameStatus.draw => "Draw",
+    };
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Tic-Tac-Toe"),
+        actions: [
+          IconButton(
+            tooltip: "Restart Game",
+            onPressed: () => ref.read(gameCtrlProvider.notifier).reset(),
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
       ),
-      body: const Padding(
+      body: Padding(
         padding: paddingAllM,
-        child: Board(currentPlayer: Piece.x),
+        child: Column(
+          children: [
+            Text(message),
+            boxXL,
+            Expanded(
+              child: Board(currentPlayer: state.currentPlayer),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -31,6 +57,7 @@ class Board extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(tTTBoardCtrlProvider);
+    final gameCtrl = ref.read(gameCtrlProvider.notifier);
 
     return GridLayout(
       children: List.generate(
@@ -39,10 +66,11 @@ class Board extends ConsumerWidget {
           return PieceDisplay(
             index: index,
             piece: state[index],
-            onSelected: (index) => ref.read(tTTBoardCtrlProvider.notifier).move(
-                  index,
-                  currentPlayer,
-                ),
+            available: gameCtrl.isAvailable(index),
+            onSelected: (index) => gameCtrl.move(
+              index,
+              currentPlayer,
+            ),
           );
         },
       ),
@@ -73,17 +101,21 @@ class PieceDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onSelected(index),
-      child: Container(
-        //Color: #000a01
-        decoration: BoxDecoration(
-          border: _determineBorder(index, borderSide),
+      onTap: available ? () => onSelected(index) : null,
+      child: MouseRegion(
+        cursor: available ? SystemMouseCursors.click : MouseCursor.defer,
+        child: Container(
+          //Color: #000a01
+          decoration: BoxDecoration(
+            border: _determineBorder(index, borderSide),
+            color: available ? Colors.lightBlueAccent.withOpacity(0.1) : null,
+          ),
+          child: piece != Piece.none
+              ? FittedBox(
+                  child: Text(piece.toString()),
+                )
+              : null,
         ),
-        child: piece != Piece.none
-            ? FittedBox(
-                child: Text(piece.toString()),
-              )
-            : null,
       ),
     );
   }

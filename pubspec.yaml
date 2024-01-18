@@ -15,7 +15,7 @@ dependencies:
   recase: ^4.1.0
   riverpod: ^2.4.9
   riverpod_annotation: ^2.3.3
-
+  video_player: ^2.8.2
 dev_dependencies:
   build_runner: ^2.4.7
   custom_lint: ^0.5.7
@@ -29,6 +29,9 @@ flutter:
     - assets/
     - assets/magic_8_ball/images/
     - assets/poker/
+    - assets/movie_theater/
+    - assets/dexter_hill/audio/
+    - assets/dexter_hill/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

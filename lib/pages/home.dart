@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../games/ttt/presentation/ttt_page.dart';
 import 'alphabet_game_page.dart';
+import 'dexter_hill.dart';
 import 'dice_games_page.dart';
 import 'magic_8_ball.dart';
-import 'poker_hands.dart';
 
 //TODO: Add the game 10,000 to the app under the dice games
 
@@ -51,6 +51,23 @@ class HomePage extends StatelessWidget {
               //     Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PokerGame()));
               //   },
               // ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      TextButton(
+                          onPressed: () =>
+                              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DexterHillPage())),
+                          child: SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.asset("assets/dexter_hill/images/gravestone_icon.png"))),
+                    ],
+                  )
+                ],
+              )
             ],
           ),
         ),

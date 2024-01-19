@@ -4,6 +4,7 @@ import 'alphabet_game_page.dart';
 import 'dexter_hill.dart';
 import 'dice_games_page.dart';
 import 'magic_8_ball.dart';
+import 'movie_theater_page.dart';
 
 //TODO: Add the game 10,000 to the app under the dice games
 
@@ -59,11 +60,18 @@ class HomePage extends StatelessWidget {
                     children: [
                       TextButton(
                           onPressed: () =>
-                              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DexterHillPage())),
+                              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MainGraveyardPage())),
                           child: SizedBox(
                               height: 100,
                               width: 100,
                               child: Image.asset("assets/dexter_hill/images/gravestone_icon.png"))),
+                     TextButton(
+                          onPressed: () =>
+                              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MovieSelectionPage())),
+                          child: SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.asset("assets/movie_theater/movie_theater_button.png"))),
                     ],
                   )
                 ],

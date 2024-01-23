@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../games/ttt/presentation/ttt_page.dart';
 import 'alphabet_game_page.dart';
-import 'dexter_hill.dart';
+import 'dexter_hill/main_graveyard.dart';
 import 'dice_games_page.dart';
 import 'magic_8_ball.dart';
 import 'movie_theater_page.dart';

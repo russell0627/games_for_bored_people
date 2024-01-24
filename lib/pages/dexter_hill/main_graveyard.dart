@@ -11,6 +11,8 @@ const String gravestoneImagePath = "assets/dexter_hill/images/new_graveyard_grou
 const String gravestoneImagePath2 = "assets/dexter_hill/images/gravestone_2.png";
 const String gravestoneImagePath3 = "assets/dexter_hill/images/gravestone_3.png";
 final AudioPlayer mainGraveyardAudioPlayer = AudioPlayer();
+final AudioPlayer mainGraveyardPaperCrinkleAudioPlayer = AudioPlayer();
+final AudioPlayer mainGraveyardFootstepsAudioPlayer = AudioPlayer();
 
 const String berryBettaFishText =
     "Berry was my first Betta fish. It died tragically from unknown causes. Berry and I were just starting to bond when they died.";
@@ -105,6 +107,7 @@ class _MainGraveyardPageState extends State<MainGraveyardPage> {
               ),
               TextButton(
                   onPressed: () {
+                    mainGraveyardFootstepsAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/transition_to_dexter_hill.mp3"));
                     if (bettaNotePieceFound == true &&
                         hermitCrabNotePieceFound == true &&
                         chickensNotePieceFound == true) {
@@ -157,11 +160,26 @@ class GravestoneDetailsDialog extends StatelessWidget {
 
 Widget gravestoneTextChecker(String gravestoneText) {
   if (gravestoneText == berryBettaFishText) {
-    return TextButton(onPressed: () => bettaNotePieceFound = true, child: const Text("Collect Note Piece"));
+    return TextButton(
+        onPressed: () {
+          mainGraveyardPaperCrinkleAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/note_picked_up.wav"));
+          bettaNotePieceFound = true;
+        },
+        child: const Text("Collect Note Piece"));
   } else if (gravestoneText == hermitCrabsText) {
-    return TextButton(onPressed: () => hermitCrabNotePieceFound = true, child: const Text("Collect Note Piece"));
+    return TextButton(
+        onPressed: () {
+          mainGraveyardPaperCrinkleAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/note_2_picked_up.wav"));
+          hermitCrabNotePieceFound = true;
+        },
+        child: const Text("Collect Note Piece"));
   } else {
-    return TextButton(onPressed: () => chickensNotePieceFound = true, child: const Text("Collect Note Piece"));
+    return TextButton(
+        onPressed: () {
+          mainGraveyardPaperCrinkleAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/note_3_picked_up.wav"));
+          chickensNotePieceFound = true;
+        },
+        child: const Text("Collect Note Piece"));
   }
 }
 

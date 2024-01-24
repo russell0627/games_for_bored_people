@@ -13,6 +13,7 @@ And when it is Oscar's time to go, I will put him up on the hill with Dexter, so
 - Russell""";
 
 final AudioPlayer dexterHillAudioPlayer = AudioPlayer();
+final AudioPlayer dexterHillNoteSoundAudioPlayer = AudioPlayer();
 
 class DexterHillPage extends StatelessWidget {
   const DexterHillPage({super.key});
@@ -49,7 +50,7 @@ class DexterHillPage extends StatelessWidget {
                     showDialog(
                         context: context,
                         builder: (_) => const DexterHillImageDialog(
-                            imagePath: "assets/dexter_hill/images/dexter_images/dexter_image_1.jpg"));
+                            imagePath: "assets/dexter_hill/images/dexter_images/picture_of_dexter_1.png"));
                   },
                   child: const Text("See Image 1")),
               TextButton(
@@ -57,7 +58,7 @@ class DexterHillPage extends StatelessWidget {
                     showDialog(
                         context: context,
                         builder: (_) => const DexterHillImageDialog(
-                            imagePath: "assets/dexter_hill/images/dexter_images/dexter_image_2.JPG"));
+                            imagePath: "assets/dexter_hill/images/dexter_images/picture_of_dexter_2.png"));
                   },
                   child: const Text("See Image 2")),
               TextButton(
@@ -65,7 +66,7 @@ class DexterHillPage extends StatelessWidget {
                     showDialog(
                         context: context,
                         builder: (_) => const DexterHillImageDialog(
-                            imagePath: "assets/dexter_hill/images/dexter_images/dexter_image_3.JPG"));
+                            imagePath: "assets/dexter_hill/images/dexter_images/picture_of_dexter_3.png"));
                   },
                   child: const Text("See Image 3")),
               TextButton(
@@ -73,13 +74,16 @@ class DexterHillPage extends StatelessWidget {
                     showDialog(
                         context: context,
                         builder: (_) => const DexterHillImageDialog(
-                            imagePath: "assets/dexter_hill/images/dexter_images/dexter_image_4.jpg"));
+                            imagePath: "assets/dexter_hill/images/dexter_images/picture_of_dexter_4.png"));
                   },
                   child: const Text("See Image 4")),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextButton(
-                    onPressed: () => showDialog(context: context, builder: (_) => const DexterHillNoteDialog()),
+                    onPressed: () {
+                      dexterHillNoteSoundAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/dexter_hill_note_used.wav"));
+                      showDialog(context: context, builder: (_) => const DexterHillNoteDialog());
+                    },
                     child: const Text("Read Note")),
               ),
             ],

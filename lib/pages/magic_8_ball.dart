@@ -9,7 +9,7 @@ class Magic8BallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Magic 8 Ball"),),
-      body: const Center(child: Column(children: [Ball()],),),
+      body: SingleChildScrollView(child: const Center(child: Column(children: [Ball()],),)),
     );
   }
 }
@@ -22,7 +22,7 @@ class Ball extends StatefulWidget {
 }
 
 class _BallState extends State<Ball> {
-  int ballNumber = Random(DateTime.now().millisecondsSinceEpoch).nextInt(6) + 1;
+  int ballNumber = Random(DateTime.now().millisecondsSinceEpoch).nextInt(5) + 1;
 
 
   @override

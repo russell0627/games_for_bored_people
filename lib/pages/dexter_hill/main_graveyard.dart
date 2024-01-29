@@ -56,69 +56,75 @@ class _MainGraveyardPageState extends State<MainGraveyardPage> {
                 icon: const Icon(Icons.refresh))
           ],
         ),
-        body: Center(
-          child: Column(
-            children: [
-              Row(
+        body: SingleChildScrollView(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Center(
+              child: Column(
                 children: [
-                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                  SizedBox(
-                    height: squareHeight,
-                    width: squareWidth,
-                    child: FunctionalImage(
-                        onTapped: () => showDialog(
-                            context: context,
-                            builder: (_) => const GravestoneDetailsDialog(gravestoneText: berryBettaFishText)),
-                        imagePath: gravestoneImagePath),
+                  Row(
+                    children: [
+                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                      SizedBox(
+                        height: squareHeight,
+                        width: squareWidth,
+                        child: FunctionalImage(
+                            onTapped: () => showDialog(
+                                context: context,
+                                builder: (_) => const GravestoneDetailsDialog(gravestoneText: berryBettaFishText)),
+                            imagePath: gravestoneImagePath),
+                      ),
+                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                      SizedBox(
+                        height: squareHeight,
+                        width: squareWidth,
+                        child: FunctionalImage(
+                            onTapped: () => showDialog(
+                                context: context,
+                                builder: (_) => const GravestoneDetailsDialog(gravestoneText: hermitCrabsText)),
+                            imagePath: gravestoneImagePath2),
+                      ),
+                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                      SizedBox(
+                        height: squareHeight,
+                        width: squareWidth,
+                        child: FunctionalImage(
+                            onTapped: () => showDialog(
+                                context: context,
+                                builder: (_) => const GravestoneDetailsDialog(gravestoneText: chickensText)),
+                            imagePath: gravestoneImagePath3),
+                      ),
+                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                    ],
                   ),
-                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                  SizedBox(
-                    height: squareHeight,
-                    width: squareWidth,
-                    child: FunctionalImage(
-                        onTapped: () => showDialog(
-                            context: context,
-                            builder: (_) => const GravestoneDetailsDialog(gravestoneText: hermitCrabsText)),
-                        imagePath: gravestoneImagePath2),
+                  Row(
+                    children: [
+                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                      SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
+                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                      SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
+                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                      SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
+                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                    ],
                   ),
-                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                  SizedBox(
-                    height: squareHeight,
-                    width: squareWidth,
-                    child: FunctionalImage(
-                        onTapped: () => showDialog(
-                            context: context,
-                            builder: (_) => const GravestoneDetailsDialog(gravestoneText: chickensText)),
-                        imagePath: gravestoneImagePath3),
-                  ),
-                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                  TextButton(
+                      onPressed: () {
+                        if (bettaNotePieceFound == true &&
+                            hermitCrabNotePieceFound == true &&
+                            chickensNotePieceFound == true) {
+                          mainGraveyardAudioPlayer.stop();
+                          mainGraveyardFootstepsAudioPlayer
+                              .play(DeviceFileSource("assets/dexter_hill/audio/transition_to_dexter_hill.mp3"));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DexterHillPage()));
+                        } else {
+                          showDialog(context: context, builder: (_) => const MissingNotePieceDialog());
+                        }
+                      },
+                      child: const Text("Visit Dexter Hill"))
                 ],
               ),
-              Row(
-                children: [
-                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                  SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
-                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                  SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
-                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                  SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
-                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                ],
-              ),
-              TextButton(
-                  onPressed: () {
-                    mainGraveyardFootstepsAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/transition_to_dexter_hill.mp3"));
-                    if (bettaNotePieceFound == true &&
-                        hermitCrabNotePieceFound == true &&
-                        chickensNotePieceFound == true) {
-                      mainGraveyardAudioPlayer.stop();
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DexterHillPage()));
-                    } else {
-                      showDialog(context: context, builder: (_) => const MissingNotePieceDialog());
-                    }
-                  },
-                  child: const Text("Visit Dexter Hill"))
-            ],
+            ),
           ),
         ));
   }
@@ -189,7 +195,13 @@ class MissingNotePieceDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SimpleDialog(
-      children: [Text("You have not found all of the note pieces. Try again when you have found them all!")],
+      children: [
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text("You have not found all of the note pieces. Try again when you have found them all!"),
+        )
+      ],
     );
   }
 }
+

@@ -6,7 +6,7 @@ part of 'ttt_board_ctrl.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tTTBoardCtrlHash() => r'8d7b8ff1d2acb8947c3f04cb505728057697f165';
+String _$tTTBoardCtrlHash() => r'0345d8845986d18893ec6e65cd6c296a3ed05b79';
 
 /// See also [TTTBoardCtrl].
 @ProviderFor(TTTBoardCtrl)

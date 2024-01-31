@@ -30,6 +30,7 @@ flutter:
     - assets/
     - assets/magic_8_ball/images/
     - assets/poker/
+    - assets/puzzle_game/puzzle_pieces/
     - assets/movie_theater/
     - assets/dexter_hill/audio/
     - assets/dexter_hill/images/

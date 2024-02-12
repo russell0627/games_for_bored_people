@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import '../games/puzzle_game/presentation/puzzle_page.dart';
-import '../games/ttt/presentation/ttt_page.dart';
-import '../settings_dialog.dart';
-import 'alphabet_game_page.dart';
-import 'dexter_hill/adventure_to_dexter_hill/jungle_to_dexter_hill.dart';
-import 'dexter_hill/main_graveyard.dart';
-import 'dice_games_page.dart';
-import 'magic_8_ball.dart';
-import 'movie_theater_page.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../games/puzzle_game/presentation/puzzle_page.dart';
+import '../../pages/alphabet_game_page.dart';
+import '../../pages/dexter_hill/adventure_to_dexter_hill/jungle_to_dexter_hill.dart';
+import '../../pages/dexter_hill/main_graveyard.dart';
+import '../../pages/dice_games_page.dart';
+import '../../pages/magic_8_ball.dart';
+import '../../pages/movie_theater_page.dart';
+import '../../settings_dialog.dart';
+import '../routes.dart';
 
 //TODO: Add the game 10,000 to the app under the dice games
 
@@ -47,7 +49,7 @@ class HomePage extends StatelessWidget {
               TextButton(
                 child: const Text("Tic-Tac-Toe"),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TTTPage()));
+                  context.goNamed(AppRoute.ttt.name);
                 },
               ),
               TextButton(

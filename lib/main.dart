@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'pages/home.dart';
+
+import 'app/routes.dart';
 import 'services/theme/theme_service.dart';
 
 void main() {
@@ -16,13 +17,14 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeState = ref.watch(themeServiceProvider);
 
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Games!',
       theme: themeState.light,
       darkTheme: themeState.dark,
       themeMode: themeState.mode,
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      restorationScopeId: 'app',
+      routerConfig: ref.watch(goRouterProvider),
     );
   }
 }

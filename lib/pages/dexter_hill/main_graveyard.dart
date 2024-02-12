@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'adventure_to_dexter_hill/jungle_to_dexter_hill.dart';
 import 'dexter_hill.dart';
 
 const double squareHeight = 250;
@@ -15,15 +16,16 @@ final AudioPlayer mainGraveyardPaperCrinkleAudioPlayer = AudioPlayer();
 final AudioPlayer mainGraveyardFootstepsAudioPlayer = AudioPlayer();
 
 const String berryBettaFishText =
-    "Berry was my first Betta fish. It died tragically from unknown causes. Berry and I were just starting to bond when they died.";
+    "Berry was my first Betta fish. It died tragically from unknown causes. Berry and I were just starting to bond when it died.";
 const String hermitCrabsText =
-    "None of my hermit crabs that died had names except for the small one, his name was Tiny Tim. I do not know the cause of his death. He was also the first hermit crab I ever had. I miss him a lot.";
+    "None of my hermit crabs that died had names except for the small one, his name was Tiny Tim. I do not know the cause of his death. He was the first hermit crab I ever had. I miss him a lot.";
 const chickensText =
     "My Grandmother has had many chickens, most of them have died. The one I remember most was named Fluffy. He was a copper color, a color similar to my hair. I called him Fluffy because he had a lot of feathers that make him look like he had fluffy fur. We had a couple chicks that we took care of, one of which was Fluffy. I miss him.";
 
 bool bettaNotePieceFound = false;
 bool hermitCrabNotePieceFound = false;
 bool chickensNotePieceFound = false;
+bool dexterHillMapFound = false;
 
 class MainGraveyardPage extends StatefulWidget {
   const MainGraveyardPage({super.key});
@@ -52,6 +54,7 @@ class _MainGraveyardPageState extends State<MainGraveyardPage> {
                   chickensNotePieceFound = false;
                   bettaNotePieceFound = false;
                   hermitCrabNotePieceFound = false;
+                  dexterHillMapFound = false;
                 },
                 icon: const Icon(Icons.refresh))
           ],
@@ -101,7 +104,15 @@ class _MainGraveyardPageState extends State<MainGraveyardPage> {
                     children: [
                       SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
                       SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
-                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                      SizedBox(
+                          height: squareHeight,
+                          width: squareWidth,
+                          child: FunctionalImage(
+                            imagePath: "assets/dexter_hill/images/new_graveyard_ground_with_map.png",
+                            onTapped: () {
+                              dexterHillMapFound = true;
+                            },
+                          )),
                       SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
                       SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
                       SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
@@ -116,12 +127,12 @@ class _MainGraveyardPageState extends State<MainGraveyardPage> {
                           mainGraveyardAudioPlayer.stop();
                           mainGraveyardFootstepsAudioPlayer
                               .play(DeviceFileSource("assets/dexter_hill/audio/transition_to_dexter_hill.mp3"));
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DexterHillPage()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const JungleToDexterHill()));
                         } else {
                           showDialog(context: context, builder: (_) => const MissingNotePieceDialog());
                         }
                       },
-                      child: const Text("Visit Dexter Hill"))
+                      child: const Text("Follow Map"))
                 ],
               ),
             ),
@@ -167,24 +178,33 @@ class GravestoneDetailsDialog extends StatelessWidget {
 Widget gravestoneTextChecker(String gravestoneText) {
   if (gravestoneText == berryBettaFishText) {
     return TextButton(
-        onPressed: () {
-          mainGraveyardPaperCrinkleAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/note_picked_up.wav"));
-          bettaNotePieceFound = true;
-        },
+        onPressed: bettaNotePieceFound == false
+            ? () {
+                mainGraveyardPaperCrinkleAudioPlayer
+                    .play(DeviceFileSource("assets/dexter_hill/audio/note_picked_up.wav"));
+                bettaNotePieceFound = true;
+              }
+            : null,
         child: const Text("Collect Note Piece"));
   } else if (gravestoneText == hermitCrabsText) {
     return TextButton(
-        onPressed: () {
-          mainGraveyardPaperCrinkleAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/note_2_picked_up.wav"));
-          hermitCrabNotePieceFound = true;
-        },
+        onPressed: hermitCrabNotePieceFound == false
+            ? () {
+                mainGraveyardPaperCrinkleAudioPlayer
+                    .play(DeviceFileSource("assets/dexter_hill/audio/note_2_picked_up.wav"));
+                hermitCrabNotePieceFound = true;
+              }
+            : null,
         child: const Text("Collect Note Piece"));
   } else {
     return TextButton(
-        onPressed: () {
-          mainGraveyardPaperCrinkleAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/note_3_picked_up.wav"));
-          chickensNotePieceFound = true;
-        },
+        onPressed: chickensNotePieceFound == false
+            ? () {
+                mainGraveyardPaperCrinkleAudioPlayer
+                    .play(DeviceFileSource("assets/dexter_hill/audio/note_3_picked_up.wav"));
+                chickensNotePieceFound = true;
+              }
+            : null,
         child: const Text("Collect Note Piece"));
   }
 }
@@ -204,4 +224,3 @@ class MissingNotePieceDialog extends StatelessWidget {
     );
   }
 }
-

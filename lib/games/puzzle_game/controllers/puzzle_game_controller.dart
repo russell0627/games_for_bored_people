@@ -92,7 +92,7 @@ class PuzzleGameCtrl extends _$PuzzleGameCtrl {
           "assets/puzzle_game/puzzle_pieces/9.png"
     ];
     for (int number in availableNumbers) {
-      final int correctNumber = availableCorrectNumbers[rng.nextInt(availableCorrectNumbers.length)];
+      final int correctNumber = availableCorrectNumbers[rng.nextInt(availableCorrectNumbers.length - 1)];
       final String imagePath = availableImagePaths[correctNumber];
       pieces.add(PuzzlePiece(currentIndex: number, correctIndex: correctNumber, imagePath: imagePath));
       availableImagePaths.remove(imagePath);

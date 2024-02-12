@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import '../games/puzzle_game/presentation/puzzle_page.dart';
 import '../games/ttt/presentation/ttt_page.dart';
+import '../settings_dialog.dart';
 import 'alphabet_game_page.dart';
+import 'dexter_hill/adventure_to_dexter_hill/jungle_to_dexter_hill.dart';
 import 'dexter_hill/main_graveyard.dart';
 import 'dice_games_page.dart';
 import 'magic_8_ball.dart';
@@ -16,6 +19,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [IconButton(onPressed: () => showDialog(context: context, builder: (_) => const SettingsDialog()), icon: const Icon(Icons.settings))],
         title: const Text('Games for Bored People'),
       ),
       body: Center(
@@ -46,12 +50,18 @@ class HomePage extends StatelessWidget {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TTTPage()));
                 },
               ),
-              // TextButton(
-              //   child: const Text("Poker"),
-              //   onPressed: () {
-              //     Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PokerGame()));
-              //   },
-              // ),
+              TextButton(
+                child: const Text("Puzzle Game"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PuzzlePage()));
+                },
+              ),
+              TextButton(
+                child: const Text("Adventure Game"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const JungleToDexterHill()));
+                },
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

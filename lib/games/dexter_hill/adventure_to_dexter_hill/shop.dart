@@ -1,0 +1,94 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'controllers/atdh_ctrl.dart';
+import 'controllers/player_ctrl.dart';
+import 'dungeon_challenge.dart';
+
+class VillageShop extends ConsumerStatefulWidget {
+  const VillageShop({super.key});
+
+  @override
+  ConsumerState<VillageShop> createState() => _VillageShopState();
+}
+
+class _VillageShopState extends ConsumerState<VillageShop> {
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    final state = ref.watch(playerControllerProvider);
+    final ctrl = ref.watch(playerControllerProvider.notifier);
+
+    return Center(
+      child: Column(
+        children: [
+          TextButton(
+              onPressed: !state.hasHorse
+                  ? () {
+                      ctrl.buyHorse();
+                    }
+                  : null,
+              child: const Text("Buy Horse and Saddle: 25gp")),
+          const Spacer(),
+          TextButton(
+              onPressed: () {
+                if (state.hasHorse == true) {
+                  state.copyWith(daysUntilHillFound: state.daysUntilHillFound - 1);
+                } else {
+                  state.copyWith(daysUntilHillFound: state.daysUntilHillFound - 2);
+                }
+                showDialog(context: context, builder: (_) => const NewItemDialog());
+              },
+              child: const Text("Continue to Next Area"))
+        ],
+      ),
+    );
+  }
+}
+
+class NewItemDialog extends ConsumerWidget {
+  const NewItemDialog({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final playerState = ref.read(playerControllerProvider);
+    final state = ref.read(aTDhControllerProvider);
+
+    return SimpleDialog(
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text("You Get A New Item"),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextButton(
+              onPressed: () {
+                playerState.copyWith(hasGrapplingHook: true, hasCrossbow: false, hasSword: false);
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DungeonChallengePage()));
+              },
+              child: const Text("Take Grappling Hook")),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextButton(
+              onPressed: () {
+                playerState.copyWith(hasSword: true, hasGrapplingHook: false, hasCrossbow: false);
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DungeonChallengePage()));
+              },
+              child: const Text("Take Sword")),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextButton(
+              onPressed: () {
+                playerState.copyWith(hasCrossbow: true);
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DungeonChallengePage()));
+              },
+              child: const Text("Take Crossbow")),
+        ),
+      ],
+    );
+  }
+}

@@ -39,105 +39,85 @@ class _MainGraveyardPageState extends State<MainGraveyardPage> {
   Widget build(BuildContext context) {
     mainGraveyardAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/main_graveyard_music.mp3"));
 
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("Graveyard"),
-          leading: IconButton(
-              onPressed: () {
-                mainGraveyardAudioPlayer.stop();
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.arrow_back)),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  chickensNotePieceFound = false;
-                  bettaNotePieceFound = false;
-                  hermitCrabNotePieceFound = false;
-                  dexterHillMapFound = false;
-                },
-                icon: const Icon(Icons.refresh))
-          ],
-        ),
-        body: SingleChildScrollView(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Center(
-              child: Column(
+    return SingleChildScrollView(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Center(
+          child: Column(
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                      SizedBox(
-                        height: squareHeight,
-                        width: squareWidth,
-                        child: FunctionalImage(
-                            onTapped: () => showDialog(
-                                context: context,
-                                builder: (_) => const GravestoneDetailsDialog(gravestoneText: berryBettaFishText)),
-                            imagePath: gravestoneImagePath),
-                      ),
-                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                      SizedBox(
-                        height: squareHeight,
-                        width: squareWidth,
-                        child: FunctionalImage(
-                            onTapped: () => showDialog(
-                                context: context,
-                                builder: (_) => const GravestoneDetailsDialog(gravestoneText: hermitCrabsText)),
-                            imagePath: gravestoneImagePath2),
-                      ),
-                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                      SizedBox(
-                        height: squareHeight,
-                        width: squareWidth,
-                        child: FunctionalImage(
-                            onTapped: () => showDialog(
-                                context: context,
-                                builder: (_) => const GravestoneDetailsDialog(gravestoneText: chickensText)),
-                            imagePath: gravestoneImagePath3),
-                      ),
-                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                    ],
+                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                  SizedBox(
+                    height: squareHeight,
+                    width: squareWidth,
+                    child: FunctionalImage(
+                        onTapped: () => showDialog(
+                            context: context,
+                            builder: (_) => const GravestoneDetailsDialog(gravestoneText: berryBettaFishText)),
+                        imagePath: gravestoneImagePath),
                   ),
-                  Row(
-                    children: [
-                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                      SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
-                      SizedBox(
-                          height: squareHeight,
-                          width: squareWidth,
-                          child: FunctionalImage(
-                            imagePath: "assets/dexter_hill/images/new_graveyard_ground_with_map.png",
-                            onTapped: () {
-                              dexterHillMapFound = true;
-                            },
-                          )),
-                      SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
-                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                      SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
-                      SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
-                    ],
+                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                  SizedBox(
+                    height: squareHeight,
+                    width: squareWidth,
+                    child: FunctionalImage(
+                        onTapped: () => showDialog(
+                            context: context,
+                            builder: (_) => const GravestoneDetailsDialog(gravestoneText: hermitCrabsText)),
+                        imagePath: gravestoneImagePath2),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        if (bettaNotePieceFound == true &&
-                            hermitCrabNotePieceFound == true &&
-                            chickensNotePieceFound == true) {
-                          mainGraveyardAudioPlayer.stop();
-                          mainGraveyardFootstepsAudioPlayer
-                              .play(DeviceFileSource("assets/dexter_hill/audio/transition_to_dexter_hill.mp3"));
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const JungleToDexterHill()));
-                        } else {
-                          showDialog(context: context, builder: (_) => const MissingNotePieceDialog());
-                        }
-                      },
-                      child: const Text("Follow Map"))
+                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                  SizedBox(
+                    height: squareHeight,
+                    width: squareWidth,
+                    child: FunctionalImage(
+                        onTapped: () => showDialog(
+                            context: context,
+                            builder: (_) => const GravestoneDetailsDialog(gravestoneText: chickensText)),
+                        imagePath: gravestoneImagePath3),
+                  ),
+                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
                 ],
               ),
-            ),
+              Row(
+                children: [
+                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                  SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
+                  SizedBox(
+                      height: squareHeight,
+                      width: squareWidth,
+                      child: FunctionalImage(
+                        imagePath: "assets/dexter_hill/images/new_graveyard_ground_with_map.png",
+                        onTapped: () {
+                          dexterHillMapFound = true;
+                        },
+                      )),
+                  SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
+                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                  SizedBox(height: squareHeight, width: squareWidth, child: gravestonePart2Image),
+                  SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
+                ],
+              ),
+              TextButton(
+                  onPressed: () {
+                    if (bettaNotePieceFound == true &&
+                        hermitCrabNotePieceFound == true &&
+                        chickensNotePieceFound == true) {
+                      mainGraveyardAudioPlayer.stop();
+                      mainGraveyardFootstepsAudioPlayer
+                          .play(DeviceFileSource("assets/dexter_hill/audio/transition_to_dexter_hill.mp3"));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const JungleToDexterHill()));
+                    } else {
+                      showDialog(context: context, builder: (_) => const MissingNotePieceDialog());
+                    }
+                  },
+                  child: const Text("Follow Map"))
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 

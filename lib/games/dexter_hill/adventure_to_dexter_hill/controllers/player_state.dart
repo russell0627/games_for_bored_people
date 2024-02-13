@@ -1,3 +1,5 @@
+import '../dungeon_challenge.dart';
+
 class PlayerState {
   final int goldCount;
   final bool hasHorse;
@@ -15,6 +17,15 @@ class PlayerState {
     required this.daysUntilHillFound,
   });
 
+  ChallengeType get challengeType {
+    if (hasGrapplingHook) {
+      return ChallengeType.grapplingHook;
+    }  else if (hasCrossbow) {
+      return ChallengeType.crossbow;
+    } else {
+      return ChallengeType.sword;
+    }
+  }
   PlayerState copyWith({
     int? goldCount,
     bool? hasHorse,

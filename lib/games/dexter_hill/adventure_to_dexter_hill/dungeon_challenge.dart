@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'player_ctrl.dart';
+import 'controllers/atdh_ctrl.dart';
 import 'treasure_room.dart';
 
 class DungeonChallengePage extends ConsumerWidget {
-  final ChallengeType challengeType;
-
-  const DungeonChallengePage(this.challengeType, {super.key});
+  const DungeonChallengePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Final Challenge: Dungeon"),
-      ),
-      body: Center(
-        child: switch (challengeType) {
-          ChallengeType.sword => const SwordChallenge(),
-          ChallengeType.crossbow => const CrossbowChallenge(),
-          ChallengeType.grapplingHook => const GrapplingHookChallenge(),
-        },
-      ),
+    final state = ref.read(aTDhControllerProvider);
+
+    return Center(
+      child: switch (state.challengeType) {
+        ChallengeType.sword => const SwordChallenge(),
+        ChallengeType.crossbow => const CrossbowChallenge(),
+        ChallengeType.grapplingHook => const GrapplingHookChallenge(),
+      },
     );
   }
 }
@@ -72,7 +67,7 @@ class CrossbowChallenge extends StatelessWidget {
             children: [
               TextButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TreasureRoomPage()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TreasureRoom()));
                   },
                   child: const Text("Shoot Green Target")),
               TextButton(
@@ -105,7 +100,7 @@ class GrapplingHookChallenge extends StatelessWidget {
         children: [
           TextButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TreasureRoomPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TreasureRoom()));
               },
               child: const Text("Scale Cliff"))
         ],

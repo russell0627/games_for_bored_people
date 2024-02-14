@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'controllers/atdh_ctrl.dart';
+import 'controllers/atdh_state.dart';
 import 'treasure_room.dart';
 
 class DungeonChallengePage extends ConsumerWidget {
@@ -21,13 +22,13 @@ class DungeonChallengePage extends ConsumerWidget {
   }
 }
 
-class SwordChallenge extends StatelessWidget {
+class SwordChallenge extends ConsumerWidget {
   static String imagePath = "assets/dexter_hill/images/sword_challenge_background.png";
 
   const SwordChallenge({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -37,11 +38,14 @@ class SwordChallenge extends StatelessWidget {
           TextButton(
               onPressed: () {
                 imagePath = "assets/dexter_hill/images/sword_challenge_completed_background.png";
-                build(context);
               },
               child: const Text("Attack Monster")),
           if (imagePath == "assets/dexter_hill/images/sword_challenge_completed_background.png")
-            TextButton(onPressed: () {}, child: const Text("Go To Treasure Room"))
+            TextButton(onPressed: () {
+              ref.read(aTDhControllerProvider).copyWith(
+                currentLocation: Location.treasureRoom
+              );
+            }, child: const Text("Go To Treasure Room"))
         ],
       ),
     );

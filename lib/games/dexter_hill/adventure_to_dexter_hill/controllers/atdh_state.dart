@@ -26,6 +26,10 @@ enum Location {
   mainGraveyard(east: jungleEntrance),
   jungleEntrance,
   shop(north: Location.jungleEntrance),
+
+  cabin(),
+  dexterHill(north: Location.cabin),
+  treasureRoom(east: Location.dexterHill),
   dungeon;
 
   final Location? north;

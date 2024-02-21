@@ -24,13 +24,18 @@ class ATDhState {
 
 enum Location {
   mainGraveyard(east: jungleEntrance),
-  jungleEntrance,
-  shop(north: Location.jungleEntrance),
+  //Jungle Entrance north is just a placeholder for when the move function needs it to go to the Jungle Exit
+  jungleEntrance(north: Location.jungleExit),
+
+  jungleExit(north: Location.shop),
+  shop(north: Location.field),
 
   cabin(),
   dexterHill(north: Location.cabin),
   treasureRoom(east: Location.dexterHill),
-  dungeon;
+  field(north: Location.field2),
+  field2(north: Location.dungeon),
+  dungeon(north: Location.treasureRoom);
 
   final Location? north;
   final Location? south;

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../games/dexter_hill/adventure_to_dexter_hill/presentation/adventure_to_dexter_hill_page.dart';
-import '../../games/puzzle_game/presentation/puzzle_page.dart';
 import '../../pages/alphabet_game_page.dart';
 import '../../pages/dice_games_page.dart';
 import '../../pages/magic_8_ball.dart';
-import '../../pages/movie_theater_page.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
 
@@ -20,7 +17,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        actions: [IconButton(onPressed: () => showDialog(context: context, builder: (_) => const SettingsDialog()), icon: const Icon(Icons.settings))],
+        actions: [
+          IconButton(
+              onPressed: () => showDialog(context: context, builder: (_) => const SettingsDialog()),
+              icon: const Icon(Icons.settings))
+        ],
         title: const Text('Games for Bored People'),
       ),
       body: Center(
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
                 child: const Text("Puzzle Game"),
                 onPressed: () {
                   context.goNamed(AppRoute.puzzle.name);
-                 },
+                },
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -64,18 +65,13 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       TextButton(
-                          onPressed: () => context.goNamed(AppRoute.aTDH.name),
-                          child: SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: Image.asset("assets/dexter_hill/images/gravestone_icon.png"))),
-                     TextButton(
-                          onPressed: () =>
-                              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MovieSelectionPage())),
-                          child: SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: Image.asset("assets/movie_theater/movie_theater_button.png"))),
+                        onPressed: () => context.goNamed(AppRoute.aTDH.name),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image.asset("assets/dexter_hill/images/gravestone_icon.png"),
+                        ),
+                      ),
                     ],
                   )
                 ],

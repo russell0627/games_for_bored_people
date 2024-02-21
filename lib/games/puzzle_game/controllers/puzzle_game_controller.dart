@@ -14,12 +14,12 @@ class PuzzleGameCtrl extends _$PuzzleGameCtrl {
   void reset() {
     state.copyWith(
       puzzleCompleted: false,
-      puzzleState: initializePuzzle(),
+      puzzleState: initializePuzzle("assets/puzzle_game/puzzle_pieces/"),
     );
 
     if (checkForWin()) {
       state.copyWith(
-        puzzleState: initializePuzzle(),
+        puzzleState: initializePuzzle("assets/puzzle_game/puzzle_pieces/"),
       );
     }
   }
@@ -31,8 +31,10 @@ class PuzzleGameCtrl extends _$PuzzleGameCtrl {
     final piece1Index = puzzleState.indexOf(selectedPiece1);
     final piece2Index = puzzleState.indexOf(selectedPiece2);
 
-    puzzleState[puzzleState.indexOf(selectedPiece1)].currentIndex = piece2Index;
-    puzzleState[puzzleState.indexOf(selectedPiece2)].currentIndex = piece1Index;
+    puzzleState.remove(selectedPiece1);
+    puzzleState.insert(piece2Index, selectedPiece1);
+    puzzleState.remove(selectedPiece2);
+    puzzleState.insert(piece1Index, selectedPiece2);
 
     state.copyWith(
       puzzleState: puzzleState,
@@ -40,13 +42,13 @@ class PuzzleGameCtrl extends _$PuzzleGameCtrl {
   }
 
   @override
-  PuzzleGameState build() => PuzzleGameState(puzzleState: initializePuzzle());
+  PuzzleGameState build() => PuzzleGameState(puzzleState: initializePuzzle("assets/puzzle_game/puzzle_pieces/"));
 
   bool checkForWin() {
     int piecesInCorrectPlaces = 0;
 
     for (PuzzlePiece piece in state.puzzleState) {
-      if (piece.currentIndex == piece.correctIndex) {
+      if (state.puzzleState.indexOf(piece) == piece.correctIndex) {
         piecesInCorrectPlaces++;
       }
     }
@@ -56,63 +58,19 @@ class PuzzleGameCtrl extends _$PuzzleGameCtrl {
     return false;
   }
 
-  List<PuzzlePiece> initializePuzzle() {
-    List<PuzzlePiece> pieces = [];
-    List<int> availableNumbers = [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
+  List<PuzzlePiece> initializePuzzle(String imagePath) {
+    List<PuzzlePiece> pieces = [
+      PuzzlePiece(correctIndex: 1, imagePath: "${imagePath}1.png"),
+      PuzzlePiece(correctIndex: 2, imagePath: "${imagePath}2.png"),
+      PuzzlePiece(correctIndex: 3, imagePath: "${imagePath}3.png"),
+      PuzzlePiece(correctIndex: 4, imagePath: "${imagePath}4.png"),
+      PuzzlePiece(correctIndex: 5, imagePath: "${imagePath}5.png"),
+      PuzzlePiece(correctIndex: 6, imagePath: "${imagePath}6.png"),
+      PuzzlePiece(correctIndex: 7, imagePath: "${imagePath}7.png"),
+      PuzzlePiece(correctIndex: 8, imagePath: "${imagePath}8.png"),
+      PuzzlePiece(correctIndex: 9, imagePath: "${imagePath}9.png"),
     ];
-    List<int> availableCorrectNumbers = [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-    ];
-    List<String> availableImagePaths = [
-      "assets/puzzle_game/puzzle_pieces/1.png"
-          "assets/puzzle_game/puzzle_pieces/2.png"
-          "assets/puzzle_game/puzzle_pieces/3.png"
-          "assets/puzzle_game/puzzle_pieces/4.png"
-          "assets/puzzle_game/puzzle_pieces/5.png"
-          "assets/puzzle_game/puzzle_pieces/6.png"
-          "assets/puzzle_game/puzzle_pieces/7.png"
-          "assets/puzzle_game/puzzle_pieces/8.png"
-          "assets/puzzle_game/puzzle_pieces/9.png"
-    ];
-    for (int number in availableNumbers) {
-      final int correctNumber = availableCorrectNumbers[rng.nextInt(availableCorrectNumbers.length - 1)];
-      final String imagePath = availableImagePaths[correctNumber];
-      pieces.add(PuzzlePiece(currentIndex: number, correctIndex: correctNumber, imagePath: imagePath));
-      availableImagePaths.remove(imagePath);
-      availableNumbers.remove(number);
-      availableCorrectNumbers.remove(correctNumber);
-    }
 
-    int piecesInCorrectPlaces = 0;
-
-    for (PuzzlePiece piece in state.puzzleState) {
-      if (piece.currentIndex == piece.correctIndex) {
-        piecesInCorrectPlaces++;
-      }
-    }
-
-    if (piecesInCorrectPlaces == 9) {
-      initializePuzzle();
-    } else {
-      return pieces;
-    }
-    return [];
+    return pieces;
   }
 }

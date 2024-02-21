@@ -48,6 +48,8 @@ class PuzzlePieceDisplay extends ConsumerWidget {
     return GestureDetector(
       onTap: () => checkForMove(ref),
       child: Container(
+        height: 200,
+        width: 200,
         decoration: BoxDecoration(image: DecorationImage(image: AssetImage(piece.imagePath))),
       ),
     );
@@ -64,3 +66,4 @@ class PuzzlePieceDisplay extends ConsumerWidget {
     }
   }
 }
+

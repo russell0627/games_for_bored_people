@@ -203,8 +203,8 @@ class _PictureManagerPageState extends State<PictureManagerPage> {
     const numberOfLandscapeImages = 18;
     const numberOfPortraitImages = 17;
 
-    const String landscapeImagePath = "assets/dexter_hill/images/dexter_images/landscape_pictures/landscape_pictures-";
-    const String portraitImagePath = "assets/dexter_hill/images/dexter_images/portrait_pictures/portrait_pictures-";
+    const String landscapeImagePath = "assets/dexter_hill/images/dexter_images/landscape_pictures/landscape_pictures_";
+    const String portraitImagePath = "assets/dexter_hill/images/dexter_images/portrait_pictures/portrait_pictures_";
     final List<Image> images = [];
 
     for (int i = 0; i < numberOfLandscapeImages; i++) {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'controllers/atdh_ctrl.dart';
+import 'controllers/atdh_state.dart';
 import 'controllers/player_ctrl.dart';
-import 'shop.dart';
 
 class JungleToDexterHill extends ConsumerStatefulWidget {
   const JungleToDexterHill({super.key});
@@ -14,11 +15,13 @@ class JungleToDexterHill extends ConsumerStatefulWidget {
 class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
   final List<Direction> correctMapDirections = [
     Direction.north,
+    Direction.east,
     Direction.north,
     Direction.east,
-    Direction.south,
+    Direction.north,
+    Direction.north,
     Direction.west,
-    Direction.east,
+    Direction.north,
   ];
 
   static int mapIndex = 0;
@@ -35,6 +38,8 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
         ),
         child: Column(
           children: [
+            TextButton(
+                onPressed: () => showDialog(context: context, builder: (_) => const MapDialog()), child: const Text("View Map")),
             TextButton(
                 onPressed: () {
                   if (correctMapDirections[mapIndex] == Direction.north) {
@@ -90,26 +95,50 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
       showDialog(context: context, builder: (_) => const GameFailedDialog());
       Navigator.of(context).pop();
     } else {
-      if (mapIndex == correctMapDirections.length - 1) {
+      if (mapIndex == correctMapDirections.length) {
         ref.read(playerControllerProvider).copyWith(daysUntilHillFound: 10 - timesReset + 1);
-        showDialog(context: context, builder: (_) => const MapCompletedDialog());
-        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const VillageShop()));
+        showDialog(barrierDismissible: false, context: context, builder: (_) => const MapCompletedDialog());
       }
     }
   }
 }
 
-class MapCompletedDialog extends StatelessWidget {
+class JungleExit extends ConsumerWidget {
+  const JungleExit({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(image: AssetImage("assets/dexter_hill/images/jungle_background.png")),
+      ),
+      child: Column(
+        children: [
+          TextButton(onPressed: () {
+            ref.watch(aTDhControllerProvider.notifier).move(Direction.north);
+          }, child: const Text("North")),
+        ],
+      ),
+    );
+  }
+}
+
+
+class MapCompletedDialog extends ConsumerWidget {
   const MapCompletedDialog({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const SimpleDialog(
+  Widget build(BuildContext context, WidgetRef ref,) {
+    return SimpleDialog(
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text("You escaped the jungle! You also found 50 gold."),
-        )
+        ),
+        TextButton(onPressed: () {
+          ref.watch(aTDhControllerProvider.notifier).move(Direction.north);
+          Navigator.of(context).pop();
+        }, child: const Text("Continue"))
       ],
     );
   }
@@ -131,9 +160,19 @@ class GameFailedDialog extends StatelessWidget {
   }
 }
 
-enum Direction {
-  north,
-  south,
-  east,
-  west;
+class MapDialog extends StatelessWidget {
+  const MapDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SimpleDialog(
+      children: [
+        Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+              "After reading the map you figure out that you need to go: North, East, North, East, North, North, West, North."),
+        )
+      ],
+    );
+  }
 }

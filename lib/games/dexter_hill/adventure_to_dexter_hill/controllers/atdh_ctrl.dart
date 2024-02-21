@@ -21,6 +21,10 @@ class ATDhController extends _$ATDhController {
       },
     );
 
+    void moveTo (Location newLocation) {
+      state.copyWith(currentLocation: newLocation);
+    }
+
   void addItem(ItemType itemType) {
     state.player.copyWith(
       inventory: state.player.inventory + [Item(itemType: itemType)],

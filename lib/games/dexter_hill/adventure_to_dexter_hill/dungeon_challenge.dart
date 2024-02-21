@@ -42,9 +42,7 @@ class SwordChallenge extends ConsumerWidget {
               child: const Text("Attack Monster")),
           if (imagePath == "assets/dexter_hill/images/sword_challenge_completed_background.png")
             TextButton(onPressed: () {
-              ref.read(aTDhControllerProvider).copyWith(
-                currentLocation: Location.treasureRoom
-              );
+              ref.watch(aTDhControllerProvider.notifier).move(Direction.north);
             }, child: const Text("Go To Treasure Room"))
         ],
       ),

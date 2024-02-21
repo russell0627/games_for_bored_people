@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import 'app/routes.dart';
 import 'services/theme/theme_service.dart';
@@ -25,6 +26,7 @@ class App extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
       routerConfig: ref.watch(goRouterProvider),
+      builder: FlutterSmartDialog.init(),
     );
   }
 }

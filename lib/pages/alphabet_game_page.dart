@@ -1,31 +1,5 @@
 import 'package:flutter/material.dart';
 
-bool alphabetA = false;
-bool alphabetB = false;
-bool alphabetC = false;
-bool alphabetD = false;
-bool alphabetE = false;
-bool alphabetF = false;
-bool alphabetG = false;
-bool alphabetH = false;
-bool alphabetI = false;
-bool alphabetJ = false;
-bool alphabetK = false;
-bool alphabetL = false;
-bool alphabetM = false;
-bool alphabetN = false;
-bool alphabetO = false;
-bool alphabetP = false;
-bool alphabetQ = false;
-bool alphabetR = false;
-bool alphabetS = false;
-bool alphabetT = false;
-bool alphabetU = false;
-bool alphabetV = false;
-bool alphabetW = false;
-bool alphabetX = false;
-bool alphabetY = false;
-bool alphabetZ = false;
 
 class AlphabetGamePage extends StatefulWidget {
   const AlphabetGamePage({super.key});
@@ -35,6 +9,34 @@ class AlphabetGamePage extends StatefulWidget {
 }
 
 class _AlphabetGamePageState extends State<AlphabetGamePage> {
+  bool alphabetA = false;
+  bool alphabetB = false;
+  bool alphabetC = false;
+  bool alphabetD = false;
+  bool alphabetE = false;
+  bool alphabetF = false;
+  bool alphabetG = false;
+  bool alphabetH = false;
+  bool alphabetI = false;
+  bool alphabetJ = false;
+  bool alphabetK = false;
+  bool alphabetL = false;
+  bool alphabetM = false;
+  bool alphabetN = false;
+  bool alphabetO = false;
+  bool alphabetP = false;
+  bool alphabetQ = false;
+  bool alphabetR = false;
+  bool alphabetS = false;
+  bool alphabetT = false;
+  bool alphabetU = false;
+  bool alphabetV = false;
+  bool alphabetW = false;
+  bool alphabetX = false;
+  bool alphabetY = false;
+  bool alphabetZ = false;
+
+
 
   @override
   Widget build(BuildContext context) {

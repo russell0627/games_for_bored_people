@@ -64,12 +64,6 @@ class HomePage extends StatelessWidget {
                   context.goNamed(AppRoute.brickBreaker.name);
                 },
               ),
-              TextButton(
-                child: const Text("Dexter's Adventure"),
-                onPressed: () {
-                  context.goNamed(AppRoute.dexterAdventure.name);
-                },
-              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

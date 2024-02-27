@@ -1,7 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../app/routes.dart';
 import 'cabin.dart';
 import 'main_graveyard.dart';
 
@@ -24,7 +26,6 @@ class DexterHillPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    dexterHillAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/new_dexter_hill_music.mp3"));
 
     return Scaffold(
       appBar: AppBar(
@@ -57,13 +58,21 @@ class DexterHillPage extends ConsumerWidget {
                   },
                   child: const Text("Go to Cabin")),
               TextButton(
-                  onPressed: () {
-                    dexterHillAudioPlayer.stop();
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const PictureManagerPage()),
-                    );
-                  },
-                  child: const Text("Pictures Of Dexter")),
+                onPressed: () {
+                  dexterHillAudioPlayer.stop();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const PictureManagerPage()),
+                  );
+                },
+                child: const Text("Pictures Of Dexter"),
+              ),
+              TextButton(
+                onPressed: () {
+                  dexterHillAudioPlayer.stop();
+                  context.goNamed(AppRoute.home.name);
+                },
+                child: const Text("Go Back To Home"),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
@@ -160,18 +169,18 @@ class _PictureManagerPageState extends State<PictureManagerPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Photo Album"),
-        leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => () {
-          photoMusicAudioPlayer.stop();
-          dexterHillAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/new_dexter_hill_music.mp3"));
-        },),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => () {
+            photoMusicAudioPlayer.stop();
+            dexterHillAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/new_dexter_hill_music.mp3"));
+          },
+        ),
       ),
       body: Center(
         child: Column(
           children: [
-            SizedBox(
-                height: 500,
-                width: 750,
-                child: images[pictureIndex]),
+            SizedBox(height: 500, width: 750, child: images[pictureIndex]),
             const Spacer(),
             Row(
               children: [
@@ -212,9 +221,7 @@ class _PictureManagerPageState extends State<PictureManagerPage> {
 
       if (i + 1 != 7) {
         images.add(Image.asset("$landscapeImagePath$formattedNumber.png"));
-
       }
-
     }
 
     images.add(Image.asset("assets/dexter_hill/images/dexter_images/landscape_pictures/picture_of_dexter_2.png"));
@@ -229,8 +236,6 @@ class _PictureManagerPageState extends State<PictureManagerPage> {
     images.add(Image.asset("assets/dexter_hill/images/dexter_images/portrait_pictures/picture_of_dexter_1.png"));
     images.add(Image.asset("assets/dexter_hill/images/dexter_images/portrait_pictures/picture_of_dexter_4.png"));
 
-
     return images;
   }
-
 }

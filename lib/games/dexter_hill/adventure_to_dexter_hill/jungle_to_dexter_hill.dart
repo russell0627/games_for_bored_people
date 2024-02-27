@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import 'controllers/atdh_ctrl.dart';
 import 'controllers/atdh_state.dart';
@@ -39,7 +40,8 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
         child: Column(
           children: [
             TextButton(
-                onPressed: () => showDialog(context: context, builder: (_) => const MapDialog()), child: const Text("View Map")),
+                onPressed: () => showDialog(context: context, builder: (_) => const MapDialog()),
+                child: const Text("View Map")),
             TextButton(
                 onPressed: () {
                   if (correctMapDirections[mapIndex] == Direction.north) {
@@ -97,7 +99,7 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
     } else {
       if (mapIndex == correctMapDirections.length) {
         ref.read(playerControllerProvider).copyWith(daysUntilHillFound: 10 - timesReset + 1);
-        showDialog(barrierDismissible: false, context: context, builder: (_) => const MapCompletedDialog());
+        SmartDialog.show(builder: (_) => const MapCompletedDialog());
       }
     }
   }
@@ -114,31 +116,39 @@ class JungleExit extends ConsumerWidget {
       ),
       child: Column(
         children: [
-          TextButton(onPressed: () {
-            ref.watch(aTDhControllerProvider.notifier).move(Direction.north);
-          }, child: const Text("North")),
+          TextButton(
+              onPressed: () {
+                ref.watch(aTDhControllerProvider.notifier).move(Direction.north);
+              },
+              child: const Text("North")),
         ],
       ),
     );
   }
 }
 
-
 class MapCompletedDialog extends ConsumerWidget {
   const MapCompletedDialog({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref,) {
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
+    final ctrl = ref.watch(aTDhControllerProvider.notifier);
+
     return SimpleDialog(
       children: [
         const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text("You escaped the jungle! You also found 50 gold."),
         ),
-        TextButton(onPressed: () {
-          ref.watch(aTDhControllerProvider.notifier).move(Direction.north);
-          Navigator.of(context).pop();
-        }, child: const Text("Continue"))
+        TextButton(
+            onPressed: () {
+              ctrl.moveTo(Location.jungleExit);
+              SmartDialog.dismiss();
+            },
+            child: const Text("Continue"))
       ],
     );
   }

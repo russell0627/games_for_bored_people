@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../brick_breaker/src/widgets/game_app.dart';
+import '../games/dexter_adventure/gameWidget.dart';
 import '../games/dexter_hill/adventure_to_dexter_hill/presentation/adventure_to_dexter_hill_page.dart';
 import '../games/puzzle_game/presentation/puzzle_page.dart';
 import '../games/ttt/presentation/ttt_page.dart';
@@ -13,7 +15,11 @@ enum AppRoute {
   home('/'),
   ttt,
   aTDH,
-  puzzle;
+  puzzle,
+
+  dexterAdventure,
+
+  brickBreaker;
 
   final String? _path;
 
@@ -47,6 +53,16 @@ GoRouter goRouter(GoRouterRef ref) {
             name: AppRoute.puzzle.name,
             path: AppRoute.puzzle.path,
             builder: (context, state) => const PuzzlePage(),
+          ),
+          GoRoute(
+            name: AppRoute.brickBreaker.name,
+            path: AppRoute.brickBreaker.path,
+            builder: (context, state) => const GameApp(),
+          ),
+          GoRoute(
+            name: AppRoute.dexterAdventure.name,
+            path: AppRoute.dexterAdventure.path,
+            builder: (context, state) => const DexterAdventureGame(),
           ),
         ],
       ),

@@ -6,7 +6,7 @@ part of 'puzzle_game_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$puzzleGameCtrlHash() => r'e7f5937f392256d4ec6c37cb41da04eaaf64b841';
+String _$puzzleGameCtrlHash() => r'9e96aa328b67f5e4def759a15332333569c38d01';
 
 /// See also [PuzzleGameCtrl].
 @ProviderFor(PuzzleGameCtrl)

@@ -13,22 +13,22 @@ class ATDhController extends _$ATDhController {
 
   void move(Direction direction) {
     state.copyWith(
-      currentLocation: switch(direction){
+      currentLocation: switch (direction) {
         Direction.north => state.currentLocation.north,
         Direction.south => state.currentLocation.south,
         Direction.east => state.currentLocation.east,
         Direction.west => state.currentLocation.west,
       },
     );
+  }
 
-    void moveTo (Location newLocation) {
-      state.copyWith(currentLocation: newLocation);
-    }
+  void moveTo(Location newLocation) {
+    state.copyWith(currentLocation: newLocation);
+  }
 
   void addItem(ItemType itemType) {
     state.player.copyWith(
       inventory: state.player.inventory + [Item(itemType: itemType)],
     );
-  }
   }
 }

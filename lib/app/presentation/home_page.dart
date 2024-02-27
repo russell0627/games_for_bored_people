@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () => showDialog(context: context, builder: (_) => const SettingsDialog()),
-              icon: const Icon(Icons.settings))
+              icon: const Icon(Icons.settings)),
         ],
         title: const Text('Games for Bored People'),
       ),
@@ -56,6 +56,18 @@ class HomePage extends StatelessWidget {
                 child: const Text("Puzzle Game"),
                 onPressed: () {
                   context.goNamed(AppRoute.puzzle.name);
+                },
+              ),
+              TextButton(
+                child: const Text("Brick Breaker"),
+                onPressed: () {
+                  context.goNamed(AppRoute.brickBreaker.name);
+                },
+              ),
+              TextButton(
+                child: const Text("Dexter's Adventure"),
+                onPressed: () {
+                  context.goNamed(AppRoute.dexterAdventure.name);
                 },
               ),
               Column(

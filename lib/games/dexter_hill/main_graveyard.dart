@@ -1,7 +1,11 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../app/routes.dart';
+import 'adventure_to_dexter_hill/controllers/atdh_ctrl.dart';
+import 'adventure_to_dexter_hill/controllers/atdh_state.dart';
 import 'adventure_to_dexter_hill/jungle_to_dexter_hill.dart';
-import 'dexter_hill.dart';
 
 const double squareHeight = 250;
 const double squareWidth = squareHeight;
@@ -27,16 +31,20 @@ bool hermitCrabNotePieceFound = false;
 bool chickensNotePieceFound = false;
 bool dexterHillMapFound = false;
 
-class MainGraveyardPage extends StatefulWidget {
+class MainGraveyardPage extends ConsumerStatefulWidget {
   const MainGraveyardPage({super.key});
 
   @override
-  State<MainGraveyardPage> createState() => _MainGraveyardPageState();
+  ConsumerState<MainGraveyardPage> createState() => _MainGraveyardPageState();
 }
 
-class _MainGraveyardPageState extends State<MainGraveyardPage> {
+class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
+    final ctrl = ref.watch(aTDhControllerProvider.notifier);
+
     mainGraveyardAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/main_graveyard_music.mp3"));
 
     return SingleChildScrollView(
@@ -72,9 +80,12 @@ class _MainGraveyardPageState extends State<MainGraveyardPage> {
                     height: squareHeight,
                     width: squareWidth,
                     child: FunctionalImage(
-                        onTapped: () => showDialog(
+                        onTapped: () {
+                          showDialog(
                             context: context,
-                            builder: (_) => const GravestoneDetailsDialog(gravestoneText: chickensText)),
+                            builder: (_) => const GravestoneDetailsDialog(gravestoneText: chickensText),
+                          );
+                        },
                         imagePath: gravestoneImagePath3),
                   ),
                   SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
@@ -107,7 +118,8 @@ class _MainGraveyardPageState extends State<MainGraveyardPage> {
                       mainGraveyardAudioPlayer.stop();
                       mainGraveyardFootstepsAudioPlayer
                           .play(DeviceFileSource("assets/dexter_hill/audio/transition_to_dexter_hill.mp3"));
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const JungleToDexterHill()));
+                      ctrl.moveTo(Location.jungleEntrance);
+                      context.goNamed(AppRoute.aTDH.name);
                     } else {
                       showDialog(context: context, builder: (_) => const MissingNotePieceDialog());
                     }

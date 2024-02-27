@@ -1,3 +1,4 @@
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
@@ -5,7 +6,10 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'app/routes.dart';
 import 'services/theme/theme_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Flame.device.setLandscape();
+  await Flame.device.fullScreen();
   runApp(const ProviderScope(
     child: App(),
   ));

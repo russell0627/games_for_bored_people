@@ -16,7 +16,7 @@ class FieldPage extends ConsumerWidget {
 
     return Container(
       decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(!isField2? "assets/dexter_hill/new_graveyard_ground.png" : "assets/dexter_hill/field_with_dungeon_entrance.png"))
+          image: DecorationImage(image: AssetImage(!isField2? "assets/dexter_hill/images/new_graveyard_ground.png" : "assets/dexter_hill/images/field_with_dungeon_entrance.png"))
       ),
       
       child: Column(
@@ -30,7 +30,7 @@ class FieldPage extends ConsumerWidget {
             TextButton(onPressed: () {
               state.copyWith(currentLocation: Location.field2);
               controller.move(Direction.north);
-            }, child: const Text("North"))
+            }, child: const Text("Enter Dungeon"))
         ],
       ),
     );

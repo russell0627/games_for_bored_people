@@ -46,8 +46,7 @@ flutter:
     - assets/movie_theater/
     - assets/dexter_hill/audio/
     - assets/dexter_hill/images/
-    - assets/dexter_hill/images/dexter_images/landscape_pictures/
-    - assets/dexter_hill/images/dexter_images/portrait_pictures/
+    - assets/dexter_hill/images/dexter_images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

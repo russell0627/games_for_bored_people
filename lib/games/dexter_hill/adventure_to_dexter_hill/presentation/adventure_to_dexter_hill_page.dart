@@ -18,7 +18,9 @@ class AdventureToDexterHillPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(aTDhControllerProvider);
-    final ctrl = ref.watch(aTDhControllerProvider.notifier);
+    final ctrl = ref.read(aTDhControllerProvider.notifier);
+
+    print(state.currentLocation);
 
     return Scaffold(
       appBar: AppBar(

@@ -1,11 +1,7 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import '../../app/routes.dart';
 import 'adventure_to_dexter_hill/controllers/atdh_ctrl.dart';
 import 'adventure_to_dexter_hill/controllers/atdh_state.dart';
-import 'adventure_to_dexter_hill/jungle_to_dexter_hill.dart';
 
 const double squareHeight = 250;
 const double squareWidth = squareHeight;
@@ -15,9 +11,6 @@ final Widget gravestonePart2Image = Image.asset("assets/dexter_hill/images/grave
 const String gravestoneImagePath = "assets/dexter_hill/images/new_graveyard_ground_with_gravestone.png";
 const String gravestoneImagePath2 = "assets/dexter_hill/images/gravestone_2.png";
 const String gravestoneImagePath3 = "assets/dexter_hill/images/gravestone_3.png";
-final AudioPlayer mainGraveyardAudioPlayer = AudioPlayer();
-final AudioPlayer mainGraveyardPaperCrinkleAudioPlayer = AudioPlayer();
-final AudioPlayer mainGraveyardFootstepsAudioPlayer = AudioPlayer();
 
 const String berryBettaFishText =
     "Berry was my first Betta fish. It died tragically from unknown causes. Berry and I were just starting to bond when it died.";
@@ -43,9 +36,8 @@ class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
   Widget build(
     BuildContext context,
   ) {
-    final ctrl = ref.watch(aTDhControllerProvider.notifier);
+    final ctrl = ref.read(aTDhControllerProvider.notifier);
 
-    mainGraveyardAudioPlayer.play(DeviceFileSource("assets/dexter_hill/audio/main_graveyard_music.mp3"));
 
     return SingleChildScrollView(
       child: SingleChildScrollView(
@@ -112,14 +104,10 @@ class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
               ),
               TextButton(
                   onPressed: () {
-                    if (bettaNotePieceFound == true &&
-                        hermitCrabNotePieceFound == true &&
-                        chickensNotePieceFound == true) {
-                      mainGraveyardAudioPlayer.stop();
-                      mainGraveyardFootstepsAudioPlayer
-                          .play(DeviceFileSource("assets/dexter_hill/audio/transition_to_dexter_hill.mp3"));
+                    if (bettaNotePieceFound &&
+                        hermitCrabNotePieceFound &&
+                        chickensNotePieceFound) {
                       ctrl.moveTo(Location.jungleEntrance);
-                      context.goNamed(AppRoute.aTDH.name);
                     } else {
                       showDialog(context: context, builder: (_) => const MissingNotePieceDialog());
                     }
@@ -172,8 +160,6 @@ Widget gravestoneTextChecker(String gravestoneText) {
     return TextButton(
         onPressed: bettaNotePieceFound == false
             ? () {
-                mainGraveyardPaperCrinkleAudioPlayer
-                    .play(DeviceFileSource("assets/dexter_hill/audio/note_picked_up.wav"));
                 bettaNotePieceFound = true;
               }
             : null,
@@ -182,8 +168,6 @@ Widget gravestoneTextChecker(String gravestoneText) {
     return TextButton(
         onPressed: hermitCrabNotePieceFound == false
             ? () {
-                mainGraveyardPaperCrinkleAudioPlayer
-                    .play(DeviceFileSource("assets/dexter_hill/audio/note_2_picked_up.wav"));
                 hermitCrabNotePieceFound = true;
               }
             : null,
@@ -192,8 +176,6 @@ Widget gravestoneTextChecker(String gravestoneText) {
     return TextButton(
         onPressed: chickensNotePieceFound == false
             ? () {
-                mainGraveyardPaperCrinkleAudioPlayer
-                    .play(DeviceFileSource("assets/dexter_hill/audio/note_3_picked_up.wav"));
                 chickensNotePieceFound = true;
               }
             : null,

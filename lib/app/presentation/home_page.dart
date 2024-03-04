@@ -28,12 +28,12 @@ class HomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TextButton(
-                child: const Text("Dice Games"),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DiceGamesPage()));
-                },
-              ),
+              // TextButton(
+              //   child: const Text("Dice Games"),
+              //   onPressed: () {
+              //     Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DiceGamesPage()));
+              //   },
+              // ),
               TextButton(
                 child: const Text("Magic 8 Ball"),
                 onPressed: () {
@@ -52,12 +52,12 @@ class HomePage extends StatelessWidget {
                   context.goNamed(AppRoute.ttt.name);
                 },
               ),
-              TextButton(
-                child: const Text("Puzzle Game"),
-                onPressed: () {
-                  context.goNamed(AppRoute.puzzle.name);
-                },
-              ),
+              // TextButton(
+              //   child: const Text("Puzzle Game"),
+              //   onPressed: () {
+              //     context.goNamed(AppRoute.puzzle.name);
+              //   },
+              // ),
               TextButton(
                 child: const Text("Brick Breaker"),
                 onPressed: () {

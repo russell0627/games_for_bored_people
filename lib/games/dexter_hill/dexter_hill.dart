@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/routes.dart';
@@ -15,6 +16,17 @@ I will always remember him as my grandpa's best bud.
 And when it is Oscar's time to go, I will put him up on the hill with Dexter, so they can be together, once more.
 
 - Russell, January 2024""";
+
+const String endOfGameMessage = """This is it. You finished the game. I hope you liked it.
+I have poured a lot of work into this project. That just shows how important Dexter was to me.
+I never knew how much I really cared about him until I lost him. He was a great dog.
+Making this has let me revisit so many great memories with Dexter.
+It was crazy being able to see Dexter's entire life in just pictures. We have had so many great adventures
+together. It was great to have him for so many years.
+I still miss him a lot.
+
+– Russell, Feb 29th 2024
+""";
 
 class DexterHillPage extends ConsumerWidget {
   const DexterHillPage({super.key});
@@ -60,9 +72,9 @@ class DexterHillPage extends ConsumerWidget {
               ),
               TextButton(
                 onPressed: () {
-                  context.goNamed(AppRoute.home.name);
+                  SmartDialog.show(builder: (BuildContext context) => const EndOfGamePage());
                 },
-                child: const Text("Go Back To Home"),
+                child: const Text("End Game"),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -142,7 +154,7 @@ class PictureManagerPage extends StatefulWidget {
 }
 
 class _PictureManagerPageState extends State<PictureManagerPage> {
-  static List<Image> images = [];
+  static List<Widget> images = [];
 
   @override
   void initState() {
@@ -180,7 +192,7 @@ class _PictureManagerPageState extends State<PictureManagerPage> {
                         : null,
                     icon: const Icon(Icons.arrow_back)),
                 IconButton(
-                    onPressed: pictureIndex != 37
+                    onPressed: pictureIndex != 33
                         ? () {
                             pictureIndex++;
                             setState(() {});
@@ -195,12 +207,61 @@ class _PictureManagerPageState extends State<PictureManagerPage> {
     );
   }
 
-  List<Image> generateImageWidgets() {
-    final List<Image> images = [];
+  List<Widget> generateImageWidgets() {
+    final List<Widget> images = [];
 
-    for(int i = 0; i < 33; i++) {
+    for (int i = 0; i < 33; i++) {
       images.add(Image.asset("assets/dexter_hill/images/dexter_images/dexter${i + 1}.png"));
     }
+    images.add(EndOfPictures());
     return images;
   }
 }
+
+
+class EndOfGamePage extends StatelessWidget {
+  const EndOfGamePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            context.pop();
+            context.pop();
+            context.pop();
+            context.pop();
+          },
+        ),
+        title: const Text("The End"),
+      ),
+      body: const Center(
+        child: Column(
+          children: [
+            Text(endOfGameMessage),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EndOfPictures extends StatelessWidget {
+  const EndOfPictures({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        Text("""You have now seen some of the best pictures with Dexter.
+The pictures ranged from when he was young to the day he died. The final picture is the one
+taken on his final day. There are so many great pictures of him. So many memories and adventures
+I hope you liked the pictures, I know I did.
+        """)
+      ],
+    );
+  }
+}
+

@@ -145,7 +145,7 @@ class MapCompletedDialog extends ConsumerWidget {
         ),
         TextButton(
             onPressed: () {
-              ctrl.moveTo(Location.jungleExit);
+              ctrl.moveTo(Location.storyPage4);
               SmartDialog.dismiss();
             },
             child: const Text("Continue"))

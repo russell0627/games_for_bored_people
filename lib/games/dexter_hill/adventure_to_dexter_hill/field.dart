@@ -26,11 +26,11 @@ class FieldPage extends ConsumerWidget {
               state.copyWith(currentLocation: Location.field);
               controller.move(Direction.north);
             }, child: const Text("North")),
-          if(isField2)
-            TextButton(onPressed: () {
-              state.copyWith(currentLocation: Location.field2);
-              controller.move(Direction.north);
-            }, child: const Text("Enter Dungeon"))
+          // if(isField2)
+          //   TextButton(onPressed: () {
+          //     state.copyWith(currentLocation: Location.field2);
+          //     controller.move(Direction.north);
+          //   }, child: const Text("Enter Dungeon"))
         ],
       ),
     );

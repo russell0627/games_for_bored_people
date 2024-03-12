@@ -6,7 +6,7 @@ class ATDhState {
 
   ATDhState({
     required this.player,
-    this.currentLocation = Location.mainGraveyard,
+    this.currentLocation = Location.storyPage1,
   });
 
   ATDhState copyWith({
@@ -23,19 +23,24 @@ class ATDhState {
 }
 
 enum Location {
+  storyPage1(north: storyPage2),
+  storyPage2(north: mainGraveyard),
   mainGraveyard(east: jungleEntrance),
+  storyPage3(north: jungleEntrance),
   //Jungle Entrance north is just a placeholder for when the move function needs it to go to the Jungle Exit
-  jungleEntrance(north: Location.jungleExit),
-
-  jungleExit(north: Location.shop),
+  jungleEntrance(north: storyPage4),
+  storyPage4(north: shop),
   shop(north: Location.field),
+  field(north: storyPage5),
 
-  cabin(),
-  dexterHill(north: Location.cabin),
+  storyPage5(north: dungeon),
+  dungeon(north: Location.treasureRoom),
   treasureRoom(east: Location.dexterHill),
-  field(north: Location.field2),
-  field2(north: Location.dungeon),
-  dungeon(north: Location.treasureRoom);
+  storyPage6(north: storyPage8),
+  storyPage7(north: storyPage8),
+  storyPage8(north: dexterHill),
+  cabin(),
+  dexterHill(north: Location.cabin);
 
   final Location? north;
   final Location? south;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/alphabet_game_page.dart';
+import '../../games/alphabet_game/alphabet_game_page.dart';
 import '../../pages/magic_8_ball.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';

@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../brick_breaker/src/widgets/game_app.dart';
+import '../games/brick_breaker/src/widgets/game_app.dart';
 import '../games/dexter_hill/adventure_to_dexter_hill/presentation/adventure_to_dexter_hill_page.dart';
 import '../games/dexter_hill/dexter_hill.dart';
 import '../games/puzzle_game/presentation/puzzle_page.dart';

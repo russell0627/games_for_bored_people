@@ -169,12 +169,6 @@ class _PictureManagerPageState extends State<PictureManagerPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Photo Album"),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => () {
-            context.pop();
-          },
-        ),
       ),
       body: Center(
         child: Column(

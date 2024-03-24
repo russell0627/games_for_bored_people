@@ -49,6 +49,9 @@ GoRouter goRouter(GoRouterRef ref) {
             name: AppRoute.aTDH.name,
             path: AppRoute.aTDH.path,
             builder: (context, state) => const AdventureToDexterHillPage(),
+            routes: [
+
+            ],
           ),
           GoRoute(
             name: AppRoute.puzzle.name,

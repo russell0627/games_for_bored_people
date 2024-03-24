@@ -16,14 +16,7 @@ class StoryPage extends ConsumerWidget {
       child: Column(
         children: [
           Text("Page $pageNumber"),
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(pageAssetPath),
-                // fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          Image.asset(pageAssetPath),
           TextButton(
               onPressed: () => ref.read(aTDhControllerProvider.notifier).move(Direction.north), child: const Text("Continue"))
         ],

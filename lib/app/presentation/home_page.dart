@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../games/alphabet_game/alphabet_game_page.dart';
+import '../../games/dexter_hill/adventure_to_dexter_hill/controllers/atdh_ctrl.dart';
+import '../../games/dexter_hill/adventure_to_dexter_hill/controllers/atdh_state.dart';
 import '../../pages/magic_8_ball.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
 
 //TODO: Add the game 10,000 to the app under the dice games
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -80,7 +83,7 @@ class HomePage extends StatelessWidget {
                     ],
                   )
                 ],
-              )
+              ),
             ],
           ),
         ),

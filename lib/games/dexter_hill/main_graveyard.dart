@@ -33,11 +33,8 @@ class MainGraveyardPage extends ConsumerStatefulWidget {
 
 class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
     final ctrl = ref.read(aTDhControllerProvider.notifier);
-
 
     return SingleChildScrollView(
       child: SingleChildScrollView(
@@ -45,6 +42,9 @@ class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
         child: Center(
           child: Column(
             children: [
+              TextButton(onPressed: () {
+                ctrl.moveTo(Location.dexterHill);
+              }, child: const Text("Skip to Dexter Hill")),
               Row(
                 children: [
                   SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
@@ -104,9 +104,7 @@ class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
               ),
               TextButton(
                   onPressed: () {
-                    if (bettaNotePieceFound &&
-                        hermitCrabNotePieceFound &&
-                        chickensNotePieceFound) {
+                    if (bettaNotePieceFound && hermitCrabNotePieceFound && chickensNotePieceFound) {
                       ctrl.moveTo(Location.jungleEntrance);
                     } else {
                       showDialog(context: context, builder: (_) => const MissingNotePieceDialog());

@@ -59,20 +59,18 @@ class DexterHillPage extends ConsumerWidget {
             children: [
               TextButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DexterHillCabinPage()));
+                    context.goNamed(AppRoute.cabin.name);
                   },
                   child: const Text("Go to Cabin")),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const PictureManagerPage()),
-                  );
+                  context.goNamed(AppRoute.aTDHPhotos.name);
                 },
                 child: const Text("Pictures Of Dexter"),
               ),
               TextButton(
                 onPressed: () {
-                  SmartDialog.show(builder: (BuildContext context) => const EndOfGamePage());
+                  SmartDialog.show(builder: (context) => const EndOfGamePage());
                 },
                 child: const Text("End Game"),
               ),
@@ -110,7 +108,7 @@ class DexterHillNoteDialog extends ConsumerWidget {
                 children: [
                   IconButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        context.pop();
                       },
                       icon: const Icon(Icons.arrow_back)),
                 ],

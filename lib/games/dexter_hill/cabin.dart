@@ -1,5 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../app/routes.dart';
 
 final AudioPlayer cabinExteriorAudioPlayer = AudioPlayer();
 final AudioPlayer cabinInteriorAudioPlayer = AudioPlayer();
@@ -33,7 +36,7 @@ class DexterHillCabinPage extends StatelessWidget {
             children: [
               TextButton(onPressed: () {
                 cabinExteriorAudioPlayer.stop();
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DexterHillCabinInteriorPage()));
+                context.goNamed(AppRoute.cabinInterior.name);
               }, child: const Text("Go inside"))
             ],
           ),

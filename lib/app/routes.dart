@@ -3,6 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../games/brick_breaker/src/widgets/game_app.dart';
 import '../games/dexter_hill/adventure_to_dexter_hill/presentation/adventure_to_dexter_hill_page.dart';
+import '../games/dexter_hill/cabin.dart';
 import '../games/dexter_hill/dexter_hill.dart';
 import '../games/puzzle_game/presentation/puzzle_page.dart';
 import '../games/ttt/presentation/ttt_page.dart';
@@ -15,11 +16,11 @@ enum AppRoute {
   home('/'),
   ttt,
   aTDH,
-
   aTDhEnd,
+  aTDHPhotos,
+  cabin,
+  cabinInterior,
   puzzle,
-
-
   brickBreaker;
 
   final String? _path;
@@ -50,7 +51,29 @@ GoRouter goRouter(GoRouterRef ref) {
             path: AppRoute.aTDH.path,
             builder: (context, state) => const AdventureToDexterHillPage(),
             routes: [
+              GoRoute(
+                name: AppRoute.aTDhEnd.name,
+                path: AppRoute.aTDhEnd.path,
+                builder: (context, state) => const EndOfGamePage(),
+              ),
+              GoRoute(
+                name: AppRoute.aTDHPhotos.name,
+                path: AppRoute.aTDHPhotos.path,
+                builder: (context, state) => const PictureManagerPage(),
+              ),
+              GoRoute(
+                name: AppRoute.cabin.name,
+                path: AppRoute.cabin.path,
+                builder: (context, state) => const DexterHillCabinPage(),
+                routes: [
+                  GoRoute(
+                    name: AppRoute.cabinInterior.name,
+                    path: AppRoute.cabinInterior.path,
+                    builder: (context, state) => const DexterHillCabinInteriorPage(),
+                  ),
 
+                ]
+              ),
             ],
           ),
           GoRoute(
@@ -62,11 +85,6 @@ GoRouter goRouter(GoRouterRef ref) {
             name: AppRoute.brickBreaker.name,
             path: AppRoute.brickBreaker.path,
             builder: (context, state) => const GameApp(),
-          ),
-         GoRoute(
-            name: AppRoute.aTDhEnd.name,
-            path: AppRoute.aTDhEnd.path,
-            builder: (context, state) => const EndOfGamePage(),
           ),
         ],
       ),

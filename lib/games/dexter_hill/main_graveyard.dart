@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../utils/popup_utils.dart';
 import 'adventure_to_dexter_hill/controllers/atdh_ctrl.dart';
 import 'adventure_to_dexter_hill/controllers/atdh_state.dart';
 
@@ -13,7 +14,7 @@ const String gravestoneImagePath2 = "assets/dexter_hill/images/gravestone_2.png"
 const String gravestoneImagePath3 = "assets/dexter_hill/images/gravestone_3.png";
 
 const String berryBettaFishText =
-    "Berry was my first Betta fish. It died tragically from unknown causes. Berry and I were just starting to bond when it died.";
+    'Berry was my first Betta fish. It died tragically from unknown causes. Berry and I were just starting to bond when it died. I can still remember that on the day that he did die my sister Brienne said something horrible. She said something along the lines of "At least my fish is not dead." that just made that day a lot worse.';
 const String hermitCrabsText =
     "None of my hermit crabs that died had names except for the small one, his name was Tiny Tim. I do not know the cause of his death. He was the first hermit crab I ever had. I miss him a lot.";
 const chickensText =
@@ -42,9 +43,11 @@ class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
         child: Center(
           child: Column(
             children: [
-              TextButton(onPressed: () {
-                ctrl.moveTo(Location.dexterHill);
-              }, child: const Text("Skip to Dexter Hill")),
+              TextButton(
+                  onPressed: () {
+                    ctrl.moveTo(Location.dexterHill);
+                  },
+                  child: const Text("Skip to Dexter Hill")),
               Row(
                 children: [
                   SizedBox(height: squareHeight, width: squareWidth, child: graveyardGroundImage),
@@ -159,6 +162,7 @@ Widget gravestoneTextChecker(String gravestoneText) {
         onPressed: bettaNotePieceFound == false
             ? () {
                 bettaNotePieceFound = true;
+                showSuccessToast(msg: "Note Piece added to inventory", clickMaskDismiss: true);
               }
             : null,
         child: const Text("Collect Note Piece"));
@@ -167,6 +171,7 @@ Widget gravestoneTextChecker(String gravestoneText) {
         onPressed: hermitCrabNotePieceFound == false
             ? () {
                 hermitCrabNotePieceFound = true;
+                showSuccessToast(msg: "Note Piece added to inventory", clickMaskDismiss: true);
               }
             : null,
         child: const Text("Collect Note Piece"));
@@ -175,6 +180,7 @@ Widget gravestoneTextChecker(String gravestoneText) {
         onPressed: chickensNotePieceFound == false
             ? () {
                 chickensNotePieceFound = true;
+                showSuccessToast(msg: "Note Piece added to inventory", clickMaskDismiss: true);
               }
             : null,
         child: const Text("Collect Note Piece"));

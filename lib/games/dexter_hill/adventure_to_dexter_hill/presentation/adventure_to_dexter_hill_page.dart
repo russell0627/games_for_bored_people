@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:recase/recase.dart';
 
 import '../../cabin.dart';
 import '../../dexter_hill.dart';
@@ -49,3 +50,23 @@ class AdventureToDexterHillPage extends ConsumerWidget {
     );
   }
 }
+
+class InstructionsDialog extends StatelessWidget {
+  final String instructionText;
+  final Location location;
+  const InstructionsDialog({super.key, required this.instructionText, required this.location});
+
+  @override
+  Widget build(BuildContext context) {
+    return SimpleDialog(
+      title: Text("${location.name.titleCase} Instructions"),
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(instructionText),
+        ),
+      ],
+    );
+  }
+}
+

@@ -56,8 +56,8 @@ void showStringInputDialog({
   );
 }
 
-void showSuccessToast(String msg) {
-  SmartDialog.showNotify(msg: msg, notifyType: NotifyType.success);
+void showSuccessToast({required String msg, bool clickMaskDismiss = false}) {
+  SmartDialog.showNotify(msg: msg, notifyType: NotifyType.success, clickMaskDismiss: clickMaskDismiss);
 }
 
 void showErrorToast(String msg) {

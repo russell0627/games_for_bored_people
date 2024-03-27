@@ -33,57 +33,45 @@ class DexterHillPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              context.pop();
-              context.pop();
-              context.pop();
-            },
-            icon: const Icon(Icons.arrow_back)),
-        title: const Text("Dexter Hill"),
-      ),
-      body: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.contain,
-              image: AssetImage("assets/dexter_hill/images/biggest_dexter_hill_with_note.png"),
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.contain,
+            image: AssetImage("assets/dexter_hill/images/biggest_dexter_hill_with_note.png"),
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+                onPressed: () {
+                  context.goNamed(AppRoute.cabin.name);
+                },
+                child: const Text("Go to Cabin")),
+            TextButton(
+              onPressed: () {
+                context.goNamed(AppRoute.aTDHPhotos.name);
+              },
+              child: const Text("Pictures Of Dexter"),
             ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
+            TextButton(
+              onPressed: () {
+                context.goNamed(AppRoute.aTDhEnd.name);
+              },
+              child: const Text("End Game"),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
                   onPressed: () {
-                    context.goNamed(AppRoute.cabin.name);
+                    showDialog(context: context, builder: (_) => const DexterHillNoteDialog());
                   },
-                  child: const Text("Go to Cabin")),
-              TextButton(
-                onPressed: () {
-                  context.goNamed(AppRoute.aTDHPhotos.name);
-                },
-                child: const Text("Pictures Of Dexter"),
-              ),
-              TextButton(
-                onPressed: () {
-                  SmartDialog.show(builder: (context) => const EndOfGamePage());
-                },
-                child: const Text("End Game"),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    onPressed: () {
-                      showDialog(context: context, builder: (_) => const DexterHillNoteDialog());
-                    },
-                    child: const Text("Read Note")),
-              ),
-            ],
-          ),
+                  child: const Text("Read Note")),
+            ),
+          ],
         ),
       ),
     );
@@ -116,7 +104,7 @@ class DexterHillNoteDialog extends ConsumerWidget {
               const Text('''A carving in the tree reads:
 "Here Lies Dexter. He Was A Good Pup.". 
           
-Above that there the top part of the note. You are able to reassemble the note from the pieces you found before coming here. The note says:'''),
+Above that there is the top part of the note. You are able to reassemble the note from the pieces you found before coming here. The note says:'''),
               const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(noteToDexter),
@@ -205,11 +193,10 @@ class _PictureManagerPageState extends State<PictureManagerPage> {
     for (int i = 0; i < 33; i++) {
       images.add(Image.asset("assets/dexter_hill/images/dexter_images/dexter${i + 1}.png"));
     }
-    images.add(EndOfPictures());
+    images.add(const EndOfPictures());
     return images;
   }
 }
-
 
 class EndOfGamePage extends StatelessWidget {
   const EndOfGamePage({super.key});
@@ -256,4 +243,3 @@ I hope you liked the pictures, I know I did.
     );
   }
 }
-

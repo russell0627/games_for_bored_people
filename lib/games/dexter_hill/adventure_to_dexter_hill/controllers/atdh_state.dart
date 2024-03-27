@@ -3,8 +3,10 @@ import '../dungeon_challenge.dart';
 class ATDhState {
   final Location currentLocation;
   final Player player;
+  final bool isChestOpen;
 
-  ATDhState({
+  ATDhState( {
+    this.isChestOpen = false,
     required this.player,
     this.currentLocation = Location.storyPage1,
   });
@@ -12,10 +14,12 @@ class ATDhState {
   ATDhState copyWith({
     Location? currentLocation,
     Player? player,
+    bool? isChestOpen,
   }) {
     return ATDhState(
       currentLocation: currentLocation ?? this.currentLocation,
       player: player ?? this.player,
+      isChestOpen: isChestOpen ?? this.isChestOpen,
     );
   }
 
@@ -32,11 +36,10 @@ enum Location {
   storyPage4(north: shop),
   shop(north: Location.field),
   field(north: storyPage5),
-
   storyPage5(north: dungeon),
   dungeon(north: Location.treasureRoom),
   treasureRoom(east: Location.dexterHill),
-  storyPage6(north: storyPage8),
+  storyPage6(north: storyPage7),
   storyPage7(north: storyPage8),
   storyPage8(north: dexterHill),
   cabin(),

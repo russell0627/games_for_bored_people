@@ -5,6 +5,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'controllers/atdh_ctrl.dart';
 import 'controllers/atdh_state.dart';
 import 'controllers/player_ctrl.dart';
+import 'presentation/adventure_to_dexter_hill_page.dart';
 
 class JungleToDexterHill extends ConsumerStatefulWidget {
   const JungleToDexterHill({super.key});
@@ -39,6 +40,7 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
         ),
         child: Column(
           children: [
+            TextButton(onPressed: () => SmartDialog.show(builder: (_) => const InstructionsDialog(instructionText: "Use the buttons to input the directions shown on the map. If an incorrect direction is entered the puzzle will restart.", location: Location.jungleEntrance)), child: const Text("Instructions")),
             TextButton(
                 onPressed: () => showDialog(context: context, builder: (_) => const MapDialog()),
                 child: const Text("View Map")),
@@ -50,6 +52,7 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
                   } else {
                     mapIndex = 0;
                     timesReset++;
+                    SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
                   }
                 },
                 child: const Text("Go North")),
@@ -61,6 +64,7 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
                   } else {
                     mapIndex = 0;
                     timesReset++;
+                    SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
                   }
                 },
                 child: const Text("Go South")),
@@ -72,6 +76,7 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
                   } else {
                     mapIndex = 0;
                     timesReset++;
+                    SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
                   }
                 },
                 child: const Text("Go East")),
@@ -83,6 +88,7 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
                   } else {
                     mapIndex = 0;
                     timesReset++;
+                    SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
                   }
                 },
                 child: const Text("Go West")),
@@ -99,6 +105,7 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
     } else {
       if (mapIndex == correctMapDirections.length) {
         ref.read(playerControllerProvider).copyWith(daysUntilHillFound: 10 - timesReset + 1);
+        correctMapDirections.removeRange(0, correctMapDirections.last.index);
         SmartDialog.show(builder: (_) => const MapCompletedDialog());
       }
     }
@@ -181,6 +188,23 @@ class MapDialog extends StatelessWidget {
           padding: EdgeInsets.all(16.0),
           child: Text(
               "After reading the map you figure out that you need to go: North, East, North, East, North, North, West, North."),
+        )
+      ],
+    );
+  }
+}
+
+class IncorrectDirectionDialog extends StatelessWidget {
+  const IncorrectDirectionDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SimpleDialog(
+      children: [
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+              "You went the wrong way and ended up back where you started. You will need to navigate through the jungle again."),
         )
       ],
     );

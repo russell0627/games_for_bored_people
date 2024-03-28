@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
+import '../../../controllers/quiz_state.dart';
 import '../home.dart';
 
 class TypesOfDinosaursPage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _TypesOfDinosaursPageState extends State<TypesOfDinosaursPage> {
         decoration: const BoxDecoration(
             image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage("${dinosaurImagePath}herd_of_protoceratops_in_desert.png"),
+          image: AssetImage("${QuizState.dinosaurImagePath}herd_of_protoceratops_in_desert.png"),
         )),
         child: Center(
           child: Padding(

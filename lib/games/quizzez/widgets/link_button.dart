@@ -8,7 +8,7 @@ class LinkButton extends StatelessWidget {
   final String label;
   final String url;
 
-  const LinkButton({Key? key, required this.label, required this.url}) : super(key: key);
+  const LinkButton({super.key, required this.label, required this.url});
 
   @override
   Widget build(BuildContext context) {

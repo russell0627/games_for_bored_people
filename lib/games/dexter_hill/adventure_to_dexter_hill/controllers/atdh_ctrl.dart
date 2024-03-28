@@ -1,4 +1,3 @@
-import 'package:flame/extensions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../data/atdh_locations.dart';

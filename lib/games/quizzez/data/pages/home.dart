@@ -10,8 +10,6 @@ import 'quiz_page.dart';
 
 //TODO: Create plant quiz and finish animal quiz.
 
-const dinosaurImagePath = "assets/images/dinosaurs/";
-const spaceImagePath = "assets/images/space/";
 
 class QuizzezHomePage extends ConsumerStatefulWidget {
   const QuizzezHomePage({super.key, required this.title});

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../utils/screen_utils.dart';
+import '../../controllers/quiz_controller.dart';
+import '../../controllers/quiz_state.dart';
 import '../../widgets/dialogs/invalid_quiz_length_dialog.dart';
 import '../models/question.dart';
 import 'home.dart';
 import 'quiz_page.dart';
 
-class QuizLengthPage extends StatefulWidget {
+class QuizLengthPage extends ConsumerStatefulWidget {
   final int maxQuizLength;
   final int minQuizLength;
   final QuestionType questionType;
@@ -16,14 +19,19 @@ class QuizLengthPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<QuizLengthPage> createState() => _QuizLengthPageState();
+  ConsumerState<QuizLengthPage> createState() => _QuizLengthPageState();
 }
 
-class _QuizLengthPageState extends State<QuizLengthPage> {
+class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
   int quizLength = 0;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
+    final state = ref.read(quizControllerProvider);
+    final ctrl = ref.read(quizControllerProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -39,8 +47,8 @@ class _QuizLengthPageState extends State<QuizLengthPage> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(widget.questionType == QuestionType.dinosaur
-                  ? "${dinosaurImagePath}triceratops_in_a_forest.png"
-                  : "${spaceImagePath}blue_and_purple_planet.png"),
+                  ? "${QuizState.dinosaurImagePath}triceratops_in_a_forest.png"
+                  : "${QuizState.spaceImagePath}blue_and_purple_planet.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -76,11 +84,7 @@ class _QuizLengthPageState extends State<QuizLengthPage> {
                       return;
                     }
                     Navigator.of(context).pop();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => QuizPage(
-                              quizLength: quizLength,
-                              questionType: widget.questionType,
-                            )));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => QuizPage()));
                   },
                   child: const Text(
                     "Start Quiz",

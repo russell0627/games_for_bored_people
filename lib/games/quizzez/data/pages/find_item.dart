@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/screen_utils.dart';
+import '../../controllers/quiz_state.dart';
 import '../dinosaurs.dart';
 import '../models/question.dart';
 import 'dinosaur/dinosaur_display_page.dart';
@@ -75,7 +76,7 @@ class _FindItemPageState extends State<FindItemPage> {
 String findBackgroundImage(QuestionType questionType) {
   switch (questionType) {
     case QuestionType.dinosaur:
-      return "${dinosaurImagePath}tyrannosaurus_on_peak.png";
+      return "${QuizState.dinosaurImagePath}tyrannosaurus_on_peak.png";
     case QuestionType.space:
       return "";
     case QuestionType.animal:

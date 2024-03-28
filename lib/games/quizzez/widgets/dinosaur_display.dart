@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
 
 import '../../../utils/screen_utils.dart';
+import '../controllers/quiz_state.dart';
 import '../data/models/dinosaur.dart';
 import '../data/pages/home.dart';
 
@@ -30,7 +31,7 @@ class DinosaurDisplay extends StatelessWidget {
             ),
             child: Padding(
               padding: paddingAllM,
-              child: Image.asset("$dinosaurImagePath${dinosaur.imageFileName}"),
+              child: Image.asset("${QuizState.dinosaurImagePath}${dinosaur.imageFileName}"),
             ),
           ),
         ),

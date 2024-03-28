@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/screen_utils.dart';
+import '../../../controllers/quiz_state.dart';
 import '../../../widgets/dinosaur_display.dart';
 import '../../models/dinosaur.dart';
 import '../home.dart';
@@ -29,7 +30,7 @@ class _DinosaurDisplayPageState extends State<DinosaurDisplayPage> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("${dinosaurImagePath}tyrannosaurus_fight.png"),
+            image: AssetImage("${QuizState.dinosaurImagePath}tyrannosaurus_fight.png"),
             fit: BoxFit.cover,
           ),
         ),

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../utils/screen_utils.dart';
+import '../../controllers/quiz_state.dart';
 import '../../widgets/link_button.dart';
 import 'home.dart';
 
-class CreditsPage extends StatelessWidget {
+class CreditsPage extends ConsumerWidget {
   const CreditsPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
           title: const Text(
@@ -18,7 +20,7 @@ class CreditsPage extends StatelessWidget {
       body: const DecoratedBox(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("${dinosaurImagePath}brachiosaurus_herd_at_watering_hole.png"), fit: BoxFit.cover)),
+                image: AssetImage("${QuizState.dinosaurImagePath}brachiosaurus_herd_at_watering_hole.png"), fit: BoxFit.cover)),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

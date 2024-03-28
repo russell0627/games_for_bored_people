@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../settings_dialog.dart';
 import '../../../../../utils/screen_utils.dart';
+import '../../../controllers/quiz_state.dart';
 import '../../../widgets/logo_display.dart';
 import '../../models/question.dart';
 import '../find_item.dart';
@@ -16,7 +17,7 @@ const dinosaurButtonTextStyle = TextStyle(
 
 
 class DinosaurHomePage extends StatefulWidget {
-  const DinosaurHomePage({Key? key}) : super(key: key);
+  const DinosaurHomePage({super.key});
 
   @override
   State<DinosaurHomePage> createState() => _DinosaurHomePageState();
@@ -28,7 +29,7 @@ class _DinosaurHomePageState extends State<DinosaurHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const LogoDisplay(
-          imagePath: dinosaurImagePath,
+          imagePath: QuizState.dinosaurImagePath,
           imageName: "parasaurolophus_icon.png",
           imagePadding: 8.0,
           fontFamily: "dinosauce", text: ["Dinosaur", "Quiz"],
@@ -49,7 +50,7 @@ class _DinosaurHomePageState extends State<DinosaurHomePage> {
       ),
       body: DecoratedBox(
         decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage("${dinosaurImagePath}cretaceous_landscape.png"), fit: BoxFit.cover),
+          image: DecorationImage(image: AssetImage("${QuizState.dinosaurImagePath}cretaceous_landscape.png"), fit: BoxFit.cover),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

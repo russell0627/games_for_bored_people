@@ -1,4 +1,6 @@
+import '../../../../data/atdh_locations.dart';
 import '../dungeon_challenge.dart';
+
 
 class ATDhState {
   final Location currentLocation;
@@ -26,46 +28,12 @@ class ATDhState {
   ChallengeType get challengeType => player.challengeType;
 }
 
-enum Location {
-  storyPage1(north: storyPage2),
-  storyPage2(north: mainGraveyard),
-  mainGraveyard(east: jungleEntrance),
-  storyPage3(north: jungleEntrance),
-  //Jungle Entrance north is just a placeholder for when the move function needs it to go to the Jungle Exit
-  jungleEntrance(north: storyPage4),
-  storyPage4(north: shop),
-  shop(north: Location.field),
-  field(north: storyPage5),
-  storyPage5(north: dungeon),
-  dungeon(north: Location.treasureRoom),
-  treasureRoom(east: Location.dexterHill),
-  storyPage6(north: storyPage7),
-  storyPage7(north: storyPage8),
-  storyPage8(north: dexterHill),
-  cabin(),
-  dexterHill(north: Location.cabin);
-
-  final Location? north;
-  final Location? south;
-  final Location? east;
-  final Location? west;
-
-  const Location({this.north, this.south, this.east, this.west});
-}
-
-enum Direction {
-  north,
-  south,
-  east,
-  west;
-}
-
 class Player {
   final int goldCount;
 
   final List<Item> inventory;
 
-  bool checkForItem(ItemType itemType) => inventory.contains(Item(itemType: itemType));
+  bool checkForItem(Item itemType) => inventory.contains(itemType);
 
   Player({
     this.inventory = const [],
@@ -73,9 +41,9 @@ class Player {
   });
 
   ChallengeType get challengeType {
-    if (checkForItem(ItemType.sword)) {
+    if (checkForItem(Item.sword)) {
       return ChallengeType.sword;
-    } else if (checkForItem(ItemType.crossbow)) {
+    } else if (checkForItem(Item.crossbow)) {
       return ChallengeType.crossbow;
     } else {
       return ChallengeType.grapplingHook;
@@ -93,15 +61,12 @@ class Player {
   }
 }
 
-class Item {
-  final ItemType itemType;
-
-  Item({required this.itemType});
-}
-
-enum ItemType {
+enum Item {
   horse,
   sword,
   grapplingHook,
-  crossbow;
+  crossbow,
+  bettaNote,
+  chickenNote,
+  hermitCrabNote;
 }

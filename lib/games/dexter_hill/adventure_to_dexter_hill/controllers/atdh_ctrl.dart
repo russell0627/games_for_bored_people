@@ -1,5 +1,7 @@
+import 'package:flame/extensions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../data/atdh_locations.dart';
 import 'atdh_state.dart';
 
 part 'atdh_ctrl.g.dart';
@@ -26,11 +28,17 @@ class ATDhController extends _$ATDhController {
     state = state.copyWith(currentLocation: newLocation);
   }
 
-  void addItem(ItemType itemType) {
+  void addItem(Item item) {
     state = state.copyWith(
       player: state.player.copyWith(
-        inventory: state.player.inventory + [Item(itemType: itemType)],
+        inventory: state.player.inventory + [item],
       ),
     );
   }
+
+  void openChest() {
+    state = state.copyWith(isChestOpen: true);
+  }
+
+  bool hasItem (Item item) => state.player.inventory.contains(item);
 }

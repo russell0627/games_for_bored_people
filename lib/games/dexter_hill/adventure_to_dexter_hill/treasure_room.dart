@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../data/atdh_locations.dart';
 import 'controllers/atdh_ctrl.dart';
 import 'controllers/atdh_state.dart';
 
@@ -27,12 +28,12 @@ class TreasureRoom extends ConsumerWidget {
             if (!state.isChestOpen)
               TextButton(
                   onPressed: () {
-                    state.copyWith(isChestOpen: true);
+                    ctrl.openChest();
                   },
                   child: const Text("Open Chest")),
             TextButton(onPressed: () {
               ctrl.move(Direction.north);
-            }, child: const Text("Continue to Dexter Hill")),
+            }, child: const Text("Continue")),
           ],
         ),
       ),

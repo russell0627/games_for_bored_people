@@ -7,6 +7,10 @@ class QuizState {
   static const dinosaurImagePath = "assets/images/dinosaurs/";
   static const animalImagePath = "assets/quizzez/images/animals/";
   static const spaceImagePath = "assets/images/space/";
+  static const minQuizLength = 10;
+  static const maxQuizLength = 150;
+  static const spaceMinQuizLength = 3;
+  static const spaceMaxQuizLength = 7;
 
   final List<Question> questions;
   final QuestionType questionType;

@@ -115,7 +115,7 @@ class QuizController extends _$QuizController {
 
   void resetQuestions() {
     final List<Question> newQuestions = [];
-    state.copyWith(questionIndex: 0, score: 0, questions: []);
+    state = state.copyWith(questionIndex: 0, score: 0, questions: []);
 
     switch (state.questionType) {
       case QuestionType.dinosaur:

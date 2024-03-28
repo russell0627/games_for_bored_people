@@ -62,14 +62,22 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   #  fonts:
-  #    - family: Press Start 2P
-  #      fonts:
-  #        - asset: assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+  fonts:
+    - family: Merienda
+      fonts:
+        - asset: assets/quizzez/fonts/Merienda/static/Merienda-Regular.ttf
+    - family: DinoSauce
+      fonts:
+        - asset: assets/quizzez/fonts/dinosauce/DinosauceFont-Regular.ttf
+    - family: Erasaur
+      fonts:
+        - asset: assets/quizzez/fonts/erasaur/Erasaur-wjZ9.otf
+    - family: Induction
+      fonts:
+        - asset: assets/quizzez/fonts/Induction/Induction.otf
+    - family: Andromeda
+      fonts:
+        - asset: assets/quizzez/fonts/Andromeda/AndromedaTV.ttf
+    #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -24,7 +24,7 @@ class _SpaceHomePageState extends State<SpaceHomePage> {
           children: [
             TextButton(
               onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => const QuizLengthPage(maxQuizLength: 7, minQuizLength: 3, questionType: QuestionType.space,))),
+                  context, MaterialPageRoute(builder: (_) => const QuizLengthPage())),
               child: const Text("Start Quiz"),
             )
           ],

@@ -6,6 +6,9 @@ import '../games/dexter_hill/adventure_to_dexter_hill/presentation/adventure_to_
 import '../games/dexter_hill/cabin.dart';
 import '../games/dexter_hill/dexter_hill.dart';
 import '../games/puzzle_game/presentation/puzzle_page.dart';
+import '../games/quizzez/data/pages/quiz_home.dart';
+import '../games/quizzez/data/pages/quiz_length_page.dart';
+import '../games/quizzez/data/pages/quiz_page.dart';
 import '../games/ttt/presentation/ttt_page.dart';
 import 'presentation/home_page.dart';
 import 'presentation/not_found_page.dart';
@@ -22,6 +25,8 @@ enum AppRoute {
   cabinInterior,
   puzzle,
   quizzez,
+  quizLength,
+  quiz,
   brickBreaker;
 
   final String? _path;
@@ -50,7 +55,23 @@ GoRouter goRouter(GoRouterRef ref) {
           GoRoute(
             name: AppRoute.quizzez.name,
             path: AppRoute.quizzez.path,
-            builder: (context, state) => const TTTPage(),
+            builder: (context, state) => const QuizzezHomePage(title: 'Quizzez'),
+            routes: [
+              GoRoute(
+                name: AppRoute.quizLength.name,
+                path: AppRoute.quizLength.path,
+                builder: (context, state) => const QuizLengthPage(),
+                routes: [
+                  GoRoute(
+                    name: AppRoute.quiz.name,
+                    path: AppRoute.quiz.path,
+                    builder: (context, state) => const QuizPage(),
+                  ),
+
+                ]
+              ),
+
+            ]
           ),
           GoRoute(
             name: AppRoute.aTDH.name,

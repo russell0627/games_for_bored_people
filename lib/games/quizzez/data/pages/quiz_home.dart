@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../utils/screen_utils.dart';
-import '../models/question.dart';
 import 'credits_page.dart';
 import 'dinosaur/dinosaur_home_page.dart';
 import 'quiz_length_page.dart';
-import 'quiz_page.dart';
 
 //TODO: Create plant quiz and finish animal quiz.
-
 
 class QuizzezHomePage extends ConsumerStatefulWidget {
   const QuizzezHomePage({super.key, required this.title});
@@ -47,12 +44,11 @@ class _QuizzezHomePageState extends ConsumerState<QuizzezHomePage> {
             boxXXL,
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => const QuizLengthPage(
-                          maxQuizLength: 7,
-                          minQuizLength: 3,
-                          questionType: QuestionType.space,
-                        )));
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const QuizLengthPage(),
+                  ),
+                );
               },
               child: const Text(
                 "Go To Space Quiz",
@@ -65,12 +61,7 @@ class _QuizzezHomePageState extends ConsumerState<QuizzezHomePage> {
             boxXXL,
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => const QuizLengthPage(
-                          maxQuizLength: 20,
-                          minQuizLength: 3,
-                          questionType: QuestionType.animal,
-                        )));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizLengthPage(),),);
               },
               child: const Text(
                 "Go To Animal Quiz",

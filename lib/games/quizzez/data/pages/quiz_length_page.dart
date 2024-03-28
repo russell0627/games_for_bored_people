@@ -6,17 +6,10 @@ import '../../controllers/quiz_controller.dart';
 import '../../controllers/quiz_state.dart';
 import '../../widgets/dialogs/invalid_quiz_length_dialog.dart';
 import '../models/question.dart';
-import 'home.dart';
 import 'quiz_page.dart';
 
 class QuizLengthPage extends ConsumerStatefulWidget {
-  final int maxQuizLength;
-  final int minQuizLength;
-  final QuestionType questionType;
-
-  const QuizLengthPage(
-      {Key? key, required this.maxQuizLength, required this.minQuizLength, this.questionType = QuestionType.dinosaur})
-      : super(key: key);
+  const QuizLengthPage({super.key});
 
   @override
   ConsumerState<QuizLengthPage> createState() => _QuizLengthPageState();
@@ -46,7 +39,7 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
         child: DecoratedBox(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(widget.questionType == QuestionType.dinosaur
+              image: AssetImage(state.questionType == QuestionType.dinosaur
                   ? "${QuizState.dinosaurImagePath}triceratops_in_a_forest.png"
                   : "${QuizState.spaceImagePath}blue_and_purple_planet.png"),
               fit: BoxFit.cover,
@@ -73,18 +66,18 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
                   ),
                 ),
                 Text(
-                  "MIN: ${widget.minQuizLength}, MAX: ${widget.maxQuizLength}",
+                  "MIN: ${getMaxQuizLength(state.questionType)}, MAX: ${getMaxQuizLength(state.questionType)}",
                   style: const TextStyle(fontFamily: "Merienda"),
                 ),
                 boxXXL,
                 ElevatedButton(
                   onPressed: () {
-                    if (quizLength > widget.maxQuizLength || quizLength < widget.minQuizLength) {
+                    if (quizLength > QuizState.maxQuizLength || quizLength < QuizState.minQuizLength) {
                       showDialog(context: context, builder: (_) => const InvalidQuizLengthDialog());
                       return;
                     }
                     Navigator.of(context).pop();
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => QuizPage()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizPage()));
                   },
                   child: const Text(
                     "Start Quiz",
@@ -98,4 +91,7 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
       ),
     );
   }
+
+  int getMinQuizLength(QuestionType questionType) => questionType == QuestionType.dinosaur ? QuizState.minQuizLength : QuizState.spaceMinQuizLength;
+  int getMaxQuizLength(QuestionType questionType) => questionType == QuestionType.dinosaur ? QuizState.maxQuizLength : QuizState.spaceMaxQuizLength;
 }

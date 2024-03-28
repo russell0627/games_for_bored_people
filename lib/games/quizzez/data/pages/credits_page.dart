@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../utils/screen_utils.dart';
 import '../../controllers/quiz_state.dart';
 import '../../widgets/link_button.dart';
-import 'home.dart';
+import 'quiz_home.dart';
 
 class CreditsPage extends ConsumerWidget {
   const CreditsPage({Key? key}) : super(key: key);

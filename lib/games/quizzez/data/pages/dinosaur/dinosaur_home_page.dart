@@ -6,7 +6,7 @@ import '../../../controllers/quiz_state.dart';
 import '../../../widgets/logo_display.dart';
 import '../../models/question.dart';
 import '../find_item.dart';
-import '../home.dart';
+import '../quiz_home.dart';
 import '../quiz_length_page.dart';
 import 'taxonomy_of_dinosaurs_page.dart';
 
@@ -14,7 +14,6 @@ const dinosaurButtonTextStyle = TextStyle(
   fontFamily: "erasaur",
   fontSize: 18,
 );
-
 
 class DinosaurHomePage extends StatefulWidget {
   const DinosaurHomePage({super.key});
@@ -32,7 +31,8 @@ class _DinosaurHomePageState extends State<DinosaurHomePage> {
           imagePath: QuizState.dinosaurImagePath,
           imageName: "parasaurolophus_icon.png",
           imagePadding: 8.0,
-          fontFamily: "dinosauce", text: ["Dinosaur", "Quiz"],
+          fontFamily: "dinosauce",
+          text: ["Dinosaur", "Quiz"],
         ),
         actions: [
           IconButton(
@@ -50,7 +50,8 @@ class _DinosaurHomePageState extends State<DinosaurHomePage> {
       ),
       body: DecoratedBox(
         decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage("${QuizState.dinosaurImagePath}cretaceous_landscape.png"), fit: BoxFit.cover),
+          image: DecorationImage(
+              image: AssetImage("${QuizState.dinosaurImagePath}cretaceous_landscape.png"), fit: BoxFit.cover),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,11 +62,8 @@ class _DinosaurHomePageState extends State<DinosaurHomePage> {
                 children: [
                   const SizedBox(height: 150),
                   ElevatedButton(
-                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const QuizLengthPage(
-                          minQuizLength: 10,
-                          maxQuizLength: 150,
-                        ))),
+                    onPressed: () =>
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizLengthPage())),
                     child: const Text(
                       "Start Dinosaur Quiz!",
                       style: dinosaurButtonTextStyle,
@@ -82,8 +80,10 @@ class _DinosaurHomePageState extends State<DinosaurHomePage> {
                   ),
                   boxXXL,
                   ElevatedButton(
-                    onPressed: () =>
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const FindItemPage(itemType: QuestionType.dinosaur,))),
+                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const FindItemPage(
+                              itemType: QuestionType.dinosaur,
+                            ))),
                     child: const Text(
                       "Find a Dinosaur",
                       style: dinosaurButtonTextStyle,

@@ -5,7 +5,7 @@ import '../../controllers/quiz_state.dart';
 import '../dinosaurs.dart';
 import '../models/question.dart';
 import 'dinosaur/dinosaur_display_page.dart';
-import 'home.dart';
+import 'quiz_home.dart';
 
 class FindItemPage extends StatefulWidget {
   final QuestionType itemType;

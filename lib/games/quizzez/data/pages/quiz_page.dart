@@ -15,7 +15,7 @@ import '../models/dinosaur.dart';
 import '../models/plant.dart';
 import '../models/question.dart';
 import '../models/space_object.dart';
-import 'home.dart';
+import 'quiz_home.dart';
 
 //168 Different Questions, 3 per Dinosaur.
 

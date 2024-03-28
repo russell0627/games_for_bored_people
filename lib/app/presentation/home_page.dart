@@ -66,6 +66,12 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.brickBreaker.name);
                 },
               ),
+              TextButton(
+                child: const Text("Quizzez"),
+                onPressed: () {
+                  context.goNamed(AppRoute.brickBreaker.name);
+                },
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

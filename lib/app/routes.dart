@@ -21,6 +21,7 @@ enum AppRoute {
   cabin,
   cabinInterior,
   puzzle,
+  quizzez,
   brickBreaker;
 
   final String? _path;
@@ -44,6 +45,11 @@ GoRouter goRouter(GoRouterRef ref) {
           GoRoute(
             name: AppRoute.ttt.name,
             path: AppRoute.ttt.path,
+            builder: (context, state) => const TTTPage(),
+          ),
+          GoRoute(
+            name: AppRoute.quizzez.name,
+            path: AppRoute.quizzez.path,
             builder: (context, state) => const TTTPage(),
           ),
           GoRoute(

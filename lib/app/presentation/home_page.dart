@@ -69,7 +69,7 @@ class HomePage extends ConsumerWidget {
               TextButton(
                 child: const Text("Quizzez"),
                 onPressed: () {
-                  context.goNamed(AppRoute.quizzez.name);
+                  context.goNamed(AppRoute.quizzez  .name);
                 },
               ),
               Column(

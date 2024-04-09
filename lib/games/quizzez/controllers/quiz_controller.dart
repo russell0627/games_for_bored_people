@@ -24,26 +24,29 @@ class QuizController extends _$QuizController {
     }
   }
   List<Question> _generateQuestions(
-      {Dinosaur? currentDinosaur, Animal? currentAnimal, Plant? currentPlant, required QuestionType questionType}) {
+      {Dinosaur? currentDinosaur, Animal? currentAnimal, Plant? currentPlant, required QuestionType questionType, }) {
     //TODO: make it so that this supports plant questions too
     List<Question> newQuestions = [];
 
     if (questionType == QuestionType.dinosaur) {
       newQuestions = [
+        if (state.includeDietQuestions)
         Question<Diet>(
           question: "What was the diet classification for ${currentDinosaur!.name}?",
           options: Diet.values,
           answers: [currentDinosaur.diet],
           imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
         ),
+        if (state.includeCladeQuestions)
         Question<Suborder>(
-          question: "What is the lowest clade for ${currentDinosaur.name}?",
+          question: "What is the lowest clade for ${currentDinosaur!.name}?",
           options: Suborder.values,
           answers: [currentDinosaur.suborder],
           imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
         ),
+        if (state.includeTimePeriodQuestions)
         Question<TimePeriod>(
-          question: "What time period was ${currentDinosaur.name} from?",
+          question: "What time period was ${currentDinosaur!.name} from?",
           options: TimePeriod.values,
           answers: [currentDinosaur.timePeriod],
           imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",

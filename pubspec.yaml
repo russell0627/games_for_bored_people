@@ -49,6 +49,9 @@ flutter:
     - assets/dexter_hill/images/
     - assets/dexter_hill/images/dexter_images/
     - assets/dexter_hill/images/story_pages/
+    - assets/quizzez/images/
+    - assets/quizzez/images/dinosaurs/
+    - assets/quizzez/images/space/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

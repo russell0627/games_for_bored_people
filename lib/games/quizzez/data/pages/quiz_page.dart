@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../../utils/screen_utils.dart';
 import '../../controllers/quiz_controller.dart';
 import '../../controllers/quiz_state.dart';
-import '../../widgets/dialogs/game_finished_dialog.dart';
-import '../../widgets/dialogs/reset_game_dialog.dart';
 import '../../widgets/logo_display.dart';
 import '../../widgets/question_display.dart';
-import '../animals.dart';
-import '../dinosaurs.dart';
-import '../models/animal.dart';
-import '../models/dinosaur.dart';
-import '../models/plant.dart';
 import '../models/question.dart';
-import '../models/space_object.dart';
-import 'quiz_home.dart';
 
-//168 Different Questions, 3 per Dinosaur.
+//168 Different Questions, 3 per Dinosaur. 56 per category
 
 class QuizPage extends ConsumerWidget {
   const QuizPage({super.key});
@@ -25,11 +15,16 @@ class QuizPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(quizControllerProvider);
-    final ctrl = ref.watch(quizControllerProvider.notifier);
+    final ctrl = ref.read(quizControllerProvider.notifier);
+
+    // print("QUESTIONS: ${state.questions.length}");
+    // print("QUESTION INDEX: ${state.questionIndex}");
+
     return Scaffold(
       appBar: AppBar(
         title: LogoDisplay(
-          imagePath: QuizState.imagePath,
+          imagePath:
+              state.questionType == QuestionType.dinosaur ? QuizState.dinosaurImagePath : QuizState.spaceImagePath,
           imageName: state.questionType == QuestionType.dinosaur ? "parasaurolophus_icon.png" : "galaxy_icon.png",
           imagePadding: med,
           fontFamily: state.questionType == QuestionType.dinosaur ? "dinosauce" : "Induction",
@@ -37,13 +32,11 @@ class QuizPage extends ConsumerWidget {
         ),
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.refresh))],
       ),
-
-      //
       body: DecoratedBox(
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                  '${QuizState.imagePath}${state.questionType == QuestionType.dinosaur ? "herd_of_plesiosaurs.png" : "blue_and_purple_planet.png"}'),
+                  '${state.questionType == QuestionType.dinosaur ? QuizState.dinosaurImagePath : QuizState.spaceImagePath}${state.questionType == QuestionType.dinosaur ? "herd_of_plesiosaurs.png" : "blue_and_purple_planet.png"}'),
               fit: BoxFit.cover),
         ),
         child: Center(
@@ -55,7 +48,7 @@ class QuizPage extends ConsumerWidget {
                 "Score: ${state.score}",
                 style: const TextStyle(fontSize: 16, fontFamily: "erasaur"),
               ),
-              if (state.score == state.questions.length) ...[
+              if (state.score != state.questions.length) ...[
                 Text(
                   "Question: ${state.questionIndex + 1}/${state.questions.length}",
                   style: const TextStyle(
@@ -85,12 +78,37 @@ class QuizPage extends ConsumerWidget {
                   ),
                 ),
                 Flexible(
-                  child: QuestionDisplay(
-                    key: ObjectKey(state.questions[state.questionIndex]),
-                    question: state.questions[state.questionIndex],
-                    onComplete: (answeredOnFirstTry) {
-                      ctrl.nextQuestion(answeredOnFirstTry: answeredOnFirstTry);
-                    },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        state.questions[state.questionIndex].question,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      boxM,
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: SizedBox(
+                            width: 300,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                for (final option in state.questions[state.questionIndex].options)
+                                  TextButton(
+                                    onPressed: () {
+                                      ctrl.nextQuestion(
+                                        answer: option,
+                                      );
+                                    },
+                                    child: Text(option.toString()),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

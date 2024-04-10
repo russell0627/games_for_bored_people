@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../utils/screen_utils.dart';
+import '../controllers/quiz_controller.dart';
 import '../data/models/question.dart';
 import 'dialogs/incorrect_answer_dialog.dart';
 
-class QuestionDisplay extends StatefulWidget {
-  final Question question;
+class QuestionDisplay extends ConsumerStatefulWidget {
   final ValueChanged<bool> onComplete;
 
-  const QuestionDisplay({Key? key, required this.question, required this.onComplete}) : super(key: key);
+  const QuestionDisplay({super.key, required this.onComplete});
 
   @override
-  State<QuestionDisplay> createState() => _QuestionDisplayState();
+  ConsumerState<QuestionDisplay> createState() => _QuestionDisplayState();
 }
 
-class _QuestionDisplayState extends State<QuestionDisplay> {
+class _QuestionDisplayState extends ConsumerState<QuestionDisplay> {
   bool answeredOnFirstTry = true;
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(quizControllerProvider);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          widget.question.question,
+          state.questions[state.questionIndex].question,
           style: const TextStyle(fontSize: 16),
         ),
         boxM,
@@ -35,11 +37,11 @@ class _QuestionDisplayState extends State<QuestionDisplay> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  for (final option in widget.question.options)
+                  for (final option in state.questions[state.questionIndex].options)
                     TextButton(
                       onPressed: () {
-                        for(int i = 0; i < widget.question.answers.length; i++) {
-                          widget.question.answers[i] == option ? widget.onComplete(answeredOnFirstTry) : _onIncorrectAnswer(context);
+                        for(int i = 0; i < state.questions[state.questionIndex].answers.length; i++) {
+                          state.questions[state.questionIndex].answers[i] == option ? widget.onComplete(answeredOnFirstTry) : _onIncorrectAnswer(context);
                       }
                       },
                       child: Text(option.toString()),

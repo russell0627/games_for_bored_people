@@ -19,38 +19,45 @@ class QuizController extends _$QuizController {
   QuizState build() => QuizState(questions: [], questionType: QuestionType.dinosaur, score: 0, questionIndex: 0);
 
   void answerQuestion(final dynamic answer) {
-    if(state.questions[state.questionIndex].answers.contains(answer)) {
-      state = state.copyWith(questionIndex: state.questionIndex + 1, score: state.score + 1);
+    if (state.questions[state.questionIndex].answers.contains(answer)) {
+      state = state.copyWith(
+        questionIndex: state.questionIndex + 1,
+      );
     }
   }
-  List<Question> _generateQuestions(
-      {Dinosaur? currentDinosaur, Animal? currentAnimal, Plant? currentPlant, required QuestionType questionType, }) {
+
+  List<Question> _generateQuestions({
+    Dinosaur? currentDinosaur,
+    Animal? currentAnimal,
+    Plant? currentPlant,
+    required QuestionType questionType,
+  }) {
     //TODO: make it so that this supports plant questions too
     List<Question> newQuestions = [];
 
     if (questionType == QuestionType.dinosaur) {
       newQuestions = [
         if (state.includeDietQuestions)
-        Question<Diet>(
-          question: "What was the diet classification for ${currentDinosaur!.name}?",
-          options: Diet.values,
-          answers: [currentDinosaur.diet],
-          imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
-        ),
+          Question<Diet>(
+            question: "What was the diet classification for ${currentDinosaur!.name}?",
+            options: Diet.values,
+            answers: [currentDinosaur.diet],
+            imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
+          ),
         if (state.includeCladeQuestions)
-        Question<Suborder>(
-          question: "What is the lowest clade for ${currentDinosaur!.name}?",
-          options: Suborder.values,
-          answers: [currentDinosaur.suborder],
-          imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
-        ),
+          Question<Suborder>(
+            question: "What is the lowest clade for ${currentDinosaur!.name}?",
+            options: Suborder.values,
+            answers: [currentDinosaur.suborder],
+            imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
+          ),
         if (state.includeTimePeriodQuestions)
-        Question<TimePeriod>(
-          question: "What time period was ${currentDinosaur!.name} from?",
-          options: TimePeriod.values,
-          answers: [currentDinosaur.timePeriod],
-          imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
-        ),
+          Question<TimePeriod>(
+            question: "What time period was ${currentDinosaur!.name} from?",
+            options: TimePeriod.values,
+            answers: [currentDinosaur.timePeriod],
+            imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
+          ),
       ];
     } else if (questionType == QuestionType.space) {
       newQuestions = [
@@ -126,7 +133,6 @@ class QuizController extends _$QuizController {
           newQuestions.addAll(
               _generateQuestions(currentDinosaur: dinosaurs.values.toList()[i], questionType: QuestionType.dinosaur));
         }
-        newQuestions.shuffle();
         newQuestions.add(
           const Question(
               question: "Was Albertaceratops found in:",
@@ -146,6 +152,7 @@ class QuizController extends _$QuizController {
               answers: ["2"],
               imageFilename: "${QuizState.dinosaurImagePath}albertaceratops.jpg"),
         );
+        newQuestions.shuffle();
         break;
       case QuestionType.space:
         newQuestions.addAll(_generateQuestions(questionType: QuestionType.space));
@@ -159,16 +166,10 @@ class QuizController extends _$QuizController {
       case QuestionType.plant:
         break;
     }
-    state = state.copyWith(questions:newQuestions.take(state.questions.length).toList());
+    state = state.copyWith(questions: newQuestions.take(state.quizLength).toList());
   }
 
-  Future<void> nextQuestion({required bool answeredOnFirstTry}) async {
-      if (answeredOnFirstTry) {
-        state.copyWith(score: state.score + 1);
-      }
-
-      state.copyWith(questionIndex: state.questionIndex + 1);
-
+  Future<void> nextQuestion({required dynamic answer}) async {
     if (state.questionIndex == state.questions.length) {
       await SmartDialog.show(
         builder: (_) => GameFinishedDialog(
@@ -176,11 +177,31 @@ class QuizController extends _$QuizController {
           numberOfQuestions: state.questions.length,
         ),
       );
+      state = state.copyWith(answeredOnFirstTry: true);
 
       resetQuestions();
-
-      answeredOnFirstTry = true;
+    } else {
+      if (state.questions[state.questionIndex].answers.contains(answer)) {
+        state = state.copyWith(
+          questionIndex: state.questionIndex + 1,
+        );
+        if (state.answeredOnFirstTry) {
+          state.copyWith(score: state.score + 1);
+        }
+      }
     }
   }
 
+  void updateQuizLength(int quizLength) => state = state.copyWith(quizLength: quizLength);
+
+  void updateQuestionTypes(
+          {bool? includeCladeQuestions,
+          bool? includeDietQuestions,
+          bool? includeTimePeriodQuestions,
+          bool? includeOtherQuestions}) =>
+      state = state.copyWith(
+          includeCladeQuestions: includeCladeQuestions,
+          includeTimePeriodQuestions: includeTimePeriodQuestions,
+          includeDietQuestions: includeDietQuestions,
+          includeOtherQuestions: includeOtherQuestions);
 }

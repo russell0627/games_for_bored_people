@@ -25,7 +25,7 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
   Widget build(
     BuildContext context,
   ) {
-    final state = ref.read(quizControllerProvider);
+    final state = ref.watch(quizControllerProvider);
     final ctrl = ref.read(quizControllerProvider.notifier);
 
     return Scaffold(
@@ -53,12 +53,39 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                QuestionSwitches(switches: getSwitches(state.questionType)),
+                const Text("Include Clade Questions"),
+                Switch(
+                  value: state.includeCladeQuestions,
+                  onChanged: (_) => ctrl.updateQuestionTypes(
+                    includeCladeQuestions: !state.includeCladeQuestions,
+                  ),
+                ),
+                const Text("Include Time Period Questions"),
+                Switch(
+                  value: includeTimePeriodQuestions,
+                  onChanged: (_) => ctrl.updateQuestionTypes(
+                    includeTimePeriodQuestions: !state.includeTimePeriodQuestions,
+                  ),
+                ),
+                const Text("Include Diet Questions"),
+                Switch(
+                  value: state.includeDietQuestions,
+                  onChanged: (_) => ctrl.updateQuestionTypes(
+                    includeDietQuestions: !state.includeDietQuestions,
+                  ),
+                ),
+                const Text("Include Other Questions"),
+                Switch(
+                  value: state.includeOtherQuestions,
+                  onChanged: (_) => ctrl.updateQuestionTypes(
+                    includeOtherQuestions: !state.includeOtherQuestions,
+                  ),
+                ),
                 SizedBox(
                   width: 300,
                   child: TextFormField(
                     onChanged: (value) {
-                      quizLength = int.tryParse(value) ?? getMinQuizLength(state.questionType);
+                      quizLength = int.tryParse(value) ?? state.minQuizLength;
                     },
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: const InputDecoration(
@@ -70,17 +97,17 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
                   ),
                 ),
                 Text(
-                  "MIN: ${getMinQuizLength(state.questionType)}, MAX: ${getMaxQuizLength(state.questionType)}",
+                  "MIN: ${state.minQuizLength}, MAX: ${state.minQuizLength}",
                   style: const TextStyle(fontFamily: "Merienda"),
                 ),
                 boxXXL,
                 ElevatedButton(
                   onPressed: () {
-                    if (quizLength > getMaxQuizLength(state.questionType) ||
-                        quizLength < getMinQuizLength(state.questionType)) {
+                    if (quizLength > state.maxQuizLength || quizLength < state.minQuizLength) {
                       showDialog(context: context, builder: (_) => const InvalidQuizLengthDialog());
                       return;
                     }
+                    ctrl.updateQuizLength(quizLength);
                     Navigator.of(context).pop();
                     ctrl.resetQuestions();
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizPage()));
@@ -97,52 +124,4 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
       ),
     );
   }
-
-  List<Widget> getSwitches(QuestionType questionType) {
-    final state = ref.read(quizControllerProvider);
-
-    if (questionType == QuestionType.dinosaur) {
-      return [
-        const Text("Include Clade Questions"),
-        Switch(
-          value: state.includeCladeQuestions,
-          onChanged: (_) => state.copyWith(includeCladeQuestions: !state.includeCladeQuestions),
-        ),
-        const Text("Include Time Period Questions"),
-        Switch(
-          value: includeTimePeriodQuestions,
-          onChanged: (_) => state.copyWith(includeTimePeriodQuestions: !state.includeTimePeriodQuestions),
-        ),
-        const Text("Include Diet Questions"),
-        Switch(
-          value: state.includeDietQuestions,
-          onChanged: (_) => state.copyWith(includeDietQuestions: !state.includeDietQuestions),
-        ),
-        const Text("Include Other Questions"),
-        Switch(
-          value: state.includeOtherQuestions,
-          onChanged: (_) => state.copyWith(includeOtherQuestions: !state.includeOtherQuestions),
-        ),
-      ];
-    }
-    return [];
-  }
-
-  int getMinQuizLength(QuestionType questionType) =>
-      questionType == QuestionType.dinosaur ? QuizState.minQuizLength : QuizState.spaceMinQuizLength;
-
-  int getMaxQuizLength(QuestionType questionType) =>
-      questionType == QuestionType.dinosaur ? QuizState.maxQuizLength : QuizState.spaceMaxQuizLength;
 }
-
-class QuestionSwitches extends StatelessWidget {
-  final List<Widget> switches;
-
-  const QuestionSwitches({super.key, required this.switches});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column();
-  }
-}
-

@@ -8,7 +8,7 @@ class LogoDisplay extends StatelessWidget {
   final String fontFamily;
   final List<String> text;
 
-  const LogoDisplay({Key? key, required this.imagePath, required this.imageName, required this.imagePadding, required this.fontFamily, required this.text}) : super(key: key);
+  const LogoDisplay({super.key, required this.imagePath, required this.imageName, required this.imagePadding, required this.fontFamily, required this.text});
 
   @override
   Widget build(BuildContext context) {

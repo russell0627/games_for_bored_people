@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../data/dinosaurs.dart';
 import '../data/models/question.dart';
 
 class QuizState {
@@ -7,8 +8,8 @@ class QuizState {
   static const dinosaurImagePath = "assets/quizzez/images/dinosaurs/";
   static const animalImagePath = "assets/quizzez/images/animals/";
   static const spaceImagePath = "assets/quizzez/images/space/";
-  static const minQuizLength = 10;
-  static const maxQuizLength = 150;
+  static final questionsPerCategory = dinosaurs.length;
+  static const minDinosaurQuizLength = 10;
   static const spaceMinQuizLength = 3;
   static const spaceMaxQuizLength = 7;
 
@@ -16,10 +17,12 @@ class QuizState {
   final QuestionType questionType;
   final int score;
   final int questionIndex;
+  final bool answeredOnFirstTry;
   final bool includeCladeQuestions;
   final bool includeTimePeriodQuestions;
   final bool includeDietQuestions;
   final bool includeOtherQuestions;
+  final int quizLength;
 
   QuizState({
     required this.questions,
@@ -30,6 +33,8 @@ class QuizState {
     this.includeTimePeriodQuestions = true,
     this.includeOtherQuestions = true,
     this.includeDietQuestions = true,
+    this.answeredOnFirstTry = true,
+    this.quizLength = 0,
   });
 
   QuizState copyWith({
@@ -41,6 +46,8 @@ class QuizState {
     bool? includeTimePeriodQuestions,
     bool? includeDietQuestions,
     bool? includeOtherQuestions,
+    bool? answeredOnFirstTry,
+    int? quizLength,
   }) {
     return QuizState(
       questions: questions ?? this.questions,
@@ -51,6 +58,36 @@ class QuizState {
       includeTimePeriodQuestions: includeTimePeriodQuestions ?? this.includeTimePeriodQuestions,
       includeDietQuestions: includeDietQuestions ?? this.includeDietQuestions,
       includeOtherQuestions: includeOtherQuestions ?? this.includeOtherQuestions,
+      answeredOnFirstTry: answeredOnFirstTry ?? this.answeredOnFirstTry,
+      quizLength: quizLength ?? this.quizLength,
     );
+  }
+
+  int get minQuizLength {
+    if (questionType == QuestionType.space) {
+      return QuizState.spaceMinQuizLength;
+    }
+
+    return minDinosaurQuizLength;
+  }
+
+  int get maxQuizLength {
+    if (questionType == QuestionType.space) {
+      return QuizState.spaceMaxQuizLength;
+    }
+
+    int maxQuizLength = 0;
+
+    if (includeCladeQuestions) {
+      maxQuizLength += questionsPerCategory;
+    }
+    if (includeTimePeriodQuestions) {
+      maxQuizLength += questionsPerCategory;
+    }
+    if (includeDietQuestions) {
+      maxQuizLength += questionsPerCategory;
+    }
+
+    return maxQuizLength;
   }
 }

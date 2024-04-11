@@ -4,7 +4,6 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import '../../../data/atdh_locations.dart';
 import 'controllers/atdh_ctrl.dart';
-import 'controllers/atdh_state.dart';
 import 'controllers/player_ctrl.dart';
 import 'presentation/adventure_to_dexter_hill_page.dart';
 

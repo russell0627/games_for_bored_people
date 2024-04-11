@@ -16,9 +16,6 @@ class QuizLengthPage extends ConsumerStatefulWidget {
 }
 
 class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
-  bool includeCladeQuestions = true;
-  bool includeTimePeriodQuestions = true;
-  bool includeOtherQuestions = true;
   int quizLength = 0;
 
   @override
@@ -62,8 +59,8 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
                 ),
                 const Text("Include Time Period Questions"),
                 Switch(
-                  value: includeTimePeriodQuestions,
-                  onChanged: (_) => ctrl.updateQuestionTypes(
+                  value: state.includeTimePeriodQuestions,
+                  onChanged: (value) => ctrl.updateQuestionTypes(
                     includeTimePeriodQuestions: !state.includeTimePeriodQuestions,
                   ),
                 ),
@@ -97,7 +94,7 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
                   ),
                 ),
                 Text(
-                  "MIN: ${state.minQuizLength}, MAX: ${state.minQuizLength}",
+                  "MIN: ${state.minQuizLength}, MAX: ${state.maxQuizLength}",
                   style: const TextStyle(fontFamily: "Merienda"),
                 ),
                 boxXXL,
@@ -106,6 +103,12 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
                     if (quizLength > state.maxQuizLength || quizLength < state.minQuizLength) {
                       showDialog(context: context, builder: (_) => const InvalidQuizLengthDialog());
                       return;
+                    }
+                    if (!state.includeTimePeriodQuestions &&
+                        !state.includeCladeQuestions &&
+                        !state.includeDietQuestions &&
+                        !state.includeOtherQuestions) {
+                      showDialog(context: context, builder: (_) => const InvalidQuizLengthDialog());
                     }
                     ctrl.updateQuizLength(quizLength);
                     Navigator.of(context).pop();

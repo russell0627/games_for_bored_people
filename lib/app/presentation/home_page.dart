@@ -3,8 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../games/alphabet_game/alphabet_game_page.dart';
-import '../../games/dexter_hill/adventure_to_dexter_hill/controllers/atdh_ctrl.dart';
-import '../../games/dexter_hill/adventure_to_dexter_hill/controllers/atdh_state.dart';
 import '../../pages/magic_8_ball.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
@@ -69,7 +67,7 @@ class HomePage extends ConsumerWidget {
               TextButton(
                 child: const Text("Quizzez"),
                 onPressed: () {
-                  context.goNamed(AppRoute.quizzez  .name);
+                  context.goNamed(AppRoute.quizzez.name);
                 },
               ),
               Column(

@@ -9,6 +9,7 @@ class QuizState {
   static const animalImagePath = "assets/quizzez/images/animals/";
   static const spaceImagePath = "assets/quizzez/images/space/";
   static final questionsPerCategory = dinosaurs.length;
+  static const otherQuestions = 2;
   static const minDinosaurQuizLength = 10;
   static const spaceMinQuizLength = 3;
   static const spaceMaxQuizLength = 7;
@@ -86,6 +87,8 @@ class QuizState {
     }
     if (includeDietQuestions) {
       maxQuizLength += questionsPerCategory;
+    } if (includeOtherQuestions) {
+      maxQuizLength += otherQuestions;
     }
 
     return maxQuizLength;

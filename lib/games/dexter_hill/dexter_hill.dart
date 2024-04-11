@@ -4,7 +4,6 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/routes.dart';
-import 'cabin.dart';
 
 const String noteToDexter = """For me, many pets have come and gone. 
 Dexter, was one of the best. 

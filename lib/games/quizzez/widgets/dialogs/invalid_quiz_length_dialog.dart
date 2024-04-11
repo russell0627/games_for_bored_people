@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InvalidQuizLengthDialog extends StatelessWidget {
-  const InvalidQuizLengthDialog({Key? key}) : super(key: key);
+  const InvalidQuizLengthDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

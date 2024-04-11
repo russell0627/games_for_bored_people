@@ -68,7 +68,12 @@ class QuizState {
     if (questionType == QuestionType.space) {
       return QuizState.spaceMinQuizLength;
     }
-
+    if (maxQuizLength <= 10) {
+      if (maxQuizLength == 0) {
+        return 0;
+      }
+      return 1;
+    }
     return minDinosaurQuizLength;
   }
 
@@ -87,7 +92,8 @@ class QuizState {
     }
     if (includeDietQuestions) {
       maxQuizLength += questionsPerCategory;
-    } if (includeOtherQuestions) {
+    }
+    if (includeOtherQuestions) {
       maxQuizLength += otherQuestions;
     }
 

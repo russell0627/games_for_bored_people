@@ -53,26 +53,22 @@ GoRouter goRouter(GoRouterRef ref) {
             builder: (context, state) => const TTTPage(),
           ),
           GoRoute(
-            name: AppRoute.quizzez.name,
-            path: AppRoute.quizzez.path,
-            builder: (context, state) => const QuizzezHomePage(title: 'Quizzez'),
-            routes: [
-              GoRoute(
-                name: AppRoute.quizLength.name,
-                path: AppRoute.quizLength.path,
-                builder: (context, state) => const QuizLengthPage(),
-                routes: [
-                  GoRoute(
-                    name: AppRoute.quiz.name,
-                    path: AppRoute.quiz.path,
-                    builder: (context, state) => const QuizPage(),
-                  ),
-
-                ]
-              ),
-
-            ]
-          ),
+              name: AppRoute.quizzez.name,
+              path: AppRoute.quizzez.path,
+              builder: (context, state) => const QuizzezHomePage(title: 'Quizzez'),
+              routes: [
+                GoRoute(
+                    name: AppRoute.quizLength.name,
+                    path: AppRoute.quizLength.path,
+                    builder: (context, state) => const QuizLengthPage(),
+                    routes: [
+                      GoRoute(
+                        name: AppRoute.quiz.name,
+                        path: AppRoute.quiz.path,
+                        builder: (context, state) => const QuizPage(),
+                      ),
+                    ]),
+              ]),
           GoRoute(
             name: AppRoute.aTDH.name,
             path: AppRoute.aTDH.path,
@@ -89,18 +85,16 @@ GoRouter goRouter(GoRouterRef ref) {
                 builder: (context, state) => const PictureManagerPage(),
               ),
               GoRoute(
-                name: AppRoute.cabin.name,
-                path: AppRoute.cabin.path,
-                builder: (context, state) => const DexterHillCabinPage(),
-                routes: [
-                  GoRoute(
-                    name: AppRoute.cabinInterior.name,
-                    path: AppRoute.cabinInterior.path,
-                    builder: (context, state) => const DexterHillCabinInteriorPage(),
-                  ),
-
-                ]
-              ),
+                  name: AppRoute.cabin.name,
+                  path: AppRoute.cabin.path,
+                  builder: (context, state) => const DexterHillCabinPage(),
+                  routes: [
+                    GoRoute(
+                      name: AppRoute.cabinInterior.name,
+                      path: AppRoute.cabinInterior.path,
+                      builder: (context, state) => const DexterHillCabinInteriorPage(),
+                    ),
+                  ]),
             ],
           ),
           GoRoute(

@@ -22,7 +22,7 @@ class HomePage extends ConsumerWidget {
               onPressed: () => showDialog(context: context, builder: (_) => const SettingsDialog()),
               icon: const Icon(Icons.settings)),
         ],
-        title: const Text('Games for Bored People'),
+        title: const Text('Games for Bored People', style: TextStyle(fontFamily: "Merienda", inherit: false)),
       ),
       body: Center(
         child: SingleChildScrollView(

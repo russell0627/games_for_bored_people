@@ -46,6 +46,7 @@ flutter:
     - assets/magic_8_ball/images/
     - assets/puzzle_game/puzzle_pieces/
     - assets/movie_theater/
+    - assets/tic_tac_toe/icons/
     - assets/dexter_hill/audio/
     - assets/dexter_hill/images/
     - assets/dexter_hill/images/dexter_images/
@@ -70,6 +71,9 @@ flutter:
     - family: Merienda
       fonts:
         - asset: assets/quizzez/fonts/Merienda/static/Merienda-Regular.ttf
+    - family: TicTacToe
+      fonts:
+        - asset: assets/quizzez/fonts/tictactoe/TicTacToe.ttf
     - family: DinoSauce
       fonts:
         - asset: assets/quizzez/fonts/dinosauce/DinosauceFont-Regular.ttf

@@ -24,7 +24,10 @@ class TTTPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tic-Tac-Toe"),
+        title: const Text(
+          "Tic-Tac-Toe",
+          style: TextStyle(inherit: false, fontFamily: "TicTacToe", fontSize: 45),
+        ),
         actions: [
           IconButton(
             tooltip: "Restart Game",
@@ -112,7 +115,7 @@ class PieceDisplay extends StatelessWidget {
           ),
           child: piece != Piece.none
               ? FittedBox(
-                  child: Text(piece.toString()),
+                  child: Image.asset("assets/tic_tac_toe/icons/${piece == Piece.o ? "o.png" : "x.png"}"),
                 )
               : null,
         ),

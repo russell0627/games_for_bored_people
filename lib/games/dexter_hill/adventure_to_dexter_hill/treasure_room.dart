@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/atdh_locations.dart';
 import 'controllers/atdh_ctrl.dart';
-import 'controllers/atdh_state.dart';
 
 class TreasureRoom extends ConsumerWidget {
   static const openChestImagePath = "assets/dexter_hill/images/open_chest_image.png";

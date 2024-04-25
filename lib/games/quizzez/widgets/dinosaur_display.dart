@@ -4,7 +4,6 @@ import 'package:recase/recase.dart';
 import '../../../utils/screen_utils.dart';
 import '../controllers/quiz_state.dart';
 import '../data/models/dinosaur.dart';
-import '../data/pages/quiz_home.dart';
 
 
 const TextStyle _defaultTextStyle = TextStyle();

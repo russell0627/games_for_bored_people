@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/atdh_locations.dart';
 import 'controllers/atdh_ctrl.dart';
-import 'controllers/atdh_state.dart';
 
 class StoryPage extends ConsumerWidget {
   final int pageNumber;

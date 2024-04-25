@@ -43,6 +43,7 @@ flutter:
   assets:
     - assets/
     - assets/achievement_images/
+    - assets/extraterrestrial_extermination/
     - assets/magic_8_ball/images/
     - assets/puzzle_game/puzzle_pieces/
     - assets/movie_theater/
@@ -86,6 +87,9 @@ flutter:
     - family: Andromeda
       fonts:
         - asset: assets/quizzez/fonts/Andromeda/AndromedaTV.ttf
+    - family: Nebulous
+      fonts:
+        - asset: assets/extraterrestrial_extermination/fonts/nebulous-font/NebulousRegular-54aV.ttf
     #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

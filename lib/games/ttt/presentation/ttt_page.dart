@@ -114,8 +114,10 @@ class PieceDisplay extends StatelessWidget {
             color: available ? Colors.lightBlueAccent.withOpacity(0.1) : null,
           ),
           child: piece != Piece.none
-              ? FittedBox(
-                  child: Image.asset("assets/tic_tac_toe/icons/${piece == Piece.o ? "o.png" : "x.png"}"),
+              ? Image.asset(
+                  width: double.infinity,
+                  height: double.infinity,
+                  "assets/tic_tac_toe/icons/${piece == Piece.o ? "o.png" : "x.png"}",
                 )
               : null,
         ),

@@ -4,7 +4,9 @@ import 'utils.dart';
 
 final _rng = Random(DateTime.now().millisecondsSinceEpoch);
 
-int rollDie(int sides) => _rng.nextInt(sides) + 1;
+int rand(int max) => _rng.nextInt(max);
+
+int rollDie(int sides) => rand(sides) + 1;
 
 int rollDiceMod(int qty, int sides, [int mod = 0]) => List.generate(qty, (_) => rollDie(sides)).sum() + mod;
 

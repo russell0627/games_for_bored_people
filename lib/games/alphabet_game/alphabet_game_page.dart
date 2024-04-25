@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class AlphabetGamePage extends StatefulWidget {
   const AlphabetGamePage({super.key});
 
@@ -36,13 +35,15 @@ class _AlphabetGamePageState extends State<AlphabetGamePage> {
   bool alphabetY = false;
   bool alphabetZ = false;
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Alphabet Game"),
+        title: const Text("Alphabet Game",
+            style: TextStyle(
+              inherit: false,
+              fontFamily: "Merienda",
+            )),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -83,9 +84,7 @@ class _AlphabetGamePageState extends State<AlphabetGamePage> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+            child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
               Row(
                 children: [
                   const Text("A"),
@@ -422,8 +421,6 @@ class _AlphabetGamePageState extends State<AlphabetGamePage> {
     );
   }
 }
-
-
 
 const List<String> englishAlphabet = [
   "A",

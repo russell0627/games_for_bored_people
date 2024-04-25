@@ -4,7 +4,6 @@ import '../../../../../utils/screen_utils.dart';
 import '../../../controllers/quiz_state.dart';
 import '../../../widgets/dinosaur_display.dart';
 import '../../models/dinosaur.dart';
-import '../quiz_home.dart';
 
 class DinosaurDisplayPage extends StatefulWidget {
   final Dinosaur dinosaur;

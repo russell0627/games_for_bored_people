@@ -6,7 +6,6 @@ import '../../../controllers/quiz_state.dart';
 import '../../../widgets/logo_display.dart';
 import '../../models/question.dart';
 import '../find_item.dart';
-import '../quiz_home.dart';
 import '../quiz_length_page.dart';
 import 'taxonomy_of_dinosaurs_page.dart';
 

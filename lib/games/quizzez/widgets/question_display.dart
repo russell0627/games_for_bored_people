@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../utils/screen_utils.dart';
 import '../controllers/quiz_controller.dart';
-import '../data/models/question.dart';
 import 'dialogs/incorrect_answer_dialog.dart';
 
 class QuestionDisplay extends ConsumerStatefulWidget {

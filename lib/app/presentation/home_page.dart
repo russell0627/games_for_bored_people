@@ -70,6 +70,12 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.quizzez.name);
                 },
               ),
+              TextButton(
+                child: const Text("Extraterrestrial Extermination"),
+                onPressed: () {
+                  context.goNamed(AppRoute.alienKiller.name);
+                },
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

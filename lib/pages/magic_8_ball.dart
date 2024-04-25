@@ -8,8 +8,12 @@ class Magic8BallPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Magic 8 Ball"),),
-      body: SingleChildScrollView(child: const Center(child: Column(children: [Ball()],),)),
+      appBar: AppBar(title: const Text("Magic 8 Ball",
+      style: TextStyle(
+        inherit: false,
+        fontFamily: "Merienda",
+      ),),),
+      body: const SingleChildScrollView(child: Center(child: Column(children: [Ball()],),)),
     );
   }
 }

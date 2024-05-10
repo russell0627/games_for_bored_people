@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'alien_killer_ctrl.dart';
+part of 'collectables_ctrl.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$alienKillerCtrlHash() => r'c369a56d409dc9acefac25441d3ac7c43e9fe032';
+String _$collectablesCtrlHash() => r'd1ab9d06a1e881127aa4ae9c9c196da0b960905f';
 
-/// See also [AlienKillerCtrl].
-@ProviderFor(AlienKillerCtrl)
-final alienKillerCtrlProvider =
-    AutoDisposeNotifierProvider<AlienKillerCtrl, AlienKillerState>.internal(
-  AlienKillerCtrl.new,
-  name: r'alienKillerCtrlProvider',
+/// See also [CollectablesCtrl].
+@ProviderFor(CollectablesCtrl)
+final collectablesCtrlProvider =
+    AutoDisposeNotifierProvider<CollectablesCtrl, CollectablesState>.internal(
+  CollectablesCtrl.new,
+  name: r'collectablesCtrlProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$alienKillerCtrlHash,
+      : _$collectablesCtrlHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AlienKillerCtrl = AutoDisposeNotifier<AlienKillerState>;
+typedef _$CollectablesCtrl = AutoDisposeNotifier<CollectablesState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../settings_dialog.dart';
 import '../../../../../utils/screen_utils.dart';
+import '../../../../collectables/controller/collectables_ctrl.dart';
+import '../../../../collectables/data/collectables.dart';
+import '../../../../collectables/models/collectable.dart';
+import '../../../../dexter_hill/main_graveyard.dart';
 import '../../../controllers/quiz_state.dart';
 import '../../../widgets/logo_display.dart';
 import '../../models/question.dart';
@@ -14,16 +19,18 @@ const dinosaurButtonTextStyle = TextStyle(
   fontSize: 18,
 );
 
-class DinosaurHomePage extends StatefulWidget {
+class DinosaurHomePage extends ConsumerStatefulWidget {
   const DinosaurHomePage({super.key});
 
   @override
-  State<DinosaurHomePage> createState() => _DinosaurHomePageState();
+  ConsumerState<DinosaurHomePage> createState() => _DinosaurHomePageState();
 }
 
-class _DinosaurHomePageState extends State<DinosaurHomePage> {
+class _DinosaurHomePageState extends ConsumerState<DinosaurHomePage> {
   @override
   Widget build(BuildContext context) {
+    final cbleCtrl = ref.read(collectablesCtrlProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
         title: const LogoDisplay(
@@ -88,6 +95,13 @@ class _DinosaurHomePageState extends State<DinosaurHomePage> {
                       style: dinosaurButtonTextStyle,
                     ),
                   ),
+                  Row(
+                    children: [
+                      FunctionalImage(
+                          onTapped: () => cbleCtrl.addCollectable(collectables[CollectableName.dexter1]!, true),
+                          imagePath: collectables[CollectableName.dexter1]!.imagePath)
+                    ],
+                  )
                 ],
               ),
             ),

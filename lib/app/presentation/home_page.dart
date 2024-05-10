@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../games/alphabet_game/alphabet_game_page.dart';
+import '../../games/rl/top_down_game/top_down_game.dart';
 import '../../pages/magic_8_ball.dart';
 import '../../settings_dialog.dart';
+import '../../widgets/collectable_dialog.dart';
 import '../routes.dart';
 
 //TODO: Add the game 10,000 to the app under the dice games
@@ -76,6 +80,13 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.alienKiller.name);
                 },
               ),
+              TextButton(
+                child: const Text("Extraterrestrial Extermination"),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => TopDownGame()));
+                },
+              ),
+              TextButton(onPressed: () => context.goNamed(AppRoute.collectables.name), child: const Text("Collectables"),),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

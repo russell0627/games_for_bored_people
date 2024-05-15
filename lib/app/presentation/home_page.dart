@@ -4,8 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../games/1v1_race/presentation/sprite_test_page.dart';
 import '../../games/alphabet_game/alphabet_game_page.dart';
-import '../../games/rl/top_down_game/top_down_game.dart';
+
+// import '../../games/rl/top_down_game/top_down_game.dart';
+import '../../games/rich_raptors_ranch/presentation/rrr_home_page.dart';
 import '../../pages/magic_8_ball.dart';
 import '../../settings_dialog.dart';
 import '../../widgets/collectable_dialog.dart';
@@ -80,13 +83,28 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.alienKiller.name);
                 },
               ),
+              // TextButton(
+              //   child: const Text("Extraterrestrial Extermination"),
+              //   onPressed: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (_) => TopDownGame()));
+              //   },
+              // ),
               TextButton(
-                child: const Text("Extraterrestrial Extermination"),
+                child: const Text("RRR Test"),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => TopDownGame()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const RRRHomePage()));
                 },
               ),
-              TextButton(onPressed: () => context.goNamed(AppRoute.collectables.name), child: const Text("Collectables"),),
+              TextButton(
+                child: const Text("Sprite Test"),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const SpriteTestPage()));
+                },
+              ),
+              TextButton(
+                onPressed: () => context.goNamed(AppRoute.collectables.name),
+                child: const Text("Collectables"),
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

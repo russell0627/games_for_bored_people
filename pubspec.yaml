@@ -19,6 +19,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_riverpod: ^2.5.1
   flutter_smart_dialog: ^4.9.3+2
+  sprite: ^0.0.3
   go_router: ^13.2.3
   google_fonts: ^6.2.1
   logging: ^1.2.0
@@ -44,6 +45,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/race/
     - assets/collectables/
     - assets/achievement_images/
     - assets/extraterrestrial_extermination/

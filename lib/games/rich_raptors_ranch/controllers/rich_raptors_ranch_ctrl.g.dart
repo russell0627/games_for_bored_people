@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'movement_test_controller.dart';
+part of 'rich_raptors_ranch_ctrl.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$movementTestControllerHash() =>
-    r'89eeab326869fc629fb65d03002e948e86f9ead2';
+String _$richRaptorsRanchCtrlHash() =>
+    r'ba3382d0fc646073a665fc581024be485310cd4e';
 
-/// See also [MovementTestController].
-@ProviderFor(MovementTestController)
-final movementTestControllerProvider = AutoDisposeNotifierProvider<
-    MovementTestController, MovementTestState>.internal(
-  MovementTestController.new,
-  name: r'movementTestControllerProvider',
+/// See also [RichRaptorsRanchCtrl].
+@ProviderFor(RichRaptorsRanchCtrl)
+final richRaptorsRanchCtrlProvider = AutoDisposeNotifierProvider<
+    RichRaptorsRanchCtrl, RichRaptorsRanchState>.internal(
+  RichRaptorsRanchCtrl.new,
+  name: r'richRaptorsRanchCtrlProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$movementTestControllerHash,
+      : _$richRaptorsRanchCtrlHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$MovementTestController = AutoDisposeNotifier<MovementTestState>;
+typedef _$RichRaptorsRanchCtrl = AutoDisposeNotifier<RichRaptorsRanchState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

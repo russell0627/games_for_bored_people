@@ -2,9 +2,10 @@
 import '../models/rrr_dinosaur.dart';
 
 class RichRaptorsRanchState {
+  final int money;
   final int herbivoreFood;
   final int carnivoreFood;
-  final RRRDinosaur dinosaurOnHomeScreen;
+  final RRRDinosaur? dinosaurOnHomeScreen;
   final List<RRRDinosaur> triassicHerbivores;
   final List<RRRDinosaur> triassicCarnivores;
   final List<RRRDinosaur> triassicOmnivores;
@@ -14,11 +15,11 @@ class RichRaptorsRanchState {
   final List<RRRDinosaur> cretaceousHerbivores;
   final List<RRRDinosaur> cretaceousCarnivores;
   final List<RRRDinosaur> cretaceousOmnivores;
-
   RichRaptorsRanchState({
+    required this.money,
     required this.herbivoreFood,
     required this.carnivoreFood,
-    required this.dinosaurOnHomeScreen,
+    this.dinosaurOnHomeScreen,
     this.triassicHerbivores = const [],
     this.triassicCarnivores = const [],
     this.triassicOmnivores = const [],

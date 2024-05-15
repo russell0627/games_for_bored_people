@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:sprite/sprite.dart';
 
 import '../../../data/atdh_locations.dart';
+import '../../../widgets/grid_layout.dart';
 import 'controllers/atdh_ctrl.dart';
 import 'controllers/player_ctrl.dart';
 import 'presentation/adventure_to_dexter_hill_page.dart';
@@ -32,68 +34,68 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/dexter_hill/images/jungle_background.png")),
-        ),
-        child: Column(
-          children: [
-            TextButton(onPressed: () => SmartDialog.show(builder: (_) => const InstructionsDialog(instructionText: "Use the buttons to input the directions shown on the map. If an incorrect direction is entered the puzzle will restart.", location: Location.jungleEntrance)), child: const Text("Instructions")),
-            TextButton(
-                onPressed: () => showDialog(context: context, builder: (_) => const MapDialog()),
-                child: const Text("View Map")),
-            TextButton(
-                onPressed: () {
-                  if (correctMapDirections[mapIndex] == Direction.north) {
-                    mapIndex++;
-                    checkMapCompletion();
-                  } else {
-                    mapIndex = 0;
-                    timesReset++;
-                    SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
-                  }
-                },
-                child: const Text("Go North")),
-            TextButton(
-                onPressed: () {
-                  if (correctMapDirections[mapIndex] == Direction.south) {
-                    mapIndex++;
-                    checkMapCompletion();
-                  } else {
-                    mapIndex = 0;
-                    timesReset++;
-                    SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
-                  }
-                },
-                child: const Text("Go South")),
-            TextButton(
-                onPressed: () {
-                  if (correctMapDirections[mapIndex] == Direction.east) {
-                    mapIndex++;
-                    checkMapCompletion();
-                  } else {
-                    mapIndex = 0;
-                    timesReset++;
-                    SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
-                  }
-                },
-                child: const Text("Go East")),
-            TextButton(
-                onPressed: () {
-                  if (correctMapDirections[mapIndex] == Direction.west) {
-                    mapIndex++;
-                    checkMapCompletion();
-                  } else {
-                    mapIndex = 0;
-                    timesReset++;
-                    SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
-                  }
-                },
-                child: const Text("Go West")),
-          ],
-        ),
+      child: Column(
+        children: [
+          GridLayout(children: [
+            for(int i = 16; i < 16; i++)
+              SizedBox(
+                  height: 60,
+                  width: 60,
+                  child: JungleTile(tileIndex: i)),
+          ])
+          // TextButton(onPressed: () => SmartDialog.show(builder: (_) => const InstructionsDialog(instructionText: "Use the buttons to input the directions shown on the map. If an incorrect direction is entered the puzzle will restart.", location: Location.jungleEntrance)), child: const Text("Instructions")),
+          // TextButton(
+          //     onPressed: () => showDialog(context: context, builder: (_) => const MapDialog()),
+          //     child: const Text("View Map")),
+          // TextButton(
+          //     onPressed: () {
+          //       if (correctMapDirections[mapIndex] == Direction.north) {
+          //         mapIndex++;
+          //         checkMapCompletion();
+          //       } else {
+          //         mapIndex = 0;
+          //         timesReset++;
+          //         SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
+          //       }
+          //     },
+          //     child: const Text("Go North")),
+          // TextButton(
+          //     onPressed: () {
+          //       if (correctMapDirections[mapIndex] == Direction.south) {
+          //         mapIndex++;
+          //         checkMapCompletion();
+          //       } else {
+          //         mapIndex = 0;
+          //         timesReset++;
+          //         SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
+          //       }
+          //     },
+          //     child: const Text("Go South")),
+          // TextButton(
+          //     onPressed: () {
+          //       if (correctMapDirections[mapIndex] == Direction.east) {
+          //         mapIndex++;
+          //         checkMapCompletion();
+          //       } else {
+          //         mapIndex = 0;
+          //         timesReset++;
+          //         SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
+          //       }
+          //     },
+          //     child: const Text("Go East")),
+          // TextButton(
+          //     onPressed: () {
+          //       if (correctMapDirections[mapIndex] == Direction.west) {
+          //         mapIndex++;
+          //         checkMapCompletion();
+          //       } else {
+          //         mapIndex = 0;
+          //         timesReset++;
+          //         SmartDialog.show(builder: (_) => const IncorrectDirectionDialog());
+          //       }
+          //     },
+          //     child: const Text("Go West")),
+        ],
       ),
     );
   }
@@ -138,10 +140,8 @@ class MapCompletedDialog extends ConsumerWidget {
   const MapCompletedDialog({super.key});
 
   @override
-  Widget build(
-    BuildContext context,
-    WidgetRef ref,
-  ) {
+  Widget build(BuildContext context,
+      WidgetRef ref,) {
     final ctrl = ref.watch(aTDhControllerProvider.notifier);
 
     return SimpleDialog(
@@ -208,5 +208,22 @@ class IncorrectDirectionDialog extends StatelessWidget {
         )
       ],
     );
+  }
+}
+
+class JungleTile extends ConsumerWidget {
+  final int tileIndex;
+
+  const JungleTile({super.key, required this.tileIndex});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(aTDhControllerProvider);
+
+    return tileIndex == state.junglePlayerPosition ? const Sprite(
+      size: Size(15, 16),
+      amount: 2,
+      imagePath: "assets/race/robot_spritesheet.png",
+    ) : Image.asset("assets/dexter_hill/atdh_jungle_floor_tile.png");
   }
 }

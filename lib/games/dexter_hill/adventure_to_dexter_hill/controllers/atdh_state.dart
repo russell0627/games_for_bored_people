@@ -6,8 +6,10 @@ class ATDhState {
   final Location currentLocation;
   final Player player;
   final bool isChestOpen;
+  final int junglePlayerPosition;
 
-  ATDhState( {
+  ATDhState({
+    this.junglePlayerPosition = 0,
     this.isChestOpen = false,
     required this.player,
     this.currentLocation = Location.storyPage1,

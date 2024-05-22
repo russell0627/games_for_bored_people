@@ -17,10 +17,12 @@ And when it is Oscar's time to go, I will put him up on the hill with Dexter, so
 
 const String endOfGameMessage = """This is it. You finished the game. I hope you liked it.
 I have poured a lot of work into this project. That just shows how important Dexter was to me.
-I never knew how much I really cared about him until I lost him. He was a great dog.
+I never knew how much I really cared about him until I lost him. He was a great dog, I wish we could have had him longer.
+We had him until I was about 11. By then he was just getting too old, he wasn't as happy as he used to be. So, we had to put him down.
 Making this has let me revisit so many great memories with Dexter.
 It was crazy being able to see Dexter's entire life in just pictures. We have had so many great adventures
 together. It was great to have him for so many years.
+
 I still miss him a lot.
 
 – Russell, Feb 29th 2024

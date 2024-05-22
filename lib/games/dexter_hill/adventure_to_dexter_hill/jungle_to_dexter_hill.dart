@@ -36,12 +36,8 @@ class _MazeToDexterHillState extends ConsumerState<JungleToDexterHill> {
     return Center(
       child: Column(
         children: [
-          GridLayout(children: [
-            for(int i = 16; i < 16; i++)
-              SizedBox(
-                  height: 60,
-                  width: 60,
-                  child: JungleTile(tileIndex: i)),
+          GridLayout(width: 4, children: [
+            for (int i = 0; i < 16; i++) SizedBox(height: 60, width: 60, child: JungleTile(tileIndex: i)),
           ])
           // TextButton(onPressed: () => SmartDialog.show(builder: (_) => const InstructionsDialog(instructionText: "Use the buttons to input the directions shown on the map. If an incorrect direction is entered the puzzle will restart.", location: Location.jungleEntrance)), child: const Text("Instructions")),
           // TextButton(
@@ -140,8 +136,10 @@ class MapCompletedDialog extends ConsumerWidget {
   const MapCompletedDialog({super.key});
 
   @override
-  Widget build(BuildContext context,
-      WidgetRef ref,) {
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
     final ctrl = ref.watch(aTDhControllerProvider.notifier);
 
     return SimpleDialog(
@@ -220,10 +218,12 @@ class JungleTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(aTDhControllerProvider);
 
-    return tileIndex == state.junglePlayerPosition ? const Sprite(
-      size: Size(15, 16),
-      amount: 2,
-      imagePath: "assets/race/robot_spritesheet.png",
-    ) : Image.asset("assets/dexter_hill/atdh_jungle_floor_tile.png");
+    return tileIndex == state.junglePlayerPosition
+        ? const Sprite(
+            size: Size(15, 16),
+            amount: 2,
+            imagePath: "assets/race/robot_spritesheet.png",
+          )
+        : Image.asset("assets/dexter_hill/atdh_jungle_floor_tile.png");
   }
 }

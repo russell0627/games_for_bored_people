@@ -1,5 +1,6 @@
 import 'dart:math';
 
+
 import 'utils.dart';
 
 final _rng = Random(DateTime.now().millisecondsSinceEpoch);
@@ -132,43 +133,70 @@ class DiceExpression {
 
   int rollDice() => rollDiceMod(qty, sides, mod);
 
-  RollResult roll() {
-    final rolls = List.generate(qty, (_) => rollDie(sides));
-    final rollsTotal = rolls.sum();
-    final total = rollsTotal + mod;
-
-    return RollResult(
-      this,
-      rolls,
-      rollsTotal,
-      total,
-    );
-  }
-
-  @override
-  String toString() =>"${qty}d$sides$modString";
-
-  String get modString {
-    if (mod == 0) {
-      return '';
-    }
-    else if (mod > 0) {
-      return ' + $mod';
-    }
-    else {
-      return ' - ${mod.abs()}';
-    }
-  }
+  // RollResult roll() {
+  //   final rolls = List.generate(qty, (_) => rollDie(sides));
+  //   final rollsTotal = rolls.sum();
+  //   final total = rollsTotal + mod;
+  //
+  //   return RollResult(
+  //     this,
+  //     rolls,
+  //     rollsTotal,
+  //     total,
+  //   );
+  // }
+  //
+  // @override
+  // String toString() =>"${qty}d$sides$modString";
+  //
+  // String get modString {
+  //   if (mod == 0) {
+  //     return '';
+  //   }
+  //   else if (mod > 0) {
+  //     return ' + $mod';
+  //   }
+  //   else {
+  //     return ' - ${mod.abs()}';
+  //   }
+  // }
 }
 
 class RollResult {
-  final DiceExpression exp;
+  // final DiceExpression exp;
   final List<int> rolls;
   final int rollsTotal;
   final int total;
 
-  RollResult(this.exp, this.rolls, this.rollsTotal, this.total);
+  RollResult(this.rolls, this.rollsTotal, this.total);
 
-  @override
-  String toString() => "$exp = $rolls${exp.modString} = $total";
+//   @override
+//   String toString() => "$exp = $rolls${exp.modString} = $total";
 }
+
+RollResult roll(int qty, int sides, int mod) {
+  final rolls = List.generate(qty, (_) => rollDie(sides));
+  final rollsTotal = rolls.sum();
+  final total = rollsTotal + mod;
+
+  return RollResult(
+    rolls,
+    rollsTotal,
+    total,
+  );
+}
+
+// @override
+// String toString() =>"${qty}d$sides$modString";
+//
+// String get modString {
+//   if (mod == 0) {
+//     return '';
+//   }
+//   else if (mod > 0) {
+//     return ' + $mod';
+//   }
+//   else {
+//     return ' - ${mod.abs()}';
+//   }
+// }

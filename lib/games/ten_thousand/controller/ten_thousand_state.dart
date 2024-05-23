@@ -4,8 +4,10 @@ class TenThousandState {
   final int currentPlayerIndex;
   final List<TTPlayer> players;
   final int pendingPoints;
+  final bool diceRolled;
 
   TenThousandState({
+    this.diceRolled = false,
     required this.currentPlayerIndex,
     required this.players,
     this.pendingPoints = 0,

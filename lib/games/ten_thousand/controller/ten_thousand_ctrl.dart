@@ -257,4 +257,10 @@ class TenThousandCtrl extends _$TenThousandCtrl {
     }
     return pointsGained;
   }
+  List<int> generateDiceList(List<int> selectedDice) {
+    final List<int> newList = [];
+    for(int i = 0; ) {
+
+    }
+  }
 }

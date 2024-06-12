@@ -98,7 +98,8 @@ class _DinosaurHomePageState extends ConsumerState<DinosaurHomePage> {
                   Row(
                     children: [
                       FunctionalImage(
-                          onTapped: () => cbleCtrl.addCollectable(collectables[CollectableName.dexter1]!, true),
+                          onTapped: () => cbleCtrl.addCollectable(
+                              collectable: collectables[CollectableName.dexter1]!, dexterPart: true),
                           imagePath: collectables[CollectableName.dexter1]!.imagePath)
                     ],
                   )

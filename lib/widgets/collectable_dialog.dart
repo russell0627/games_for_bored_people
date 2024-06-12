@@ -62,6 +62,8 @@ class CollectableDisplay extends ConsumerWidget {
     final state = ref.watch(collectablesCtrlProvider);
 
     return Container(
+      height: 175,
+      width: 175,
       decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/collectables/cble_background.png"))),
       child: state.collectables.contains(collectable) || state.dexterCollectableParts.contains(collectable)
           ? Image.asset(collectable.imagePath)

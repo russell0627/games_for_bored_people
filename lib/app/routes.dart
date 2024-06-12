@@ -31,6 +31,7 @@ enum AppRoute {
   quizzez,
   quizLength,
   quiz,
+  tenThousand,
   brickBreaker;
 
   final String? _path;

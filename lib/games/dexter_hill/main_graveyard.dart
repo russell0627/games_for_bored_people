@@ -129,7 +129,7 @@ class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
 }
 
 class FunctionalImage extends StatelessWidget {
-  final void Function() onTapped;
+  final void Function()? onTapped;
   final String imagePath;
 
   const FunctionalImage({super.key, required this.onTapped, required this.imagePath});

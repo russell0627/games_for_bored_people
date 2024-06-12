@@ -1,4 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../collectables/controller/collectables_ctrl.dart';
+import '../collectables/data/collectables.dart';
+import '../collectables/models/collectable.dart';
+import '../dexter_hill/main_graveyard.dart';
 
 class AlphabetGamePage extends StatefulWidget {
   const AlphabetGamePage({super.key});
@@ -37,6 +44,35 @@ class _AlphabetGamePageState extends State<AlphabetGamePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (alphabetA &&
+        alphabetB &&
+        alphabetC &&
+        alphabetD &&
+        alphabetE &&
+        alphabetF &&
+        alphabetG &&
+        alphabetH &&
+        alphabetI &&
+        alphabetJ &&
+        alphabetK &&
+        alphabetL &&
+        alphabetM &&
+        alphabetN &&
+        alphabetO &&
+        alphabetP &&
+        alphabetQ &&
+        alphabetR &&
+        alphabetS &&
+        alphabetT &&
+        alphabetU &&
+        alphabetV &&
+        alphabetW &&
+        alphabetX &&
+        alphabetY &&
+        alphabetZ) {
+
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Alphabet Game",
@@ -450,3 +486,23 @@ const List<String> englishAlphabet = [
   "Y",
   "Z"
 ];
+
+class WinDialog extends ConsumerWidget {
+  const WinDialog({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(collectablesCtrlProvider);
+    final ctrl = ref.watch(collectablesCtrlProvider.notifier);
+
+    return SimpleDialog(
+      children: [Text("You Win!"),
+        FunctionalImage(
+            onTapped: () => ctrl.addCollectable(
+                collectable: collectables[CollectableName.dexter2]!, dexterPart: true),
+            imagePath: collectables[CollectableName.dexter2]!.imagePath)
+
+      ],
+    );
+  }
+}

@@ -24,7 +24,7 @@ class TenThousandPage extends ConsumerWidget {
               children: [
                 for (int i = 0; i < state.players[state.currentPlayerIndex].dice.length; i++)
           !state.diceRolled? Image.asset(
-                      "assets/ten_thousand/ten_thousand_die_${state.players[state.currentPlayerIndex].dice[i]}.png") : FunctionalImage(onTapped: state.selectedDiceIndex.isEmpty? null: () => ctrl.ttScore(selectedDice), imagePath: "assets/ten_thousand/ten_thousand_die_${state.players[state.currentPlayerIndex].dice[i]}.png"),
+                      "assets/ten_thousand/ten_thousand_die_${state.players[state.currentPlayerIndex].dice[i]}.png") : FunctionalImage(onTapped: state.selectedDiceIndex.isEmpty? null: () => ctrl.ttScore(ctrl.generateDiceList(state.players[state.currentPlayerIndex].dice)), imagePath: "assets/ten_thousand/ten_thousand_die_${state.players[state.currentPlayerIndex].dice[i]}.png"),
                 TextButton(
                     onPressed: () => ctrl.ttRoll(state.players[state.currentPlayerIndex].numberOfDice),
                     child: Row(

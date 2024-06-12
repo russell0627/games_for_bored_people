@@ -10,8 +10,6 @@ import '../../pages/magic_8_ball.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
 
-//TODO: Add the game 10,000 to the app under the dice games
-
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
@@ -85,6 +83,7 @@ class HomePage extends ConsumerWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (_) => const RRRHomePage()));
                 },
               ),
+              TextButton(onPressed: () => context.goNamed(AppRoute.tenThousand.name), child: Text("Ten Thousand")),
               TextButton(
                 onPressed: () => context.goNamed(AppRoute.collectables.name),
                 child: const Text("Collectables"),

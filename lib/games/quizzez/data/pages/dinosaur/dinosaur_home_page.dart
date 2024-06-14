@@ -30,6 +30,7 @@ class _DinosaurHomePageState extends ConsumerState<DinosaurHomePage> {
   @override
   Widget build(BuildContext context) {
     final cbleCtrl = ref.read(collectablesCtrlProvider.notifier);
+    final cbleState = ref.read(collectablesCtrlProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -97,6 +98,7 @@ class _DinosaurHomePageState extends ConsumerState<DinosaurHomePage> {
                   ),
                   Row(
                     children: [
+                      if(cbleState.dexterCollectableParts.contains(collectables[CollectableName.dexter1]) != true)
                       FunctionalImage(
                           onTapped: () => cbleCtrl.addCollectable(
                               collectable: collectables[CollectableName.dexter1]!, dexterPart: true),

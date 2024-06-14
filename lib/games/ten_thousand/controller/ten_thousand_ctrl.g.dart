@@ -6,7 +6,7 @@ part of 'ten_thousand_ctrl.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tenThousandCtrlHash() => r'86d3965dc0775ce6a83fb11271f3d77e1b7dd52d';
+String _$tenThousandCtrlHash() => r'7ad196ffc6e99fb85d09681a28ffb3b24c6e1728';
 
 /// See also [TenThousandCtrl].
 @ProviderFor(TenThousandCtrl)

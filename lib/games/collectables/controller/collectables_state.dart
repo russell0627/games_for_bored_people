@@ -17,4 +17,7 @@ class CollectablesState {
           dexterCollectableParts ?? this.dexterCollectableParts,
     );
   }
+
+  bool hasCollectable(CollectableName name) => collectables.any((value) => value.name == name);
+  bool hasDexterCollectable(CollectableName name) => dexterCollectableParts.any((value) => value.name == name);
 }

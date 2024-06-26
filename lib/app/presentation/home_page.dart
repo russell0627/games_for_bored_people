@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../games/alphabet_game/alphabet_game_page.dart';
 
 import '../../games/dexter_hill/cabin.dart';
-import '../../games/rich_raptors_ranch/presentation/rrr_home_page.dart';
 import '../../pages/magic_8_ball.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
@@ -77,13 +76,7 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.alienKiller.name);
                 },
               ),
-               TextButton(
-                child: const Text("RRR Test"),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => const RRRHomePage()));
-                },
-              ),
-              TextButton(onPressed: () => context.goNamed(AppRoute.tenThousand.name), child: Text("Ten Thousand")),
+               TextButton(onPressed: () => context.goNamed(AppRoute.tenThousand.name), child: Text("Ten Thousand")),
               TextButton(
                 onPressed: () => context.goNamed(AppRoute.collectables.name),
                 child: const Text("Collectables"),

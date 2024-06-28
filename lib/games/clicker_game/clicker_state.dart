@@ -1,3 +1,4 @@
+import 'data/income_sources.dart';
 import 'models/income_source.dart';
 
 class ClickerState {
@@ -11,6 +12,20 @@ class ClickerState {
       income += source.fullIncome;
     }
     return income;
+  }
+  Set<IncomeSource> get unownedIncomeSources {
+    Set<IncomeSource> newSet = allIncomeSources.values.toSet();
+
+    for(IncomeSource source in allIncomeSources.values) {
+      for(IncomeSource source2 in incomeSources) {
+        if(source.name == source2.name) {
+          newSet.remove(source);
+        }
+      }
+
+
+    }
+    return newSet;
   }
 
   ClickerState({
@@ -29,4 +44,3 @@ class ClickerState {
     );
   }
 }
-

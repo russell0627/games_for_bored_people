@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'clicker_state.dart';
+import 'models/income_source.dart';
 
 part "clicker_ctrl.g.dart";
 
@@ -17,8 +18,20 @@ class ClickerCtrl extends _$ClickerCtrl {
   late Timer incomeTimer;
 
   void addIncome() {
-    state.copyWith(balance: state.balance + state.incomePerSecond);
+    state = state.copyWith(balance: state.balance + state.incomePerSecond);
   }
-  void clickIncome() => state.copyWith(balance: state.balance + state.clickIncome);
 
+  void removeBalance(int value) {
+    state = state.copyWith(balance: state.balance - value);
+  }
+
+  void updateIncomeSources(Set<IncomeSource> newSet) {
+    state = state.copyWith(incomeSources: newSet);
+  }
+
+  void click() {
+    state = state.copyWith(balance: state.balance + state.clickIncome);
+    print(state.clickIncome);
+    print(state.balance);
+  }
 }

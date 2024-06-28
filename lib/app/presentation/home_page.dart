@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../games/alphabet_game/alphabet_game_page.dart';
 
+import '../../games/clicker_game/presentation/clicker_page.dart';
 import '../../games/dexter_hill/cabin.dart';
 import '../../pages/magic_8_ball.dart';
 import '../../settings_dialog.dart';
@@ -38,6 +39,12 @@ class HomePage extends ConsumerWidget {
                 child: const Text("Magic 8 Ball"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const Magic8BallPage()));
+                },
+              ),
+              TextButton(
+                child: const Text("Clicker Game"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ClickerPage()));
                 },
               ),
               TextButton(

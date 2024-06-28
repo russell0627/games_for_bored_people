@@ -6,7 +6,7 @@ part of 'horror_bus_ctrl.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$horrorBusCtrlHash() => r'68675eaa2f65c6f28ca272ebaa178f20d5876120';
+String _$horrorBusCtrlHash() => r'f6c409936758979a09808de30313b7c40694649b';
 
 /// See also [HorrorBusCtrl].
 @ProviderFor(HorrorBusCtrl)

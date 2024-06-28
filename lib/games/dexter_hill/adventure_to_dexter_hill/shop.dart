@@ -53,7 +53,6 @@ class NewItemDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final playerState = ref.read(playerControllerProvider);
-    final state = ref.read(aTDhControllerProvider);
     final controller = ref.read(aTDhControllerProvider.notifier);
 
     return SimpleDialog(

@@ -150,7 +150,6 @@ class GravestoneDetailsDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.read(aTDhControllerProvider);
     final ctrl = ref.read(aTDhControllerProvider.notifier);
 
     return SimpleDialog(

@@ -13,8 +13,6 @@ class PuzzlePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(puzzleGameCtrlProvider);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Puzzle Game"),
@@ -66,4 +64,3 @@ class PuzzlePieceDisplay extends ConsumerWidget {
     }
   }
 }
-

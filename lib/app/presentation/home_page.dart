@@ -83,7 +83,7 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.alienKiller.name);
                 },
               ),
-               TextButton(onPressed: () => context.goNamed(AppRoute.tenThousand.name), child: Text("Ten Thousand")),
+               TextButton(onPressed: () => context.goNamed(AppRoute.tenThousand.name), child: const Text("Ten Thousand")),
               TextButton(
                 onPressed: () => context.goNamed(AppRoute.collectables.name),
                 child: const Text("Collectables"),

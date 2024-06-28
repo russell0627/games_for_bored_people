@@ -1,4 +1,3 @@
-import 'package:awesome_flutter_extensions/awesome_flutter_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recase/recase.dart';
@@ -22,80 +21,54 @@ class ClickerPage extends ConsumerWidget {
             Text(state.balance.toString()),
             const Text("Click Me!"),
             TextButton(onPressed: () => ctrl.click(), child: Image.asset("assets/clicker_game/clicker_dino.png")),
-            const Text("Owned Income Sources"),
+            Text("Clicks Until Income: ${state.clicksUntilIncome}"),
+            Text("Total Income: ${state.totalIncome.toString()}"),
+            const Text("Income Sources"),
             if (state.incomeSources.isNotEmpty)
-              ListView(
-                children: [
-                  for (IncomeSource source in state.incomeSources)
-                    ListTile(
-                      title: Text(source.name.name.titleCase),
-                      subtitle: Text("Income Per Second: ${source.singularIncomePerSecond.toString()}"),
-                      trailing: Row(
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                final newSet = state.incomeSources..remove(source);
-                                newSet.add(source.copyWith(
-                                  qty: source.qty + 1,
-                                  cost: source.cost * 2,
-                                ));
-                                ctrl.removeBalance(source.cost);
-                                ctrl.updateIncomeSources(newSet);
-                              },
-                              child: const Text("Buy 1")),
-                          TextButton(
-                              onPressed: () {
-                                final newSet = state.incomeSources..remove(source);
-                                newSet.add(source.copyWith(
-                                  qty: source.qty + 10,
-                                  cost: source.cost * 2,
-                                ));
-                                ctrl.removeBalance(source.cost * 10);
-
-                                ctrl.updateIncomeSources(newSet);
-                              },
-                              child: const Text("Buy 10")),
-                          TextButton(
-                              onPressed: () {
-                                final newSet = state.incomeSources..remove(source);
-                                newSet.add(source.copyWith(
-                                  qty: source.qty + 100,
-                                  cost: source.cost * 2,
-                                ));
-                                ctrl.removeBalance(source.cost * 100);
-
-                                ctrl.updateIncomeSources(newSet);
-                              },
-                              child: const Text("Buy 100")),
-                        ],
+              Expanded(
+                child: ListView(
+                  children: [
+                    for (IncomeSource source in state.incomeSources.values)
+                      ListTile(
+                        title: Text(source.name.name.titleCase),
+                        subtitle: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Income: ${source.singularIncome * source.qty} Qty: ${source.qty}"),
+                            ),
+                            if (source.name == IncomeSourceTitle.dinosaurEgg && source.qty != 0)
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("Clicks Until Hatched: ${source.clicksUntil}"),
+                              ),
+                          ],
+                        ),
+                        trailing: SizedBox(
+                          width: 200,
+                          child: Row(
+                            children: [
+                              if (source.name != IncomeSourceTitle.iguanodon &&
+                                  source.name != IncomeSourceTitle.parasaurolophus)
+                                TextButton(
+                                    onPressed: () {
+                                      if (source.name == IncomeSourceTitle.dinosaurEgg && source.qty == state.maxEggs) {
+                                        return;
+                                      }
+                                      if (source.name == IncomeSourceTitle.dinosaurEgg) {
+                                        ctrl.resetClicksUntil(source.name);
+                                      }
+                                      if (state.balance >= source.cost) {
+                                        ctrl.buyIncomeSource(source);
+                                      }
+                                    },
+                                    child: Text("Buy 1: ${source.cost}")),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                ],
-              ),
-            const Text("Unowned Income Sources"),
-            if (state.incomeSources.isNotEmpty)
-              ListView(
-                children: [
-                  for (IncomeSource source in state.incomeSources)
-                    ListTile(
-                      title: Text(source.name.name.titleCase),
-                      subtitle: Text("Income Per Second: ${source.singularIncomePerSecond.toString()}"),
-                      trailing: Row(
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                final newSet = state.incomeSources..remove(source);
-                                newSet.add(source.copyWith(
-                                  qty: source.qty + 1,
-                                ));
-                                ctrl.removeBalance(source.cost);
-                                ctrl.updateIncomeSources(newSet);
-                              },
-                              child: const Text("Buy 1")),
-                        ],
-                      ),
-                    ),
-                ],
+                  ],
+                ),
               ),
           ],
         ),

@@ -10,7 +10,6 @@ class GameMap extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref,) {
     final state = ref.watch(horrorBusCtrlProvider);
-    final ctrl = ref.watch(horrorBusCtrlProvider.notifier);
     return Scaffold(
       appBar: AppBar(),
       body: Center(

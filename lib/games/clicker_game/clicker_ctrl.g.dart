@@ -6,7 +6,7 @@ part of 'clicker_ctrl.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$clickerCtrlHash() => r'c83fa6090f7c05831d1c23569be2477789fedd8b';
+String _$clickerCtrlHash() => r'a7f7b645d68e12aa8592e8b17c0581588857e808';
 
 /// See also [ClickerCtrl].
 @ProviderFor(ClickerCtrl)

@@ -259,8 +259,9 @@ class TenThousandCtrl extends _$TenThousandCtrl {
   }
   List<int> generateDiceList(List<int> selectedDice) {
     final List<int> newList = [];
-    for(int i = 0; ) {
-
+    for(int i = 0; i < selectedDice.length; i++) {
+      newList.add(state.players[state.currentPlayerIndex].dice[i]);
     }
+    return newList;
   }
 }

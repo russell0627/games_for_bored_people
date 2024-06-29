@@ -41,4 +41,3 @@ class TenThousandPage extends ConsumerWidget {
     );
   }
 }
-

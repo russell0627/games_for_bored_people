@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -28,11 +29,15 @@ I still miss him a lot.
 – Russell, Feb 29th 2024
 """;
 
+final AudioPlayer audio = AudioPlayer();
+
 class DexterHillPage extends ConsumerWidget {
   const DexterHillPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    audio.play(DeviceFileSource("assets/alt_dexter_hill_music.mp3"));
+
     return SizedBox(
       height: double.infinity,
       width: double.infinity,

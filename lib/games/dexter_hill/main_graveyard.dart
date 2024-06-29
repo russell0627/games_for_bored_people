@@ -129,7 +129,7 @@ class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
 }
 
 class FunctionalImage extends StatelessWidget {
-  final void Function() onTapped;
+  final void Function()? onTapped;
   final String imagePath;
 
   const FunctionalImage({super.key, required this.onTapped, required this.imagePath});
@@ -150,7 +150,6 @@ class GravestoneDetailsDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.read(aTDhControllerProvider);
     final ctrl = ref.read(aTDhControllerProvider.notifier);
 
     return SimpleDialog(

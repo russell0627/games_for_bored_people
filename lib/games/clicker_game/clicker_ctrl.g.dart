@@ -1,24 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sm_ctrl.dart';
+part of 'clicker_ctrl.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$smCtrlHash() => r'768857dd5f9b9a4fb26ebd11c2a5aa9b6c78beeb';
+String _$clickerCtrlHash() => r'a7f7b645d68e12aa8592e8b17c0581588857e808';
 
-/// See also [SmCtrl].
-@ProviderFor(SmCtrl)
-final smCtrlProvider = AutoDisposeNotifierProvider<SmCtrl, SmState>.internal(
-  SmCtrl.new,
-  name: r'smCtrlProvider',
+/// See also [ClickerCtrl].
+@ProviderFor(ClickerCtrl)
+final clickerCtrlProvider =
+    AutoDisposeNotifierProvider<ClickerCtrl, ClickerState>.internal(
+  ClickerCtrl.new,
+  name: r'clickerCtrlProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$smCtrlHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$clickerCtrlHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SmCtrl = AutoDisposeNotifier<SmState>;
+typedef _$ClickerCtrl = AutoDisposeNotifier<ClickerState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

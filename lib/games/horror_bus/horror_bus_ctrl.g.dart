@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'clicker_game_controller.dart';
+part of 'horror_bus_ctrl.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$clickerGameCtrlHash() => r'a5aea021dbbb29566a8e988050fe12c921682f0d';
+String _$horrorBusCtrlHash() => r'f6c409936758979a09808de30313b7c40694649b';
 
-/// See also [ClickerGameCtrl].
-@ProviderFor(ClickerGameCtrl)
-final clickerGameCtrlProvider =
-    AutoDisposeNotifierProvider<ClickerGameCtrl, ClickerGameState>.internal(
-  ClickerGameCtrl.new,
-  name: r'clickerGameCtrlProvider',
+/// See also [HorrorBusCtrl].
+@ProviderFor(HorrorBusCtrl)
+final horrorBusCtrlProvider =
+    AutoDisposeNotifierProvider<HorrorBusCtrl, HorrorBusState>.internal(
+  HorrorBusCtrl.new,
+  name: r'horrorBusCtrlProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$clickerGameCtrlHash,
+      : _$horrorBusCtrlHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ClickerGameCtrl = AutoDisposeNotifier<ClickerGameState>;
+typedef _$HorrorBusCtrl = AutoDisposeNotifier<HorrorBusState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

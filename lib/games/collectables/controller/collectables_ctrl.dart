@@ -6,21 +6,30 @@ import 'collectables_state.dart';
 
 part 'collectables_ctrl.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CollectablesCtrl extends _$CollectablesCtrl {
+  @override
   CollectablesState build() => CollectablesState();
 
-  void addCollectable(Collectable collectable, bool dexterPart) {
+  void addCollectable({required Collectable collectable, required bool dexterPart}) {
     if (state.collectables.contains(collectable) || state.dexterCollectableParts.contains(collectable)) {
+      print("Set Contains Collectable");
       return;
-    } else if(dexterPart){
-      state = state.copyWith(dexterCollectableParts: state.dexterCollectableParts..add(collectable));
+    } else if (dexterPart) {
+      print("Else if triggered");
+      state = state.copyWith(
+        dexterCollectableParts: Set.unmodifiable(
+          state.dexterCollectableParts.toSet()..add(collectable),
+        ),
+      );
 
       if (state.dexterCollectableParts.length == 4) {
-        state.copyWith(collectables: state.collectables..add(collectables[CollectableName.fullDexter]!));
+        state = state.copyWith(collectables: Set.unmodifiable(state.collectables.toSet()..add(collectables[CollectableName.fullDexter]!)));
       }
     } else {
-      state = state.copyWith(collectables: state.collectables..add(collectable));
+      state = state.copyWith(collectables: Set.unmodifiable(state.collectables.toSet()..add(collectable)));
     }
+
+    print(state.dexterCollectableParts);
   }
 }

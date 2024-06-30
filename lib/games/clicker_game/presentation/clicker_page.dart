@@ -25,11 +25,11 @@ class ClickerPage extends ConsumerWidget {
                     state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty <
                 state.dinoFood)
               TextButton(
-                  onPressed: () => SmartDialog.show(builder: (_) => const CheatsMenu()),
-                  child: const Text("Cheats Menu!")),
+                  onPressed: () => SmartDialog.show(builder: (_) => const SellFoodDialog(), clickMaskDismiss: false),
+                  child: const Text("Sell Dino Food")),
             TextButton(
-                onPressed: () => SmartDialog.show(builder: (_) => const SellFoodDialog(), clickMaskDismiss: false),
-                child: const Text("Sell Dino Food")),
+                onPressed: () => SmartDialog.show(builder: (_) => const CheatsMenu()),
+                child: const Text("Cheats Menu!")),
             const Text("Click Me!"),
             TextButton(onPressed: () => ctrl.click(), child: Image.asset("assets/clicker_game/clicker_dino.png")),
             Text("Clicks Until Income: ${state.clicksUntilIncome}"),
@@ -60,7 +60,7 @@ class ClickerPage extends ConsumerWidget {
                           child: Row(
                             children: [
                               if (source.name != IncomeSourceTitle.iguanodon &&
-                                  source.name != IncomeSourceTitle.parasaurolophus)
+                                  source.name != IncomeSourceTitle.parasaurolophus && source.name != IncomeSourceTitle.tyrannosaurusRex)
                                 TextButton(
                                     onPressed: () {
                                       if (source.name == IncomeSourceTitle.dinosaurEgg && source.qty == state.maxEggs) {
@@ -97,6 +97,7 @@ class SellFoodDialog extends ConsumerWidget {
     final ctrl = ref.watch(clickerCtrlProvider.notifier);
     final int extraDinoFood = state.dinoFood -
         state.incomeSources[IncomeSourceTitle.iguanodon]!.qty +
+        state.incomeSources[IncomeSourceTitle.tyrannosaurusRex]!.qty +
         state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty +
         state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty;
 
@@ -117,7 +118,7 @@ class SellFoodDialog extends ConsumerWidget {
                   ctrl.removeDinoFood(extraDinoFood);
                   SmartDialog.dismiss();
                 },
-                child: Text("Sell Extra Food, You would get ${extraDinoFood * 5} currency")),
+                child: Text("Sell Extra Food: ${extraDinoFood * 5}")),
             TextButton(
                 onPressed: () {
                   SmartDialog.dismiss();

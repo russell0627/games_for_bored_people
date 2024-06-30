@@ -494,7 +494,7 @@ class WinDialog extends ConsumerWidget {
     final ctrl = ref.watch(collectablesCtrlProvider.notifier);
 
     return SimpleDialog(
-      children: [Text("You Win!"),
+      children: [const Text("You Win!"),
         FunctionalImage(
             onTapped: () => ctrl.addCollectable(
                 collectable: collectables[CollectableName.dexter2]!, dexterPart: true),

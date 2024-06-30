@@ -40,5 +40,7 @@ enum IncomeSourceTitle {
   dinoFoodProducer,
   iguanodon,
   parasaurolophus,
+  tyrannosaurusRex,
   dinosaurEgg,
+  clickIncomeUpgrade,
 }

@@ -1,9 +1,9 @@
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'dart:math';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'clicker_state.dart';
 import 'models/income_source.dart';
-import 'presentation/clicker_page.dart';
 
 part "clicker_ctrl.g.dart";
 
@@ -17,6 +17,7 @@ class ClickerCtrl extends _$ClickerCtrl {
         balance: state.balance + state.totalIncome,
         dinoFood: state.dinoFood + state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty);
   }
+
   void addBalance(int value) {
     state = state.copyWith(balance: state.balance + value);
   }
@@ -24,12 +25,13 @@ class ClickerCtrl extends _$ClickerCtrl {
   void removeBalance(int value) {
     state = state.copyWith(balance: state.balance - value);
   }
- void addDinoFood(int value) {
-    state = state.copyWith(balance: state.dinoFood + value);
+
+  void addDinoFood(int value) {
+    state = state.copyWith(dinoFood: state.dinoFood + value);
   }
 
   void removeDinoFood(int value) {
-    state = state.copyWith(balance: state.dinoFood - value);
+    state = state.copyWith(dinoFood: state.dinoFood - value);
   }
 
   void addQty(IncomeSourceTitle value) {
@@ -95,8 +97,9 @@ class ClickerCtrl extends _$ClickerCtrl {
       if (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.clicksUntil == 0) {
         while (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty != 0) {
           subtractQty(IncomeSourceTitle.dinosaurEgg);
-          int rngRoll = ClickerState.rng.nextInt(3);
+          int rngRoll = ClickerState.rng.nextInt(4);
           if (rngRoll == 3) {
+          } else if (rngRoll == 2) {
             addQty(IncomeSourceTitle.parasaurolophus);
           } else {
             addQty(IncomeSourceTitle.iguanodon);
@@ -107,11 +110,26 @@ class ClickerCtrl extends _$ClickerCtrl {
     }
 
     if (state.clicksUntilIncome == 0) {
+      final rng = Random();
+
       int dinoI = state.incomeSources[IncomeSourceTitle.iguanodon]!.qty;
       int dinoP = state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
+      if (state.maxEggs > state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty) {
+        for (int i = 0;
+            i >
+                state.incomeSources[IncomeSourceTitle.iguanodon]!.qty +
+                    state.incomeSources[IncomeSourceTitle.tyrannosaurusRex]!.qty +
+                    state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
+            i++) {
+          final rngRoll = rng.nextInt(4) + 1;
 
+          if (rngRoll == 4) {
+            addQty(IncomeSourceTitle.dinosaurEgg);
+          }
+        }
+      }
       addIncome();
-       if (state.dinoFood >= state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty) {
+      if (state.dinoFood >= state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty) {
         state.copyWith(dinoFood: state.dinoFood - state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty);
       } else {
         int food = state.dinoFood;

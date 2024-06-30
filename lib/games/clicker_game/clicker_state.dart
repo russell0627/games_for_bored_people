@@ -4,6 +4,12 @@ import 'models/income_source.dart';
 
 class ClickerState {
   static final defaultIncomeSources = Map<IncomeSourceTitle, IncomeSource>.unmodifiable({
+    IncomeSourceTitle.clickIncomeUpgrade: const IncomeSource(
+      singularIncome: 0,
+      qty: 0,
+      name: IncomeSourceTitle.clickIncomeUpgrade,
+      cost: 100,
+    ),
     IncomeSourceTitle.incubator: const IncomeSource(
       singularIncome: 1,
       qty: 0,
@@ -41,12 +47,17 @@ class ClickerState {
       name: IncomeSourceTitle.parasaurolophus,
       cost: 0,
     ),
+    IncomeSourceTitle.tyrannosaurusRex: const IncomeSource(
+      singularIncome: 250,
+      qty: 0,
+      name: IncomeSourceTitle.tyrannosaurusRex,
+      cost: 0,
+    ),
   });
   static final rng = Random();
 
   final int balance;
   final int dinoFood;
-  final int clickIncome;
   final int clicksUntilIncome;
   final Map<IncomeSourceTitle, IncomeSource> incomeSources;
 
@@ -60,6 +71,8 @@ class ClickerState {
     return income;
   }
 
+  int get clickIncome => 1 + incomeSources[IncomeSourceTitle.clickIncomeUpgrade]!.qty;
+
   int get maxEggs =>
       incomeSources[IncomeSourceTitle.incubator]!.qty + incomeSources[IncomeSourceTitle.doubleIncubator]!.qty * 2;
 
@@ -68,7 +81,6 @@ class ClickerState {
     required this.clicksUntilIncome,
     required this.balance,
     required this.incomeSources,
-    required this.clickIncome,
   });
 
   factory ClickerState.fromDefaults({
@@ -76,28 +88,24 @@ class ClickerState {
     int balance = 0,
     int dinoFood = 0,
     Map<IncomeSourceTitle, IncomeSource>? incomeSources,
-    int clickIncome = 1,
   }) {
     return ClickerState(
       dinoFood: dinoFood,
       clicksUntilIncome: clicksUntilIncome,
       balance: balance,
       incomeSources: incomeSources ?? defaultIncomeSources,
-      clickIncome: clickIncome,
     );
   }
 
   ClickerState copyWith({
     int? balance,
     int? dinoFood,
-    int? clickIncome,
     int? clicksUntilIncome,
     Map<IncomeSourceTitle, IncomeSource>? incomeSources,
   }) {
     return ClickerState(
       balance: balance ?? this.balance,
       dinoFood: dinoFood ?? this.dinoFood,
-      clickIncome: clickIncome ?? this.clickIncome,
       clicksUntilIncome: clicksUntilIncome ?? this.clicksUntilIncome,
       incomeSources: incomeSources ?? this.incomeSources,
     );

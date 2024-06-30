@@ -1,7 +1,9 @@
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'clicker_state.dart';
 import 'models/income_source.dart';
+import 'presentation/clicker_page.dart';
 
 part "clicker_ctrl.g.dart";
 
@@ -15,9 +17,19 @@ class ClickerCtrl extends _$ClickerCtrl {
         balance: state.balance + state.totalIncome,
         dinoFood: state.dinoFood + state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty);
   }
+  void addBalance(int value) {
+    state = state.copyWith(balance: state.balance + value);
+  }
 
   void removeBalance(int value) {
     state = state.copyWith(balance: state.balance - value);
+  }
+ void addDinoFood(int value) {
+    state = state.copyWith(balance: state.dinoFood + value);
+  }
+
+  void removeDinoFood(int value) {
+    state = state.copyWith(balance: state.dinoFood - value);
   }
 
   void addQty(IncomeSourceTitle value) {
@@ -77,7 +89,6 @@ class ClickerCtrl extends _$ClickerCtrl {
       balance: state.balance + state.clickIncome,
       clicksUntilIncome: state.clicksUntilIncome - 1,
     );
-
     if (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty != 0) {
       subtractClicksUntil(IncomeSourceTitle.dinosaurEgg);
 
@@ -96,24 +107,24 @@ class ClickerCtrl extends _$ClickerCtrl {
     }
 
     if (state.clicksUntilIncome == 0) {
+      int dinoI = state.incomeSources[IncomeSourceTitle.iguanodon]!.qty;
+      int dinoP = state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
+
       addIncome();
-      if (state.dinoFood >= state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty) {
+       if (state.dinoFood >= state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty) {
         state.copyWith(dinoFood: state.dinoFood - state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty);
       } else {
-        int dinoI = state.incomeSources[IncomeSourceTitle.iguanodon]!.qty;
-        int dinoP = state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
         int food = state.dinoFood;
-        dinoP =- food;
-        while(dinoP != state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty) {
+        dinoP = -food;
+        while (dinoP != state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty) {
           subtractQty(IncomeSourceTitle.parasaurolophus);
         }
-        dinoI =- food;
-        while(dinoI != state.incomeSources[IncomeSourceTitle.iguanodon]!.qty) {
+        dinoI = -food;
+        while (dinoI != state.incomeSources[IncomeSourceTitle.iguanodon]!.qty) {
           subtractQty(IncomeSourceTitle.iguanodon);
         }
-
       }
+      state = state.copyWith(clicksUntilIncome: 10);
     }
-    state = state.copyWith(clicksUntilIncome: 10);
   }
 }

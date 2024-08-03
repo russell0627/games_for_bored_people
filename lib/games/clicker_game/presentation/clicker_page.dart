@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:recase/recase.dart';
 
 import '../clicker_ctrl.dart';
+import '../clicker_state.dart';
 import '../models/income_source.dart';
 
 class ClickerPage extends ConsumerWidget {
@@ -13,7 +16,40 @@ class ClickerPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(clickerCtrlProvider);
     final ctrl = ref.read(clickerCtrlProvider.notifier);
-
+    final timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      int dinoI = state.incomeSources[IncomeSourceTitle.iguanodon]!.qty;
+      int dinoP = state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
+      if (state.maxEggs > state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty) {
+        for (int i = 0;
+            i >
+                state.incomeSources[IncomeSourceTitle.iguanodon]!.qty +
+                    state.incomeSources[IncomeSourceTitle.tyrannosaurusRex]!.qty +
+                    state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
+            i++) {
+          final rngRoll = ClickerState.rng.nextInt(4) + 1;
+          if (state.maxEggs > state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty) {
+            if (rngRoll == 4) {
+              ctrl.addQty(IncomeSourceTitle.dinosaurEgg);
+            }
+          }
+        }
+      }
+      ctrl.addIncome();
+      if (state.dinoFood >= state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty) {
+        state.copyWith(dinoFood: state.dinoFood - state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty);
+      } else {
+        int food = state.dinoFood;
+        dinoP = -food;
+        while (dinoP != state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty) {
+          ctrl.subtractQty(IncomeSourceTitle.parasaurolophus);
+        }
+        dinoI = -food;
+        while (dinoI != state.incomeSources[IncomeSourceTitle.iguanodon]!.qty) {
+          ctrl.subtractQty(IncomeSourceTitle.iguanodon);
+        }
+      }
+    });
+    timer.isActive;
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -32,7 +68,6 @@ class ClickerPage extends ConsumerWidget {
                 child: const Text("Cheats Menu!")),
             const Text("Click Me!"),
             TextButton(onPressed: () => ctrl.click(), child: Image.asset("assets/clicker_game/clicker_dino.png")),
-            Text("Clicks Until Income: ${state.clicksUntilIncome}"),
             Text("Total Income: ${state.totalIncome.toString()}"),
             const Text("Income Sources"),
             if (state.incomeSources.isNotEmpty)
@@ -60,7 +95,8 @@ class ClickerPage extends ConsumerWidget {
                           child: Row(
                             children: [
                               if (source.name != IncomeSourceTitle.iguanodon &&
-                                  source.name != IncomeSourceTitle.parasaurolophus && source.name != IncomeSourceTitle.tyrannosaurusRex)
+                                  source.name != IncomeSourceTitle.parasaurolophus &&
+                                  source.name != IncomeSourceTitle.tyrannosaurusRex)
                                 TextButton(
                                     onPressed: () {
                                       if (source.name == IncomeSourceTitle.dinosaurEgg && source.qty == state.maxEggs) {

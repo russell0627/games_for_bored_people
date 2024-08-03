@@ -89,7 +89,6 @@ class ClickerCtrl extends _$ClickerCtrl {
   void click() {
     state = state.copyWith(
       balance: state.balance + state.clickIncome,
-      clicksUntilIncome: state.clicksUntilIncome - 1,
     );
     if (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty != 0) {
       subtractClicksUntil(IncomeSourceTitle.dinosaurEgg);
@@ -109,40 +108,5 @@ class ClickerCtrl extends _$ClickerCtrl {
       }
     }
 
-    if (state.clicksUntilIncome == 0) {
-      final rng = Random();
-
-      int dinoI = state.incomeSources[IncomeSourceTitle.iguanodon]!.qty;
-      int dinoP = state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
-      if (state.maxEggs > state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty) {
-        for (int i = 0;
-            i >
-                state.incomeSources[IncomeSourceTitle.iguanodon]!.qty +
-                    state.incomeSources[IncomeSourceTitle.tyrannosaurusRex]!.qty +
-                    state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
-            i++) {
-          final rngRoll = rng.nextInt(4) + 1;
-
-          if (rngRoll == 4) {
-            addQty(IncomeSourceTitle.dinosaurEgg);
-          }
         }
       }
-      addIncome();
-      if (state.dinoFood >= state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty) {
-        state.copyWith(dinoFood: state.dinoFood - state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty);
-      } else {
-        int food = state.dinoFood;
-        dinoP = -food;
-        while (dinoP != state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty) {
-          subtractQty(IncomeSourceTitle.parasaurolophus);
-        }
-        dinoI = -food;
-        while (dinoI != state.incomeSources[IncomeSourceTitle.iguanodon]!.qty) {
-          subtractQty(IncomeSourceTitle.iguanodon);
-        }
-      }
-      state = state.copyWith(clicksUntilIncome: 10);
-    }
-  }
-}

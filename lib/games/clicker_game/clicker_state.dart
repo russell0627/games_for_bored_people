@@ -58,7 +58,6 @@ class ClickerState {
 
   final int balance;
   final int dinoFood;
-  final int clicksUntilIncome;
   final Map<IncomeSourceTitle, IncomeSource> incomeSources;
 
   int get totalIncome {
@@ -78,20 +77,17 @@ class ClickerState {
 
   const ClickerState({
     required this.dinoFood,
-    required this.clicksUntilIncome,
     required this.balance,
     required this.incomeSources,
   });
 
   factory ClickerState.fromDefaults({
-    int clicksUntilIncome = 10,
     int balance = 0,
     int dinoFood = 0,
     Map<IncomeSourceTitle, IncomeSource>? incomeSources,
   }) {
     return ClickerState(
       dinoFood: dinoFood,
-      clicksUntilIncome: clicksUntilIncome,
       balance: balance,
       incomeSources: incomeSources ?? defaultIncomeSources,
     );
@@ -100,13 +96,11 @@ class ClickerState {
   ClickerState copyWith({
     int? balance,
     int? dinoFood,
-    int? clicksUntilIncome,
     Map<IncomeSourceTitle, IncomeSource>? incomeSources,
   }) {
     return ClickerState(
       balance: balance ?? this.balance,
       dinoFood: dinoFood ?? this.dinoFood,
-      clicksUntilIncome: clicksUntilIncome ?? this.clicksUntilIncome,
       incomeSources: incomeSources ?? this.incomeSources,
     );
   }

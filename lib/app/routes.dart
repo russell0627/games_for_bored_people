@@ -6,7 +6,6 @@ import '../games/dexter_hill/adventure_to_dexter_hill/presentation/adventure_to_
 import '../games/dexter_hill/cabin.dart';
 import '../games/dexter_hill/dexter_hill.dart';
 import '../games/extraterrestrial_extermination/extraterrestrial_extermination_page.dart';
-import '../games/puzzle_game/presentation/puzzle_page.dart';
 import '../games/quizzez/data/pages/quiz_home.dart';
 import '../games/quizzez/data/pages/quiz_length_page.dart';
 import '../games/quizzez/data/pages/quiz_page.dart';
@@ -106,11 +105,6 @@ GoRouter goRouter(GoRouterRef ref) {
                     ),
                   ]),
             ],
-          ),
-          GoRoute(
-            name: AppRoute.puzzle.name,
-            path: AppRoute.puzzle.path,
-            builder: (context, state) => const PuzzlePage(),
           ),
           GoRoute(
             name: AppRoute.brickBreaker.name,

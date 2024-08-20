@@ -31,6 +31,8 @@ class ClickerPage extends ConsumerWidget {
             if (rngRoll == 4) {
               ctrl.addQty(IncomeSourceTitle.dinosaurEgg);
             }
+
+
           }
         }
       }

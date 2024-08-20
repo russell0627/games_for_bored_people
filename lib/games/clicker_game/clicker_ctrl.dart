@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'clicker_state.dart';
@@ -107,6 +105,5 @@ class ClickerCtrl extends _$ClickerCtrl {
         resetClicksUntil(IncomeSourceTitle.dinosaurEgg);
       }
     }
-
-        }
-      }
+  }
+}

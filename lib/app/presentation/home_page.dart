@@ -6,7 +6,6 @@ import '../../games/alphabet_game/alphabet_game_page.dart';
 
 import '../../games/clicker_game/presentation/clicker_page.dart';
 import '../../games/dexter_hill/cabin.dart';
-import '../../pages/magic_8_ball.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
 
@@ -29,19 +28,7 @@ class HomePage extends ConsumerWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // TextButton(
-              //   child: const Text("Dice Games"),
-              //   onPressed: () {
-              //     Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DiceGamesPage()));
-              //   },
-              // ),
-              TextButton(
-                child: const Text("Magic 8 Ball"),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const Magic8BallPage()));
-                },
-              ),
-              TextButton(
+               TextButton(
                 child: const Text("Clicker Game"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ClickerPage()));
@@ -59,19 +46,7 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.ttt.name);
                 },
               ),
-              // TextButton(
-              //   child: const Text("Puzzle Game"),
-              //   onPressed: () {
-              //     context.goNamed(AppRoute.puzzle.name);
-              //   },
-              // ),
-              TextButton(
-                child: const Text("Brick Breaker"),
-                onPressed: () {
-                  context.goNamed(AppRoute.brickBreaker.name);
-                },
-              ),
-              TextButton(
+               TextButton(
                 child: const Text("Quizzez"),
                 onPressed: () {
                   context.goNamed(AppRoute.quizzez.name);

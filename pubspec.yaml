@@ -49,7 +49,6 @@ flutter:
     - assets/collectables/
     - assets/achievement_images/
     - assets/extraterrestrial_extermination/
-    - assets/magic_8_ball/images/
     - assets/puzzle_game/puzzle_pieces/
     - assets/tic_tac_toe/icons/
     - assets/dexter_hill/audio/

@@ -8,8 +8,6 @@ import 'services/theme/theme_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Flame.device.setLandscape();
-  await Flame.device.fullScreen();
   runApp(const ProviderScope(
     child: App(),
   ));

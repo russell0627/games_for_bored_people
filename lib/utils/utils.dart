@@ -30,7 +30,7 @@ extension StringX on String {
 }
 
 extension IterableIntX on Iterable<int> {
-  int sum() => fold(0, (int total, int current) => total + current);
+  int sum() => fold(0, (total, current) => total + current);
 }
 
 extension IterableBoolX on Iterable<bool> {
@@ -60,7 +60,7 @@ extension IterableWidgetX on Iterable<Widget> {
   }
 
   Iterable<Widget> padAll(EdgeInsets padding) {
-    return map((Widget widget) {
+    return map((widget) {
       return Padding(
         padding: padding,
         child: widget,

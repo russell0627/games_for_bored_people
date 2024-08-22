@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:games_for_bored_people/services/theme/theme_service.dart';
+import 'services/theme/theme_service.dart';
 
 
 class SettingsDialog extends ConsumerWidget {

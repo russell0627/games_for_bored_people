@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const double alertVerticalSpacerHeight = 30;
 
 class ResetGameDialog extends StatelessWidget {
-  const ResetGameDialog({Key? key}) : super(key: key);
+  const ResetGameDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

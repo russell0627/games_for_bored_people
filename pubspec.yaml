@@ -10,17 +10,16 @@ dependencies:
   audioplayers: ^6.0.0
   awesome_flutter_extensions: ^1.2.0
   clipboard: ^0.1.3
-  circular_countdown_timer: ^0.2.3
-  url_launcher: ^6.2.5
+  url_launcher: ^6.3.0
   flex_color_scheme: ^7.3.1
-  shared_preferences: ^2.2.2
+  shared_preferences: ^2.3.2
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
   flutter_riverpod: ^2.5.1
   flutter_smart_dialog: ^4.9.3+2
   sprite: ^0.0.3
-  go_router: ^13.2.3
+  go_router: ^14.2.6
   google_fonts: ^6.2.1
   logging: ^1.2.0
   nes_ui: ^0.20.0
@@ -28,19 +27,13 @@ dependencies:
   recase: ^4.1.0
   riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
-  video_player: ^2.8.3
-  build_runner: ^2.4.8
-  custom_lint: ^0.6.4
-  riverpod_generator: ^2.4.0
-  riverpod_lint: ^2.3.10
-  flutter_lints: ^3.0.2
-  flame_test: ^1.16.0
-  bonfire: ^3.8.5
-  flutter_markdown: ^0.6.22
-
-  flutter_animate: ^4.5.0
-  joystick: ^1.1.0
-
+  build_runner: ^2.4.12
+  custom_lint: ^0.6.5
+  riverpod_generator: ^2.4.3
+  riverpod_lint: ^2.3.13
+  flutter_lints: ^4.0.0
+  flutter_markdown: ^0.7.3+1
+  just_audio: ^0.9.39
 flutter:
   uses-material-design: true
   assets:
@@ -56,6 +49,7 @@ flutter:
     - assets/dexter_hill/images/dexter_images/
     - assets/dexter_hill/images/story_pages/
     - assets/quizzez/images/
+    - assets/quizzez/text/
     - assets/quizzez/images/dinosaurs/
     - assets/quizzez/images/space/
 

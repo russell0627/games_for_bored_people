@@ -9,7 +9,6 @@ import '../games/quizzez/data/pages/quiz_home.dart';
 import '../games/quizzez/data/pages/quiz_length_page.dart';
 import '../games/quizzez/data/pages/quiz_page.dart';
 import '../games/ttt/presentation/ttt_page.dart';
-import '../widgets/collectable_dialog.dart';
 import 'presentation/home_page.dart';
 import 'presentation/not_found_page.dart';
 
@@ -53,11 +52,6 @@ GoRouter goRouter(GoRouterRef ref) {
             name: AppRoute.ttt.name,
             path: AppRoute.ttt.path,
             builder: (context, state) => const TTTPage(),
-          ),
-          GoRoute(
-            name: AppRoute.collectables.name,
-            path: AppRoute.collectables.path,
-            builder: (context, state) => const CollectablePage(),
           ),
           GoRoute(
               name: AppRoute.quizzez.name,

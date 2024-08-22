@@ -6,6 +6,7 @@ part 'player_ctrl.g.dart';
 
 @riverpod
 class PlayerController extends _$PlayerController {
+  @override
   PlayerState build() {
     return PlayerState(goldCount: 0, hasHorse: false, daysUntilHillFound: 10, hasGrapplingHook: false, hasCrossbow: false, hasSword: false);
   }

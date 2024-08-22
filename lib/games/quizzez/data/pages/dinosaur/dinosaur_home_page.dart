@@ -3,10 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../settings_dialog.dart';
 import '../../../../../utils/screen_utils.dart';
-import '../../../../collectables/controller/collectables_ctrl.dart';
-import '../../../../collectables/data/collectables.dart';
-import '../../../../collectables/models/collectable.dart';
-import '../../../../dexter_hill/main_graveyard.dart';
 import '../../../controllers/quiz_state.dart';
 import '../../../widgets/logo_display.dart';
 import '../../models/question.dart';
@@ -29,8 +25,6 @@ class DinosaurHomePage extends ConsumerStatefulWidget {
 class _DinosaurHomePageState extends ConsumerState<DinosaurHomePage> {
   @override
   Widget build(BuildContext context) {
-    final cbleCtrl = ref.read(collectablesCtrlProvider.notifier);
-    final cbleState = ref.read(collectablesCtrlProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -96,16 +90,7 @@ class _DinosaurHomePageState extends ConsumerState<DinosaurHomePage> {
                       style: dinosaurButtonTextStyle,
                     ),
                   ),
-                  Row(
-                    children: [
-                      if(cbleState.dexterCollectableParts.contains(collectables[CollectableName.dexter1]) != true)
-                      FunctionalImage(
-                          onTapped: () => cbleCtrl.addCollectable(
-                              collectable: collectables[CollectableName.dexter1]!, dexterPart: true),
-                          imagePath: collectables[CollectableName.dexter1]!.imagePath)
-                    ],
-                  )
-                ],
+                 ],
               ),
             ),
           ],

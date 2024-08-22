@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../collectables/controller/collectables_ctrl.dart';
-import '../collectables/data/collectables.dart';
-import '../collectables/models/collectable.dart';
-import '../dexter_hill/main_graveyard.dart';
 
 class AlphabetGamePage extends StatefulWidget {
   const AlphabetGamePage({super.key});
@@ -68,9 +64,7 @@ class _AlphabetGamePageState extends State<AlphabetGamePage> {
         alphabetW &&
         alphabetX &&
         alphabetY &&
-        alphabetZ) {
-
-    }
+        alphabetZ) {}
 
     return Scaffold(
       appBar: AppBar(
@@ -491,15 +485,9 @@ class WinDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ctrl = ref.watch(collectablesCtrlProvider.notifier);
-
-    return SimpleDialog(
-      children: [const Text("You Win!"),
-        FunctionalImage(
-            onTapped: () => ctrl.addCollectable(
-                collectable: collectables[CollectableName.dexter2]!, dexterPart: true),
-            imagePath: collectables[CollectableName.dexter2]!.imagePath)
-
+    return const SimpleDialog(
+      children: [
+        Text("You Win!"),
       ],
     );
   }

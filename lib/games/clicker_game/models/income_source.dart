@@ -24,7 +24,7 @@ class IncomeSource {
   }) {
     return IncomeSource(
       name: name ?? this.name,
-      singularIncome: singularIncomePerSecond ?? this.singularIncome,
+      singularIncome: singularIncomePerSecond ?? singularIncome,
       qty: qty ?? this.qty,
       cost: cost ?? this.cost,
       clicksUntil: clicksUntil ?? this.clicksUntil,

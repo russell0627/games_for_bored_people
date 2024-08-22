@@ -6,7 +6,7 @@ import '../../controllers/quiz_state.dart';
 import '../../widgets/link_button.dart';
 
 class CreditsPage extends ConsumerWidget {
-  const CreditsPage({Key? key}) : super(key: key);
+  const CreditsPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

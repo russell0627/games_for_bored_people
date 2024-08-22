@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../games/alphabet_game/alphabet_game_page.dart';
 
 import '../../games/clicker_game/presentation/clicker_page.dart';
-import '../../games/dexter_hill/cabin.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
 
@@ -28,7 +27,7 @@ class HomePage extends ConsumerWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-               TextButton(
+              TextButton(
                 child: const Text("Clicker Game"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ClickerPage()));
@@ -46,7 +45,7 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.ttt.name);
                 },
               ),
-               TextButton(
+              TextButton(
                 child: const Text("Quizzez"),
                 onPressed: () {
                   context.goNamed(AppRoute.quizzez.name);
@@ -58,12 +57,8 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.alienKiller.name);
                 },
               ),
-               TextButton(onPressed: () => context.goNamed(AppRoute.tenThousand.name), child: const Text("Ten Thousand")),
               TextButton(
-                onPressed: () => context.goNamed(AppRoute.collectables.name),
-                child: const Text("Collectables"),
-              ),
-              TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CabinBackyard())), child: const Text("Cabin Backyard Test")),
+                  onPressed: () => context.goNamed(AppRoute.tenThousand.name), child: const Text("Ten Thousand")),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

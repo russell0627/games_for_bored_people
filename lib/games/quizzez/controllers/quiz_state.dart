@@ -8,7 +8,7 @@ class QuizState {
   static const animalImagePath = "assets/quizzez/images/animals/";
   static const spaceImagePath = "assets/quizzez/images/space/";
   static final questionsPerCategory = dinosaurs.length;
-  static const otherQuestions = 2;
+  static const otherQuestions = 3;
   static const minDinosaurQuizLength = 10;
   static const spaceMinQuizLength = 3;
   static const spaceMaxQuizLength = 7;
@@ -22,6 +22,7 @@ class QuizState {
   final bool includeTimePeriodQuestions;
   final bool includeDietQuestions;
   final bool includeOtherQuestions;
+  final bool endlessQuiz;
   final int quizLength;
 
   QuizState({
@@ -33,6 +34,7 @@ class QuizState {
     this.includeTimePeriodQuestions = true,
     this.includeOtherQuestions = true,
     this.includeDietQuestions = true,
+    this.endlessQuiz = false,
     this.answeredOnFirstTry = true,
     this.quizLength = 0,
   });
@@ -46,6 +48,7 @@ class QuizState {
     bool? includeTimePeriodQuestions,
     bool? includeDietQuestions,
     bool? includeOtherQuestions,
+    bool? endlessQuiz,
     bool? answeredOnFirstTry,
     int? quizLength,
   }) {
@@ -58,6 +61,7 @@ class QuizState {
       includeTimePeriodQuestions: includeTimePeriodQuestions ?? this.includeTimePeriodQuestions,
       includeDietQuestions: includeDietQuestions ?? this.includeDietQuestions,
       includeOtherQuestions: includeOtherQuestions ?? this.includeOtherQuestions,
+      endlessQuiz: endlessQuiz ?? this.endlessQuiz,
       answeredOnFirstTry: answeredOnFirstTry ?? this.answeredOnFirstTry,
       quizLength: quizLength ?? this.quizLength,
     );

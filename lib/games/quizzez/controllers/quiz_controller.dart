@@ -46,7 +46,7 @@ class QuizController extends _$QuizController {
           ),
         if (state.includeCladeQuestions)
           Question<Suborder>(
-            question: "What is the lowest clade for ${currentDinosaur!.name}?",
+            question: "Which of these groups does ${currentDinosaur!.name} belong to?",
             options: Suborder.values,
             answers: [currentDinosaur.suborder],
             imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
@@ -125,7 +125,11 @@ class QuizController extends _$QuizController {
 
   void resetQuestions() {
     final List<Question> newQuestions = [];
-    state = state.copyWith(questionIndex: 0, score: 0, questions: []);
+    if (state.endlessQuiz == false) {
+      state = state.copyWith(questionIndex: 0, score: 0, questions: []);
+    } else {
+      state = state.copyWith(questionIndex: 0, questions: []);
+    }
 
     switch (state.questionType) {
       case QuestionType.dinosaur:
@@ -152,6 +156,19 @@ class QuizController extends _$QuizController {
               answers: ["2"],
               imageFilename: "${QuizState.dinosaurImagePath}albertaceratops.jpg"),
         );
+        newQuestions.add(
+          const Question(
+              question: "How many species of Tyrannosaurus were there?",
+              options: [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+              ],
+              answers: ["1"],
+              imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
+        );
         newQuestions.shuffle();
         break;
       case QuestionType.space:
@@ -166,27 +183,34 @@ class QuizController extends _$QuizController {
       case QuestionType.plant:
         break;
     }
-    state = state.copyWith(questions: newQuestions.take(state.quizLength).toList());
+    if (state.endlessQuiz == false) {
+      state = state.copyWith(questions: newQuestions.take(state.quizLength).toList());
+    } else {
+      state = state.copyWith(questions: newQuestions);
+    }
   }
 
   Future<void> nextQuestion({required dynamic answer}) async {
-    if (state.questionIndex == state.questions.length) {
-      await SmartDialog.show(
-        builder: (_) => GameFinishedDialog(
-          score: state.score,
-          numberOfQuestions: state.questions.length,
-        ),
-      );
+    if (state.questionIndex == state.questions.length - 1) {
+      if (state.endlessQuiz == false) {
+        await SmartDialog.show(
+          builder: (_) => GameFinishedDialog(
+            score: state.score,
+            numberOfQuestions: state.questions.length,
+          ),
+        );
+      }
       state = state.copyWith(answeredOnFirstTry: true);
 
       resetQuestions();
+      return;
     } else {
       if (state.questions[state.questionIndex].answers.contains(answer)) {
         state = state.copyWith(
           questionIndex: state.questionIndex + 1,
         );
         if (state.answeredOnFirstTry) {
-          state.copyWith(score: state.score + 1);
+          state = state.copyWith(score: state.score + 1);
         }
       }
     }
@@ -194,14 +218,18 @@ class QuizController extends _$QuizController {
 
   void updateQuizLength(int quizLength) => state = state.copyWith(quizLength: quizLength);
 
-  void updateQuestionTypes(
-          {bool? includeCladeQuestions,
-          bool? includeDietQuestions,
-          bool? includeTimePeriodQuestions,
-          bool? includeOtherQuestions}) =>
+  void updateQuestionTypes({
+    bool? includeCladeQuestions,
+    bool? includeDietQuestions,
+    bool? includeTimePeriodQuestions,
+    bool? includeOtherQuestions,
+    bool? endlessQuiz,
+  }) =>
       state = state.copyWith(
-          includeCladeQuestions: includeCladeQuestions,
-          includeTimePeriodQuestions: includeTimePeriodQuestions,
-          includeDietQuestions: includeDietQuestions,
-          includeOtherQuestions: includeOtherQuestions);
+        includeCladeQuestions: includeCladeQuestions,
+        includeTimePeriodQuestions: includeTimePeriodQuestions,
+        includeDietQuestions: includeDietQuestions,
+        includeOtherQuestions: includeOtherQuestions,
+        endlessQuiz: endlessQuiz,
+      );
 }

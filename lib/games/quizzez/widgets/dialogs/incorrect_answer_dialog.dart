@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class IncorrectAnswerDialog extends StatelessWidget {
-  const IncorrectAnswerDialog({Key? key}) : super(key: key);
+  const IncorrectAnswerDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Column(
+      content: const Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           Text("Incorrect!"),
           Text("Try Again!"),
         ],

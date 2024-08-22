@@ -8,7 +8,7 @@
 - Stegosaurs were small headed quadrupedal herbivorous dinosaurs of the Jurassic and early Cretaceous periods with a double row of large bony plates or sines along the back. The name Stegosaurus means roof-lizard.
 - Theropod means "Beast Footed". All theropods were characterized by 3 toes and claws on each limb like the Tyrannosaurus, Spinosaurus, and Therizinosaurus.
 
-If you were to look at all the points in the complex list of clades and orders for one dinosaur it would look like this:
+If you were to look at all the points in the complex list of clades, orders, and all other classifications for one dinosaur it would look like this:
 
 - Kingdom: Animalia
 - Phylum: Chordata
@@ -75,10 +75,10 @@ In taxonomy a Tribe is a rank that is below Subfamily and Family and above genus
 - Torosaurus,
 - Triceratops.
 
-When most people talk about Triceratops they just say Triceratops which is only the Genus Triceratops there are two known species of triceratops which are "horridus" or "prorsus" but Triceratops is only the genus. Genus is the classification right above the species of an animal. The Genus Triceratops has two species:
+Not every genus has different species. Triceratops has 2 species:
 
 - Triceratops horridus
-- Triceratops prorsus
-
-They are both very similar but are slightly different and that makes them different species.
-Tyrannosaurus almost had two more species other than rex, but they decided that they were actually just the same dinosaur with normal variations.
+- Triceratops prorsus  
+Species are almost always very similar to the others in the Genus. The different species do have some difference in features.
+The differences are sometimes very minor like a difference in horn length, size, or shape.  
+Tyrannosaurus however, only had one species. There was a debate between paleontologists about whether specimens found would split the genus into 2 species. It ended up being decided that the geunus Tyrannosaurus only had one species.

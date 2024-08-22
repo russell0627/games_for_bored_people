@@ -4,7 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import '../../../controllers/quiz_state.dart';
 
 class TypesOfDinosaursPage extends StatefulWidget {
-  const TypesOfDinosaursPage({Key? key}) : super(key: key);
+  const TypesOfDinosaursPage({super.key});
 
   @override
   State<TypesOfDinosaursPage> createState() => _TypesOfDinosaursPageState();
@@ -17,7 +17,7 @@ class _TypesOfDinosaursPageState extends State<TypesOfDinosaursPage> {
   void initState() {
     super.initState();
 
-    textFuture = DefaultAssetBundle.of(context).loadString('assets/text/dinosaur_taxonomy.md');
+    textFuture = DefaultAssetBundle.of(context).loadString('assets/quizzez/text/dinosaur_taxonomy.md');
   }
 
   @override
@@ -25,7 +25,7 @@ class _TypesOfDinosaursPageState extends State<TypesOfDinosaursPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Lowest Clades of Dinosaurs",
+          "Some of the taxonomy (Cladistics) of DINOSAURS!",
           style: TextStyle(
             fontFamily: "erasaur",
           ),

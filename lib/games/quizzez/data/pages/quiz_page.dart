@@ -49,7 +49,7 @@ class QuizPage extends ConsumerWidget {
               ),
               if (state.score != state.questions.length) ...[
                 Text(
-                  "Question: ${state.questionIndex + 1}/${state.questions.length}",
+                  "Question: ${state.questionIndex + 1}/${ state.endlessQuiz == false?state.questions.length : "INFINITY!"}",
                   style: const TextStyle(
                     fontSize: 16,
                     fontFamily: "Merienda",

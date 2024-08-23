@@ -8,6 +8,7 @@ import '../games/extraterrestrial_extermination/extraterrestrial_extermination_p
 import '../games/quizzez/data/pages/quiz_home.dart';
 import '../games/quizzez/data/pages/quiz_length_page.dart';
 import '../games/quizzez/data/pages/quiz_page.dart';
+import '../games/quizzez/data/pages/stats_page.dart';
 import '../games/ttt/presentation/ttt_page.dart';
 import 'presentation/home_page.dart';
 import 'presentation/not_found_page.dart';
@@ -28,6 +29,7 @@ enum AppRoute {
   quizzez,
   quizLength,
   quiz,
+  quizStats,
   tenThousand;
 
   final String? _path;
@@ -54,22 +56,30 @@ GoRouter goRouter(GoRouterRef ref) {
             builder: (context, state) => const TTTPage(),
           ),
           GoRoute(
-              name: AppRoute.quizzez.name,
-              path: AppRoute.quizzez.path,
-              builder: (context, state) => const QuizzezHomePage(title: 'Quizzez'),
-              routes: [
-                GoRoute(
-                    name: AppRoute.quizLength.name,
-                    path: AppRoute.quizLength.path,
-                    builder: (context, state) => const QuizLengthPage(),
-                    routes: [
-                      GoRoute(
-                        name: AppRoute.quiz.name,
-                        path: AppRoute.quiz.path,
-                        builder: (context, state) => const QuizPage(),
-                      ),
-                    ]),
-              ]),
+            name: AppRoute.quizzez.name,
+            path: AppRoute.quizzez.path,
+            builder: (context, state) => const QuizzezHomePage(title: 'Quizzez'),
+            routes: [
+              GoRoute(
+                name: AppRoute.quizLength.name,
+                path: AppRoute.quizLength.path,
+                builder: (context, state) => const QuizLengthPage(),
+                routes: [
+                  GoRoute(
+                      name: AppRoute.quiz.name,
+                      path: AppRoute.quiz.path,
+                      builder: (context, state) => const QuizPage(),
+                      routes: [
+                        GoRoute(
+                          name: AppRoute.quizStats.name,
+                          path: AppRoute.quizStats.path,
+                          builder: (context, state) => const QuizStatsPage(),
+                        ),
+                      ]),
+                ],
+              ),
+            ],
+          ),
           GoRoute(
             name: AppRoute.aTDH.name,
             path: AppRoute.aTDH.path,

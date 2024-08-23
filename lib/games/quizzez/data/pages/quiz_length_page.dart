@@ -50,11 +50,11 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text("Include Clade Questions"),
+                const Text("Include Taxonomy Questions"),
                 Switch(
-                  value: state.includeCladeQuestions,
+                  value: state.includeTaxonomyQuestions,
                   onChanged: (_) => ctrl.updateQuestionTypes(
-                    includeCladeQuestions: !state.includeCladeQuestions,
+                    includeCladeQuestions: !state.includeTaxonomyQuestions,
                   ),
                 ),
                 const Text("Include Time Period Questions"),
@@ -116,7 +116,7 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
                         return;
                       }
                       if (!state.includeTimePeriodQuestions &&
-                          !state.includeCladeQuestions &&
+                          !state.includeTaxonomyQuestions &&
                           !state.includeDietQuestions &&
                           !state.includeOtherQuestions) {
                         showDialog(context: context, builder: (_) => const InvalidQuizLengthDialog());

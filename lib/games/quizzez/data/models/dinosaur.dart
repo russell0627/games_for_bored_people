@@ -17,16 +17,16 @@ class Dinosaur {
 }
 
 enum Suborder {
-  ankylosaur,
-  ceratopsian,
-  hadrosaur,
-  ornithopod,
-  pachycephalosaur,
-  plateosaurid,
-  pterosaur,
-  sauropod,
-  stegosaur,
-  theropod;
+  ankylosauria,
+  ceratopsia,
+  hadrosauria,
+  ornithopoda,
+  pachycephalosauria,
+  plateosauria,
+  pterosauria,
+  sauropoda,
+  stegosauria,
+  theropoda;
 
   @override
   String toString() => ReCase(name).titleCase;

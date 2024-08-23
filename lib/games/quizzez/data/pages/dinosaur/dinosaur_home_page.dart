@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../settings_dialog.dart';
 import '../../../../../utils/screen_utils.dart';
+import '../../../controllers/quiz_controller.dart';
 import '../../../controllers/quiz_state.dart';
 import '../../../widgets/logo_display.dart';
 import '../../models/question.dart';
@@ -15,16 +16,12 @@ const dinosaurButtonTextStyle = TextStyle(
   fontSize: 18,
 );
 
-class DinosaurHomePage extends ConsumerStatefulWidget {
+class DinosaurHomePage extends ConsumerWidget {
   const DinosaurHomePage({super.key});
 
   @override
-  ConsumerState<DinosaurHomePage> createState() => _DinosaurHomePageState();
-}
-
-class _DinosaurHomePageState extends ConsumerState<DinosaurHomePage> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(quizControllerProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -39,12 +36,10 @@ class _DinosaurHomePageState extends ConsumerState<DinosaurHomePage> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              setState(() {
-                showDialog(
-                  context: context,
-                  builder: (context) => const SettingsDialog(),
-                );
-              });
+              showDialog(
+                context: context,
+                builder: (context) => const SettingsDialog(),
+              );
             },
           ),
         ],
@@ -54,46 +49,44 @@ class _DinosaurHomePageState extends ConsumerState<DinosaurHomePage> {
           image: DecorationImage(
               image: AssetImage("${QuizState.dinosaurImagePath}cretaceous_landscape.png"), fit: BoxFit.cover),
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 150),
-                  ElevatedButton(
-                    onPressed: () =>
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizLengthPage())),
-                    child: const Text(
-                      "Start Dinosaur Quiz!",
-                      style: dinosaurButtonTextStyle,
-                    ),
-                  ),
-                  boxXXL,
-                  ElevatedButton(
-                    onPressed: () =>
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TypesOfDinosaursPage())),
-                    child: const Text(
-                      "Taxonomy of Dinosaurs",
-                      style: dinosaurButtonTextStyle,
-                    ),
-                  ),
-                  boxXXL,
-                  ElevatedButton(
-                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const FindItemPage(
-                              itemType: QuestionType.dinosaur,
-                            ))),
-                    child: const Text(
-                      "Find a Dinosaur",
-                      style: dinosaurButtonTextStyle,
-                    ),
-                  ),
-                 ],
+        child: SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 150),
+              Text("Highest Score: ${state.highestScore}"),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizLengthPage())),
+                child: const Text(
+                  "Start Dinosaur Quiz!",
+                  style: dinosaurButtonTextStyle,
+                ),
               ),
-            ),
-          ],
+              boxXXL,
+              ElevatedButton(
+                onPressed: () =>
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TypesOfDinosaursPage())),
+                child: const Text(
+                  "Taxonomy of Dinosaurs",
+                  style: dinosaurButtonTextStyle,
+                ),
+              ),
+              boxXXL,
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const FindItemPage(
+                          itemType: QuestionType.dinosaur,
+                        ))),
+                child: const Text(
+                  "Find a Dinosaur",
+                  style: dinosaurButtonTextStyle,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

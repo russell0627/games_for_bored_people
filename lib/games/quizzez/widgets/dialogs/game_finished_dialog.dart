@@ -23,14 +23,25 @@ class GameFinishedDialog extends ConsumerWidget {
               const Text("You Finished The Game!", style: _textStyle),
               Text("You got $score out of $numberOfQuestions correct!", style: _textStyle),
               TextButton(
-                  onPressed: () {
-                    SmartDialog.dismiss();
-                    ref.read(goRouterProvider).pop();
-                  },
-                  child: const Text(
-                    "Return to Menu",
-                    style: _textStyle,
-                  ))
+                onPressed: () {
+                  SmartDialog.dismiss();
+                  ref.read(goRouterProvider).push(AppRoute.quizStats.name);
+                },
+                child: const Text(
+                  "View Stats",
+                  style: _textStyle,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  SmartDialog.dismiss();
+                  ref.read(goRouterProvider).pop();
+                },
+                child: const Text(
+                  "Return to Menu",
+                  style: _textStyle,
+                ),
+              ),
             ],
           ),
         ),

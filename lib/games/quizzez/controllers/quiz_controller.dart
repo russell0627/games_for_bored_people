@@ -23,7 +23,7 @@ class QuizController extends _$QuizController {
       state = state.copyWith(
         questionIndex: state.questionIndex + 1,
       );
-    }
+    } else {}
   }
 
   List<Question> _generateQuestions({
@@ -44,7 +44,7 @@ class QuizController extends _$QuizController {
             answers: [currentDinosaur.diet],
             imageFilename: "${QuizState.dinosaurImagePath}${currentDinosaur.imageFileName}",
           ),
-        if (state.includeCladeQuestions)
+        if (state.includeTaxonomyQuestions)
           Question<Suborder>(
             question: "Which of these groups does ${currentDinosaur!.name} belong to?",
             options: Suborder.values,
@@ -125,10 +125,10 @@ class QuizController extends _$QuizController {
 
   void resetQuestions() {
     final List<Question> newQuestions = [];
-    if (state.endlessQuiz == false) {
-      state = state.copyWith(questionIndex: 0, score: 0, questions: []);
+    if (state.endlessQuiz) {
+      state = state.copyWith(questionIndex: 0, questions: [], answeredOnFirstTry: true);
     } else {
-      state = state.copyWith(questionIndex: 0, questions: []);
+      state = state.copyWith(questionIndex: 0, score: 0, questions: [], answeredOnFirstTry: true);
     }
 
     switch (state.questionType) {
@@ -169,6 +169,55 @@ class QuizController extends _$QuizController {
               answers: ["1"],
               imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
         );
+        newQuestions.add(
+          const Question(
+              question: "How long was the Cretaceous Period?",
+              options: [
+                "78 Million Years",
+                "200 Million years",
+                "66 Million Years",
+                "47 Million Years",
+                "54 Million Years",
+              ],
+              answers: ["78 Million Years"],
+              imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
+        );
+        newQuestions.add(
+          const Question(
+              question: "How long was the Jurassic Period?",
+              options: [
+                "78 Million Years",
+                "200 Million years",
+                "66 Million Years",
+                "47 Million Years",
+                "50 Million Years",
+              ],
+              answers: ["50 Million Years"],
+              imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
+        );
+        newQuestions.add(
+          const Question(
+              question: "How long was the Triassic Period?",
+              options: [
+                "78 Million Years",
+                "55 Million years",
+                "66 Million Years",
+                "47 Million Years",
+                "54 Million Years",
+              ],
+              answers: ["55 Million years"],
+              imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
+        );
+        newQuestions.add(
+          const Question(
+              question: "Fossils are bones. True or False?",
+              options: [
+                "True",
+                "False",
+              ],
+              answers: ["False"],
+              imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
+        );
         newQuestions.shuffle();
         break;
       case QuestionType.space:
@@ -191,28 +240,40 @@ class QuizController extends _$QuizController {
   }
 
   Future<void> nextQuestion({required dynamic answer}) async {
-    if (state.questionIndex == state.questions.length - 1) {
-      if (state.endlessQuiz == false) {
-        await SmartDialog.show(
-          builder: (_) => GameFinishedDialog(
-            score: state.score,
-            numberOfQuestions: state.questions.length,
-          ),
-        );
-      }
-      state = state.copyWith(answeredOnFirstTry: true);
-
-      resetQuestions();
-      return;
-    } else {
-      if (state.questions[state.questionIndex].answers.contains(answer)) {
-        state = state.copyWith(
-          questionIndex: state.questionIndex + 1,
-        );
-        if (state.answeredOnFirstTry) {
-          state = state.copyWith(score: state.score + 1);
+    if (state.questions[state.questionIndex].answers.contains(answer)) {
+      if (state.answeredOnFirstTry) {
+        state = state.copyWith(score: state.score + 1);
+        if (state.score > state.highestScore) {
+          state = state.copyWith(highestScore: state.score);
         }
       }
+
+      if (state.questionIndex == state.questions.length - 1) {
+        if (state.endlessQuiz == false) {
+          await SmartDialog.show(
+            builder: (_) => GameFinishedDialog(
+              score: state.score,
+              numberOfQuestions: state.questions.length,
+            ),
+          );
+        }
+        state = state.copyWith(answeredOnFirstTry: true);
+
+        resetQuestions();
+        return;
+      }
+
+      state = state.copyWith(
+        questionIndex: state.questionIndex + 1,
+      );
+    } else {
+      state = state.copyWith(
+        incorrectQuestionAnswers: state.incorrectQuestionAnswers.toList()..add(answer),
+        incorrectQuestions: state.incorrectQuestions.toList()
+          ..add(
+            state.questions[state.questionIndex],
+          ),
+      );
     }
   }
 

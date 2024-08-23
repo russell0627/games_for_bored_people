@@ -1,3 +1,5 @@
+These classifications at the top are the only ones that are used in the questions. They are the only things used in the taxonomy questions.  
+Anything below the upcoming list is interesting but not required.
 - Ankylosaurs are any creatures under the suborder Ankylosauria. They are herbivorous Cretaceous dinosaurs that had plates of armor on their backs, legs and heads. Most Ankylosaurs had one weakness which was their underbelly which wasn't armored.
 - Ceratopsians are quadrupedal herbivores of a group found in the Cretaceous period, including Triceratops. They had large beaked and horned heads and bony frills protecting the neck.
 - Ornithopods are bipedal herbivorous dinosaurs.

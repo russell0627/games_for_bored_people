@@ -57,8 +57,6 @@ class HomePage extends ConsumerWidget {
                   context.goNamed(AppRoute.alienKiller.name);
                 },
               ),
-              TextButton(
-                  onPressed: () => context.goNamed(AppRoute.tenThousand.name), child: const Text("Ten Thousand")),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

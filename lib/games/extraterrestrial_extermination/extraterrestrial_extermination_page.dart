@@ -53,7 +53,7 @@ class CircleTest extends ConsumerWidget {
           children: [
             Text(
               "Score: ${state.score}",
-              style: TextStyle(fontFamily: "Nebulous"),
+              style: const TextStyle(fontFamily: "Nebulous"),
             ),
             Expanded(
               child: Stack(

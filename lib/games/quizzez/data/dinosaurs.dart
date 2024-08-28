@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'models/dinosaur.dart';
 
 const Map<String, Dinosaur> dinosaurs = {
@@ -18,7 +19,7 @@ const Map<String, Dinosaur> dinosaurs = {
   ),
   "achelosaurus": Dinosaur(
     name: "Achelosaurus",
-    suborder: Suborder.theropoda,
+    suborder: Suborder.ceratopsia,
     diet: Diet.herbivore,
     timePeriod: TimePeriod.cretaceous,
     imageFileName: "achelosaurus.jpg",
@@ -417,6 +418,30 @@ const Map<String, Dinosaur> dinosaurs = {
       diet: Diet.carnivore,
       timePeriod: TimePeriod.cretaceous,
       imageFileName: "velociraptor.jpg"),
+  "xenoposeidon": Dinosaur(
+      name: "Xenoposeidon",
+      suborder: Suborder.sauropoda,
+      diet: Diet.herbivore,
+      timePeriod: TimePeriod.cretaceous,
+      imageFileName: "xenoposeidon.jpg"),
+  "yinlong": Dinosaur(
+      name: "Yinlong",
+      suborder: Suborder.ceratopsia,
+      diet: Diet.herbivore,
+      timePeriod: TimePeriod.jurassic,
+      imageFileName: "yinlong.jpg"),
+  "yutyrannus": Dinosaur(
+      name: "Yutyrannus",
+      suborder: Suborder.theropoda,
+      diet: Diet.carnivore,
+      timePeriod: TimePeriod.cretaceous,
+      imageFileName: "yutyrannus.jpg"),
+  "zephyrosaurus": Dinosaur(
+      name: "Zephyrosaurus",
+      suborder: Suborder.neornithischia,
+      diet: Diet.herbivore,
+      timePeriod: TimePeriod.cretaceous,
+      imageFileName: "zephyrosaurus.jpg"),
 };
 
 const Image velociraptorAndUtahraptor =

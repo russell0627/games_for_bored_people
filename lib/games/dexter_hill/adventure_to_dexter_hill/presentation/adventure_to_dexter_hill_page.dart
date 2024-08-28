@@ -19,9 +19,6 @@ class AdventureToDexterHillPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(aTDhControllerProvider);
-
-    print(state.currentLocation);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Adventure To Dexter Hill"),

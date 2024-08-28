@@ -54,7 +54,7 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
                 Switch(
                   value: state.includeTaxonomyQuestions,
                   onChanged: (_) => ctrl.updateQuestionTypes(
-                    includeCladeQuestions: !state.includeTaxonomyQuestions,
+                    includeTaxonomyQuestions: !state.includeTaxonomyQuestions,
                   ),
                 ),
                 const Text("Include Time Period Questions"),

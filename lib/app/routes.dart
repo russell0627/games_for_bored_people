@@ -5,6 +5,7 @@ import '../games/dexter_hill/adventure_to_dexter_hill/presentation/adventure_to_
 import '../games/dexter_hill/cabin.dart';
 import '../games/dexter_hill/dexter_hill.dart';
 import '../games/extraterrestrial_extermination/extraterrestrial_extermination_page.dart';
+import '../games/quizzez/data/pages/dinosaur/taxonomy_of_dinosaurs_page.dart';
 import '../games/quizzez/data/pages/quiz_home.dart';
 import '../games/quizzez/data/pages/quiz_length_page.dart';
 import '../games/quizzez/data/pages/quiz_page.dart';
@@ -30,6 +31,7 @@ enum AppRoute {
   quizLength,
   quiz,
   quizStats,
+  taxonomyPage,
   tenThousand;
 
   final String? _path;
@@ -66,16 +68,22 @@ GoRouter goRouter(GoRouterRef ref) {
                 builder: (context, state) => const QuizLengthPage(),
                 routes: [
                   GoRoute(
-                      name: AppRoute.quiz.name,
-                      path: AppRoute.quiz.path,
-                      builder: (context, state) => const QuizPage(),
-                      routes: [
-                        GoRoute(
-                          name: AppRoute.quizStats.name,
-                          path: AppRoute.quizStats.path,
-                          builder: (context, state) => const QuizStatsPage(),
-                        ),
-                      ]),
+                    name: AppRoute.quiz.name,
+                    path: AppRoute.quiz.path,
+                    builder: (context, state) => const QuizPage(),
+                    routes: [
+                      GoRoute(
+                        name: AppRoute.quizStats.name,
+                        path: AppRoute.quizStats.path,
+                        builder: (context, state) => const QuizStatsPage(),
+                      ),
+                      GoRoute(
+                        name: AppRoute.taxonomyPage.name,
+                        path: AppRoute.taxonomyPage.path,
+                        builder: (context, state) => const TypesOfDinosaursPage(),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ],

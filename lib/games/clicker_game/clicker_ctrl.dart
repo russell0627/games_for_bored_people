@@ -55,23 +55,23 @@ class ClickerCtrl extends _$ClickerCtrl {
     state = state.copyWith(incomeSources: Map<IncomeSourceTitle, IncomeSource>.unmodifiable(incomeSources));
   }
 
-  void subtractClicksUntil(IncomeSourceTitle value) {
+  void subtractSecondsUntil(IncomeSourceTitle value) {
     final incomeSources = Map<IncomeSourceTitle, IncomeSource>.from(state.incomeSources);
     final incomeSource = incomeSources[value]!;
 
     incomeSources[value] = incomeSource.copyWith(
-      clicksUntil: incomeSource.clicksUntil - 1,
+      secondsUntil: incomeSource.secondsUntil - 1,
     );
 
     state = state.copyWith(incomeSources: Map<IncomeSourceTitle, IncomeSource>.unmodifiable(incomeSources));
   }
 
-  void resetClicksUntil(IncomeSourceTitle value) {
+  void resetSecondsUntil(IncomeSourceTitle value) {
     final incomeSources = Map<IncomeSourceTitle, IncomeSource>.from(state.incomeSources);
     final incomeSource = incomeSources[value]!;
 
     incomeSources[value] = incomeSource.copyWith(
-      clicksUntil: 50,
+      secondsUntil: 50,
     );
 
     state = state.copyWith(incomeSources: Map<IncomeSourceTitle, IncomeSource>.unmodifiable(incomeSources));
@@ -88,22 +88,5 @@ class ClickerCtrl extends _$ClickerCtrl {
     state = state.copyWith(
       balance: state.balance + state.clickIncome,
     );
-    if (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty != 0) {
-      subtractClicksUntil(IncomeSourceTitle.dinosaurEgg);
-
-      if (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.clicksUntil == 0) {
-        while (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty != 0) {
-          subtractQty(IncomeSourceTitle.dinosaurEgg);
-          int rngRoll = ClickerState.rng.nextInt(4);
-          if (rngRoll == 3) {
-          } else if (rngRoll == 2) {
-            addQty(IncomeSourceTitle.parasaurolophus);
-          } else {
-            addQty(IncomeSourceTitle.iguanodon);
-          }
-        }
-        resetClicksUntil(IncomeSourceTitle.dinosaurEgg);
-      }
-    }
   }
 }

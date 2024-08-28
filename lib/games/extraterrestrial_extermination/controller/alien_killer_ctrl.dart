@@ -9,7 +9,7 @@ part 'alien_killer_ctrl.g.dart';
 @riverpod
 class AlienKillerCtrl extends _$AlienKillerCtrl {
   @override
-  AlienKillerState build() => AlienKillerState(spawnTimer: Timer(Duration(seconds: 5), () {}), score: 0, alienNumbers: {
+  AlienKillerState build() => AlienKillerState(spawnTimer: Timer(const Duration(seconds: 5), () {}), score: 0, alienNumbers: {
         VehicleSide.front: 1,
         VehicleSide.left: 0,
         VehicleSide.right: 0,

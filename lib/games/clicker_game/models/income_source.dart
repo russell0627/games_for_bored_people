@@ -3,12 +3,12 @@ class IncomeSource {
   final int singularIncome;
   final int qty;
   final int cost;
-  final int clicksUntil;
+  final int secondsUntil;
 
   int get fullIncome => singularIncome * qty;
 
   const IncomeSource({
-    this.clicksUntil = 0,
+    this.secondsUntil = 0,
     required this.singularIncome,
     required this.qty,
     required this.name,
@@ -20,14 +20,14 @@ class IncomeSource {
     int? singularIncomePerSecond,
     int? qty,
     int? cost,
-    int? clicksUntil,
+    int? secondsUntil,
   }) {
     return IncomeSource(
       name: name ?? this.name,
       singularIncome: singularIncomePerSecond ?? singularIncome,
       qty: qty ?? this.qty,
       cost: cost ?? this.cost,
-      clicksUntil: clicksUntil ?? this.clicksUntil,
+      secondsUntil: secondsUntil ?? this.secondsUntil,
     );
   }
 

@@ -33,7 +33,7 @@ class ClickerState {
       qty: 0,
       name: IncomeSourceTitle.dinosaurEgg,
       cost: 50,
-      clicksUntil: 50,
+      secondsUntil: 50,
     ),
     IncomeSourceTitle.iguanodon: const IncomeSource(
       singularIncome: 100,

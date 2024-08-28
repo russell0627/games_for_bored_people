@@ -25,7 +25,7 @@ class GameFinishedDialog extends ConsumerWidget {
               TextButton(
                 onPressed: () {
                   SmartDialog.dismiss();
-                  ref.read(goRouterProvider).push(AppRoute.quizStats.name);
+                  ref.read(goRouterProvider).pushNamed(AppRoute.quizStats.name);
                 },
                 child: const Text(
                   "View Stats",

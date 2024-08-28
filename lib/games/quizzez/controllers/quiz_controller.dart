@@ -257,15 +257,12 @@ class QuizController extends _$QuizController {
             ),
           );
         }
-        state = state.copyWith(answeredOnFirstTry: true);
 
         resetQuestions();
         return;
       }
 
-      state = state.copyWith(
-        questionIndex: state.questionIndex + 1,
-      );
+      state = state.copyWith(questionIndex: state.questionIndex + 1, answeredOnFirstTry: true);
     } else {
       state = state.copyWith(
         incorrectQuestionAnswers: state.incorrectQuestionAnswers.toList()..add(answer),
@@ -273,6 +270,7 @@ class QuizController extends _$QuizController {
           ..add(
             state.questions[state.questionIndex],
           ),
+        answeredOnFirstTry: false,
       );
     }
   }
@@ -280,14 +278,14 @@ class QuizController extends _$QuizController {
   void updateQuizLength(int quizLength) => state = state.copyWith(quizLength: quizLength);
 
   void updateQuestionTypes({
-    bool? includeCladeQuestions,
+    bool? includeTaxonomyQuestions,
     bool? includeDietQuestions,
     bool? includeTimePeriodQuestions,
     bool? includeOtherQuestions,
     bool? endlessQuiz,
   }) =>
       state = state.copyWith(
-        includeCladeQuestions: includeCladeQuestions,
+        includeTaxonomyQuestions: includeTaxonomyQuestions,
         includeTimePeriodQuestions: includeTimePeriodQuestions,
         includeDietQuestions: includeDietQuestions,
         includeOtherQuestions: includeOtherQuestions,

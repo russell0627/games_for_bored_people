@@ -9,14 +9,43 @@ import '../clicker_ctrl.dart';
 import '../clicker_state.dart';
 import '../models/income_source.dart';
 
-class ClickerPage extends ConsumerWidget {
+class ClickerPage extends ConsumerStatefulWidget {
   const ClickerPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(clickerCtrlProvider);
-    final ctrl = ref.read(clickerCtrlProvider.notifier);
-    final timer = Timer.periodic(const Duration(seconds: 1), (_) {
+  ConsumerState<ClickerPage> createState() => _ClickerPageState();
+}
+
+class _ClickerPageState extends ConsumerState<ClickerPage> {
+  late final Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      final state = ref.watch(clickerCtrlProvider);
+      final ctrl = ref.read(clickerCtrlProvider.notifier);
+
+      if (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty != 0) {
+         ctrl.subtractSecondsUntil(IncomeSourceTitle.dinosaurEgg);
+
+        if (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.secondsUntil == 0) {
+          while (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty != 0) {
+            ctrl.subtractQty(IncomeSourceTitle.dinosaurEgg);
+            int rngRoll = ClickerState.rng.nextInt(4);
+            if (rngRoll == 3) {
+            } else if (rngRoll == 2) {
+              ctrl.addQty(IncomeSourceTitle.parasaurolophus);
+            } else {
+              ctrl.addQty(IncomeSourceTitle.iguanodon);
+            }
+          }
+          ctrl.resetSecondsUntil(IncomeSourceTitle.dinosaurEgg);
+        }
+      }
+
+
       int dinoI = state.incomeSources[IncomeSourceTitle.iguanodon]!.qty;
       int dinoP = state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
       if (state.maxEggs > state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty) {
@@ -31,8 +60,6 @@ class ClickerPage extends ConsumerWidget {
             if (rngRoll == 4) {
               ctrl.addQty(IncomeSourceTitle.dinosaurEgg);
             }
-
-
           }
         }
       }
@@ -51,7 +78,15 @@ class ClickerPage extends ConsumerWidget {
         }
       }
     });
-    timer.isActive;
+  }
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    final state = ref.watch(clickerCtrlProvider);
+    final ctrl = ref.read(clickerCtrlProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -70,7 +105,7 @@ class ClickerPage extends ConsumerWidget {
                 child: const Text("Cheats Menu!")),
             const Text("Click Me!"),
             TextButton(onPressed: () => ctrl.click(), child: Image.asset("assets/clicker_game/clicker_dino.png")),
-            Text("Total Income: ${state.totalIncome.toString()}"),
+            Text("Income Per Second: ${state.totalIncome.toString()}"),
             const Text("Income Sources"),
             if (state.incomeSources.isNotEmpty)
               Expanded(
@@ -85,10 +120,15 @@ class ClickerPage extends ConsumerWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Text("Income: ${source.singularIncome * source.qty} Qty: ${source.qty}"),
                             ),
+                            if (source.name == IncomeSourceTitle.dinosaurEgg)
+                              Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text("Max Eggs: ${state.incomeSources[IncomeSourceTitle.incubator]!.qty + state.incomeSources[IncomeSourceTitle.doubleIncubator]!.qty * 2 }"),
+                              ),
                             if (source.name == IncomeSourceTitle.dinosaurEgg && source.qty != 0)
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("Clicks Until Hatched: ${source.clicksUntil}"),
+                                child: Text("Seconds Until Hatched: ${source.secondsUntil}"),
                               ),
                           ],
                         ),
@@ -105,7 +145,7 @@ class ClickerPage extends ConsumerWidget {
                                         return;
                                       }
                                       if (source.name == IncomeSourceTitle.dinosaurEgg) {
-                                        ctrl.resetClicksUntil(source.name);
+                                        ctrl.resetSecondsUntil(source.name);
                                       }
                                       if (state.balance >= source.cost) {
                                         ctrl.buyIncomeSource(source);

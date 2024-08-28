@@ -20,6 +20,7 @@ enum Suborder {
   ankylosauria,
   ceratopsia,
   hadrosauria,
+  neornithischia,
   ornithopoda,
   pachycephalosauria,
   plateosauria,

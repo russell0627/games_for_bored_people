@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../app/routes.dart';
 import '../../../../../settings_dialog.dart';
 import '../../../../../utils/screen_utils.dart';
 import '../../../controllers/quiz_controller.dart';
@@ -8,8 +10,6 @@ import '../../../controllers/quiz_state.dart';
 import '../../../widgets/logo_display.dart';
 import '../../models/question.dart';
 import '../find_item.dart';
-import '../quiz_length_page.dart';
-import 'taxonomy_of_dinosaurs_page.dart';
 
 const dinosaurButtonTextStyle = TextStyle(
   fontFamily: "erasaur",
@@ -59,7 +59,7 @@ class DinosaurHomePage extends ConsumerWidget {
               Text("Highest Score: ${state.highestScore}"),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizLengthPage())),
+                onPressed: () => context.pushNamed(AppRoute.quizLength.name),
                 child: const Text(
                   "Start Dinosaur Quiz!",
                   style: dinosaurButtonTextStyle,
@@ -67,8 +67,7 @@ class DinosaurHomePage extends ConsumerWidget {
               ),
               boxXXL,
               ElevatedButton(
-                onPressed: () =>
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TypesOfDinosaursPage())),
+                onPressed: () => context.pushNamed(AppRoute.taxonomyPage.name),
                 child: const Text(
                   "Taxonomy of Dinosaurs",
                   style: dinosaurButtonTextStyle,

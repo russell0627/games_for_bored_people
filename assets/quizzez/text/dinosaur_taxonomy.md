@@ -1,7 +1,7 @@
 These classifications at the top are the only ones that are used in the questions. They are the only things used in the taxonomy questions.  
 Anything below the upcoming list is interesting but not required.
 - Ankylosaurs are any creatures under the suborder Ankylosauria. They are herbivorous Cretaceous dinosaurs that had plates of armor on their backs, legs and heads. Most Ankylosaurs had one weakness which was their underbelly which wasn't armored.
-- Ceratopsians are quadrupedal herbivores of a group found in the Cretaceous period, including Triceratops. They had large beaked and horned heads and bony frills protecting the neck.
+- Ceratopsians are quadrupedal herbivores of a group found in the Cretaceous period, including Triceratops. They had large beaked and horned heads and bony frills protecting the neck. A fun fact about the dinosaur Yinlong is that it is the first known Ceratopsian. It doesn't look like most of the other Ceratopsians, but it still is one. (This will be useful in the quiz if you ever see Yinlong)
 - Ornithopods are bipedal herbivorous dinosaurs.
 - Hadrosaurs or duck-billed dinosaurs, are part of the Ornithschian family hadrosauridae. Their defining feature is the flat duck-bill like appearance of the bones in their snouts.
 - Pachycephalosaurs were bipedal herbivorous dinosaurs from the late Cretaceous period. They had thick domed skulls used for ramming other dinosaurs.
@@ -83,4 +83,4 @@ Not every genus has different species. Triceratops has 2 species:
 - Triceratops prorsus  
 Species are almost always very similar to the others in the Genus. The different species do have some difference in features.
 The differences are sometimes very minor like a difference in horn length, size, or shape.  
-Tyrannosaurus however, only had one species. There was a debate between paleontologists about whether specimens found would split the genus into 2 species. It ended up being decided that the geunus Tyrannosaurus only had one species.
+Tyrannosaurus however, only had one species. There was a debate between paleontologists about whether specimens found would split the genus into 2 species. It ended up being decided that the genus Tyrannosaurus only had one species.

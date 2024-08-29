@@ -25,6 +25,7 @@ enum Suborder {
   pachycephalosauria,
   plateosauria,
   pterosauria,
+  prosauropoda,
   sauropoda,
   stegosauria,
   theropoda;

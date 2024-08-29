@@ -28,55 +28,11 @@ class _ClickerPageState extends ConsumerState<ClickerPage> {
       final ctrl = ref.read(clickerCtrlProvider.notifier);
 
       if (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty != 0) {
-         ctrl.subtractSecondsUntil(IncomeSourceTitle.dinosaurEgg);
-
-        if (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.secondsUntil == 0) {
-          while (state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty != 0) {
-            ctrl.subtractQty(IncomeSourceTitle.dinosaurEgg);
-            int rngRoll = ClickerState.rng.nextInt(4);
-            if (rngRoll == 3) {
-            } else if (rngRoll == 2) {
-              ctrl.addQty(IncomeSourceTitle.parasaurolophus);
-            } else {
-              ctrl.addQty(IncomeSourceTitle.iguanodon);
-            }
-          }
-          ctrl.resetSecondsUntil(IncomeSourceTitle.dinosaurEgg);
-        }
+        ctrl.subtractSecondsUntil(IncomeSourceTitle.dinosaurEgg);
       }
-
-
-      int dinoI = state.incomeSources[IncomeSourceTitle.iguanodon]!.qty;
-      int dinoP = state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
-      if (state.maxEggs > state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty) {
-        for (int i = 0;
-            i >
-                state.incomeSources[IncomeSourceTitle.iguanodon]!.qty +
-                    state.incomeSources[IncomeSourceTitle.tyrannosaurusRex]!.qty +
-                    state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty;
-            i++) {
-          final rngRoll = ClickerState.rng.nextInt(4) + 1;
-          if (state.maxEggs > state.incomeSources[IncomeSourceTitle.dinosaurEgg]!.qty) {
-            if (rngRoll == 4) {
-              ctrl.addQty(IncomeSourceTitle.dinosaurEgg);
-            }
-          }
-        }
-      }
+      ctrl.hatchEggs();
+      ctrl.feedDinosaurs();
       ctrl.addIncome();
-      if (state.dinoFood >= state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty) {
-        state.copyWith(dinoFood: state.dinoFood - state.incomeSources[IncomeSourceTitle.dinoFoodProducer]!.qty);
-      } else {
-        int food = state.dinoFood;
-        dinoP = -food;
-        while (dinoP != state.incomeSources[IncomeSourceTitle.parasaurolophus]!.qty) {
-          ctrl.subtractQty(IncomeSourceTitle.parasaurolophus);
-        }
-        dinoI = -food;
-        while (dinoI != state.incomeSources[IncomeSourceTitle.iguanodon]!.qty) {
-          ctrl.subtractQty(IncomeSourceTitle.iguanodon);
-        }
-      }
     });
   }
 
@@ -123,7 +79,8 @@ class _ClickerPageState extends ConsumerState<ClickerPage> {
                             if (source.name == IncomeSourceTitle.dinosaurEgg)
                               Padding(
                                 padding: const EdgeInsets.all(4.0),
-                                child: Text("Max Eggs: ${state.incomeSources[IncomeSourceTitle.incubator]!.qty + state.incomeSources[IncomeSourceTitle.doubleIncubator]!.qty * 2 }"),
+                                child: Text(
+                                    "Max Eggs: ${state.incomeSources[IncomeSourceTitle.incubator]!.qty + state.incomeSources[IncomeSourceTitle.doubleIncubator]!.qty * 2}"),
                               ),
                             if (source.name == IncomeSourceTitle.dinosaurEgg && source.qty != 0)
                               Padding(

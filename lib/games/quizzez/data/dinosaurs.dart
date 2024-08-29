@@ -400,6 +400,18 @@ const Map<String, Dinosaur> dinosaurs = {
       diet: Diet.herbivore,
       timePeriod: TimePeriod.cretaceous,
       imageFileName: "triceratops.jpg"),
+  "troodon": Dinosaur(
+      name: "Troodon",
+      suborder: Suborder.theropoda,
+      diet: Diet.carnivore,
+      timePeriod: TimePeriod.cretaceous,
+      imageFileName: "troodon.jpg"),
+  "tylocephale": Dinosaur(
+      name: "Tylocephale",
+      suborder: Suborder.pachycephalosauria,
+      diet: Diet.herbivore,
+      timePeriod: TimePeriod.cretaceous,
+      imageFileName: "tylocephale.png"),
   "tyrannosaurus": Dinosaur(
       name: "Tyrannosaurus",
       suborder: Suborder.theropoda,
@@ -412,18 +424,36 @@ const Map<String, Dinosaur> dinosaurs = {
       diet: Diet.carnivore,
       timePeriod: TimePeriod.cretaceous,
       imageFileName: "utahraptor.jpg"),
+ "udanoceratops": Dinosaur(
+      name: "Udanoceratops",
+      suborder: Suborder.ceratopsia,
+      diet: Diet.herbivore,
+      timePeriod: TimePeriod.cretaceous,
+      imageFileName: "udanoceratops.jpg"),
   "velociraptor": Dinosaur(
       name: "Velociraptor",
       suborder: Suborder.theropoda,
       diet: Diet.carnivore,
       timePeriod: TimePeriod.cretaceous,
       imageFileName: "velociraptor.jpg"),
+  "vulcanodon": Dinosaur(
+      name: "Vulcanodon",
+      suborder: Suborder.prosauropoda,
+      diet: Diet.carnivore,
+      timePeriod: TimePeriod.cretaceous,
+      imageFileName: "vulcanodon.jpg"),
   "xenoposeidon": Dinosaur(
       name: "Xenoposeidon",
       suborder: Suborder.sauropoda,
       diet: Diet.herbivore,
       timePeriod: TimePeriod.cretaceous,
       imageFileName: "xenoposeidon.jpg"),
+  "xiaotingia": Dinosaur(
+      name: "Xiaotingia",
+      suborder: Suborder.theropoda,
+      diet: Diet.carnivore,
+      timePeriod: TimePeriod.jurassic,
+      imageFileName: "xiaotingia.jpg"),
   "yinlong": Dinosaur(
       name: "Yinlong",
       suborder: Suborder.ceratopsia,

@@ -133,18 +133,12 @@ class QuizController extends _$QuizController {
 
     switch (state.questionType) {
       case QuestionType.dinosaur:
-        for (int i = 0; i < dinosaurs.values.length; i++) {
-          newQuestions.addAll(
-              _generateQuestions(currentDinosaur: dinosaurs.values.toList()[i], questionType: QuestionType.dinosaur));
-        }
-        newQuestions.add(
+        final specialQuestions = [
           const Question(
               question: "Was Albertaceratops found in:",
               options: ["Alberta, Canada", "Egypt", "India"],
               answers: ["Alberta, Canada"],
               imageFilename: "${QuizState.dinosaurImagePath}albertaceratops.jpg"),
-        );
-        newQuestions.add(
           const Question(
               question: "How many species of Triceratops were there?",
               options: [
@@ -155,8 +149,6 @@ class QuizController extends _$QuizController {
               ],
               answers: ["2"],
               imageFilename: "${QuizState.dinosaurImagePath}albertaceratops.jpg"),
-        );
-        newQuestions.add(
           const Question(
               question: "How many species of Tyrannosaurus were there?",
               options: [
@@ -168,8 +160,6 @@ class QuizController extends _$QuizController {
               ],
               answers: ["1"],
               imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
-        );
-        newQuestions.add(
           const Question(
               question: "How long was the Cretaceous Period?",
               options: [
@@ -181,8 +171,6 @@ class QuizController extends _$QuizController {
               ],
               answers: ["78 Million Years"],
               imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
-        );
-        newQuestions.add(
           const Question(
               question: "How long was the Jurassic Period?",
               options: [
@@ -194,8 +182,6 @@ class QuizController extends _$QuizController {
               ],
               answers: ["50 Million Years"],
               imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
-        );
-        newQuestions.add(
           const Question(
               question: "How long was the Triassic Period?",
               options: [
@@ -207,8 +193,6 @@ class QuizController extends _$QuizController {
               ],
               answers: ["55 Million years"],
               imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
-        );
-        newQuestions.add(
           const Question(
               question: "Fossils are bones. True or False?",
               options: [
@@ -217,7 +201,17 @@ class QuizController extends _$QuizController {
               ],
               answers: ["False"],
               imageFilename: "${QuizState.dinosaurImagePath}tyrannosaurus.jpg"),
-        );
+        ];
+
+        for (int i = 0; i < dinosaurs.values.length; i++) {
+          newQuestions.addAll(
+              _generateQuestions(currentDinosaur: dinosaurs.values.toList()[i], questionType: QuestionType.dinosaur));
+        }
+        for (int i = 0; i < dinosaurs.values.length; i++) {
+          newQuestions.addAll(
+              _generateQuestions(currentDinosaur: dinosaurs.values.toList()[i], questionType: QuestionType.dinosaur));
+        }
+        newQuestions.addAll(specialQuestions);
         newQuestions.shuffle();
         break;
       case QuestionType.space:

@@ -110,8 +110,11 @@ class PieceDisplay extends StatelessWidget {
         child: Container(
           //Color: #000a01
           decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/tic_tac_toe/icons/background.png")),
             border: _determineBorder(index, borderSide),
-            color: available ? Colors.lightBlueAccent.withOpacity(0.1) : null,
+            // color: available ? Colors.lightBlueAccent.withOpacity(0.1) : null,
           ),
           child: piece != Piece.none
               ? Image.asset(

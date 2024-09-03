@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../utils/screen_utils.dart';
 import 'credits_page.dart';
 import 'dinosaur/dinosaur_home_page.dart';
-import 'quiz_length_page.dart';
 
 //TODO: Create plant quiz and finish animal quiz.
 
@@ -42,35 +41,39 @@ class _QuizzezHomePageState extends ConsumerState<QuizzezHomePage> {
               ),
             ),
             boxXXL,
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const QuizLengthPage(),
-                  ),
-                );
-              },
-              child: const Text(
-                "Go To Space Quiz",
-                style: TextStyle(
-                  fontFamily: "Andromeda",
-                  fontSize: 22,
-                ),
-              ),
-            ),
-            boxXXL,
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizLengthPage(),),);
-              },
-              child: const Text(
-                "Go To Animal Quiz",
-                style: TextStyle(
-                  fontFamily: "Andromeda",
-                  fontSize: 22,
-                ),
-              ),
-            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.of(context).push(
+            //       MaterialPageRoute(
+            //         builder: (_) => const QuizLengthPage(),
+            //       ),
+            //     );
+            //   },
+            //   child: const Text(
+            //     "Go To Space Quiz",
+            //     style: TextStyle(
+            //       fontFamily: "Andromeda",
+            //       fontSize: 22,
+            //     ),
+            //   ),
+            // ),
+            // boxXXL,
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.of(context).push(
+            //       MaterialPageRoute(
+            //         builder: (_) => const QuizLengthPage(),
+            //       ),
+            //     );
+            //   },
+            //   child: const Text(
+            //     "Go To Animal Quiz",
+            //     style: TextStyle(
+            //       fontFamily: "Andromeda",
+            //       fontSize: 22,
+            //     ),
+            //   ),
+            // ),
             const Spacer(),
             TextButton(
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CreditsPage())),

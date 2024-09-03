@@ -12,7 +12,7 @@ class DinosaurDisplay extends StatelessWidget {
   final Dinosaur dinosaur;
   final TextStyle infoTextStyle;
 
-  const DinosaurDisplay({Key? key, required this.dinosaur, this.infoTextStyle = _defaultTextStyle}) : super(key: key);
+  const DinosaurDisplay({super.key, required this.dinosaur, this.infoTextStyle = _defaultTextStyle});
 
   @override
   Widget build(BuildContext context) {

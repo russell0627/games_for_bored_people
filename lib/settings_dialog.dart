@@ -4,7 +4,7 @@ import 'services/theme/theme_service.dart';
 
 
 class SettingsDialog extends ConsumerWidget {
-  const SettingsDialog({Key? key}) : super(key: key);
+  const SettingsDialog({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

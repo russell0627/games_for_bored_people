@@ -110,7 +110,7 @@ class PieceDisplay extends StatelessWidget {
         child: Container(
           //Color: #000a01
           decoration: BoxDecoration(
-            image: DecorationImage(
+            image: const DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage("assets/tic_tac_toe/icons/background.png")),
             border: _determineBorder(index, borderSide),

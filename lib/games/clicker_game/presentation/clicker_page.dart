@@ -6,7 +6,6 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:recase/recase.dart';
 
 import '../clicker_ctrl.dart';
-import '../clicker_state.dart';
 import '../models/income_source.dart';
 
 class ClickerPage extends ConsumerStatefulWidget {

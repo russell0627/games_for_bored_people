@@ -6,6 +6,7 @@ import '../../games/alphabet_game/alphabet_game_page.dart';
 
 import '../../games/clicker_game/presentation/clicker_page.dart';
 import '../../games/light_switch/light_switch_page.dart';
+import '../../games/pdf_viewer/thingy.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
 
@@ -38,6 +39,12 @@ class HomePage extends ConsumerWidget {
                 child: const Text("Clicker Game"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ClickerPage()));
+                },
+              ),
+             TextButton(
+                child: const Text("Thingy"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ThingyPage(assetPath: '',)));
                 },
               ),
               TextButton(

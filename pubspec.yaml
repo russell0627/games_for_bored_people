@@ -25,20 +25,19 @@ dependencies:
   provider: ^6.1.2
   recase: ^4.1.0
   riverpod: ^2.5.1
-  riverpod_annotation: ^2.3.5
+  riverpod_annotation: ^2.6.1
   build_runner: ^2.4.12
   custom_lint: ^0.6.5
   riverpod_generator: ^2.4.3
   riverpod_lint: ^2.3.13
   flutter_lints: ^4.0.0
   flutter_markdown: ^0.7.3+1
-  syncfusion_flutter_pdfviewer: ^26.2.13
   just_audio: ^0.9.39
-  pdfx: ^2.7.0
 flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/race/
     - assets/clicker_game/
     - assets/collectables/
     - assets/achievement_images/
@@ -49,7 +48,6 @@ flutter:
     - assets/dexter_hill/images/
     - assets/dexter_hill/images/dexter_images/
     - assets/dexter_hill/images/story_pages/
-    - assets/pdf/
     - assets/quizzez/images/
     - assets/quizzez/text/
     - assets/quizzez/images/dinosaurs/

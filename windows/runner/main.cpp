@@ -26,7 +26,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
 
   FlutterWindow window(project);
   Win32Window::Point origin(10, 10);
-  Win32Window::Size size(750, 1000);
+  Win32Window::Size size(640, 900);
   if (!window.Create(L"games_for_bored_people", origin, size)) {
     return EXIT_FAILURE;
   }

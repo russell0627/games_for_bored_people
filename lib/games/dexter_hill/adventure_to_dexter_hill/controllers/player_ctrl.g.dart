@@ -6,7 +6,7 @@ part of 'player_ctrl.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$playerControllerHash() => r'ad27395adefec43828186758bfa640b2815290d5';
+String _$playerControllerHash() => r'dd23e658db1eb45f0c25f368116bbb7c0a154c5c';
 
 /// See also [PlayerController].
 @ProviderFor(PlayerController)
@@ -23,4 +23,4 @@ final playerControllerProvider =
 
 typedef _$PlayerController = AutoDisposeNotifier<PlayerState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -6,7 +6,7 @@ import '../../games/alphabet_game/alphabet_game_page.dart';
 
 import '../../games/clicker_game/presentation/clicker_page.dart';
 import '../../games/light_switch/light_switch_page.dart';
-import '../../games/pdf_viewer/thingy.dart';
+import '../../games/race/pages/race_page.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
 
@@ -41,12 +41,6 @@ class HomePage extends ConsumerWidget {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ClickerPage()));
                 },
               ),
-             TextButton(
-                child: const Text("Thingy"),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ThingyPage(assetPath: '',)));
-                },
-              ),
               TextButton(
                 child: const Text("Alphabet Game"),
                 onPressed: () {
@@ -69,6 +63,12 @@ class HomePage extends ConsumerWidget {
                 child: const Text("Extraterrestrial Extermination"),
                 onPressed: () {
                   context.goNamed(AppRoute.alienKiller.name);
+                },
+              ),
+             TextButton(
+                child: const Text("Extraterrestrial Extermination"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => RacePage()));
                 },
               ),
               Column(

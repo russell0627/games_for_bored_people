@@ -6,7 +6,7 @@ part of 'alien_killer_ctrl.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$alienKillerCtrlHash() => r'c369a56d409dc9acefac25441d3ac7c43e9fe032';
+String _$alienKillerCtrlHash() => r'caff24e240bc96edd28845dd9644857508282b34';
 
 /// See also [AlienKillerCtrl].
 @ProviderFor(AlienKillerCtrl)
@@ -23,4 +23,4 @@ final alienKillerCtrlProvider =
 
 typedef _$AlienKillerCtrl = AutoDisposeNotifier<AlienKillerState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

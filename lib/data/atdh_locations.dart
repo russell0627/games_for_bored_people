@@ -22,7 +22,7 @@ enum Location {
   final Location? east;
   final Location? west;
 
-  const Location({this.north, this.south, this.east, this.west});
+  const Location({this.north, this.east, this.south, this.west});
 }
 
 enum Direction {

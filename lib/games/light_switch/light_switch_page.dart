@@ -35,14 +35,14 @@ class _LightSwitchPageState extends State<LightSwitchPage> {
                 height: 2,
                 color: Colors.white,
               ),
-              onChanged: (int? newValue) {
+              onChanged: (newValue) {
                 setState(() {
                   _timedGoal = newValue!;
                   _timesFlicked = 0;
                 });
               },
               items: <int>[25, 50, 75, 100]
-                  .map<DropdownMenuItem<int>>((int value) {
+                  .map<DropdownMenuItem<int>>((value) {
                 return DropdownMenuItem<int>(
                   value: value,
                   child: Text(value.toString()),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import '../controllers/race_controller.dart';
 import '../widgets/win_dialog.dart';
@@ -14,9 +15,10 @@ class RacePage extends ConsumerWidget {
 
     ref.listen(raceControllerProvider, (prev, next) {
       if (next.winFound != 0) {
-        showDialog(
-            context: context,
-            builder: (_) => RaceWinDialog(frog: next.winFound));
+        SmartDialog.show(
+          builder: (_) => RaceWinDialog(frog: next.winFound),
+
+        );
       }
     });
 
@@ -75,8 +77,7 @@ class RacePage extends ConsumerWidget {
                 ],
               ),
             ),
-            TextButton(
-                onPressed: () => ctrl.progressRace(), child: Text("Roll"))
+            TextButton(onPressed: () => ctrl.progressRace(), child: const Text("Roll"))
           ],
         ),
       ),

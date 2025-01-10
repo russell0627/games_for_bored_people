@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'services/theme/theme_service.dart';
 
-
 class SettingsDialog extends ConsumerWidget {
   const SettingsDialog({super.key});
 
@@ -40,6 +39,7 @@ class SettingsDialog extends ConsumerWidget {
             ),
           ],
         ),
+        //pdf/vids
       ],
     );
   }

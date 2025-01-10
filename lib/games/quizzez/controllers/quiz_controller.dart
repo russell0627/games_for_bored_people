@@ -5,7 +5,6 @@ import '../data/animals.dart';
 import '../data/dinosaurs.dart';
 import '../data/models/animal.dart';
 import '../data/models/dinosaur.dart';
-import '../data/models/plant.dart';
 import '../data/models/question.dart';
 import '../data/models/space_object.dart';
 import '../widgets/dialogs/game_finished_dialog.dart';
@@ -29,7 +28,6 @@ class QuizController extends _$QuizController {
   List<Question> _generateQuestions({
     Dinosaur? currentDinosaur,
     Animal? currentAnimal,
-    Plant? currentPlant,
     required QuestionType questionType,
   }) {
     //TODO: make it so that this supports plant questions too

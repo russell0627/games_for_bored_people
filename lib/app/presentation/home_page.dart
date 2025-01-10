@@ -66,9 +66,9 @@ class HomePage extends ConsumerWidget {
                 },
               ),
              TextButton(
-                child: const Text("Extraterrestrial Extermination"),
+                child: const Text("Frog Racing"),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => RacePage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const RacePage()));
                 },
               ),
               Column(

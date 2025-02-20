@@ -12,7 +12,7 @@ class ATDhState {
     this.junglePlayerPosition = 0,
     this.isChestOpen = false,
     required this.player,
-    this.currentLocation = Location.storyPage1,
+    this.currentLocation = Location.mainGraveyard,
   });
 
   ATDhState copyWith({

@@ -114,7 +114,7 @@ class _MainGraveyardPageState extends ConsumerState<MainGraveyardPage> {
                     if (ctrl.hasItem(Item.bettaNote) &&
                         ctrl.hasItem(Item.hermitCrabNote) &&
                         ctrl.hasItem(Item.chickenNote)) {
-                      ctrl.moveTo(Location.jungleEntrance);
+                      ctrl.moveTo(Location.dexterHill);
                     } else {
                       showDialog(context: context, builder: (_) => const MissingNotePieceDialog());
                     }

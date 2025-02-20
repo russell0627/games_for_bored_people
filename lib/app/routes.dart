@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../games/dexter_hill/adventure_to_dexter_hill/presentation/adventure_to_dexter_hill_page.dart';
@@ -42,7 +43,7 @@ enum AppRoute {
 }
 
 @riverpod
-GoRouter goRouter(GoRouterRef ref) {
+GoRouter goRouter(Ref ref) {
   return GoRouter(
     debugLogDiagnostics: false,
     initialLocation: AppRoute.home.path,

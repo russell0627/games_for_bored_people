@@ -2,23 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../utils/screen_utils.dart';
+import '../../controllers/quiz_controller.dart';
+import '../models/question.dart';
 import 'credits_page.dart';
 import 'dinosaur/dinosaur_home_page.dart';
+import 'quiz_length_page.dart';
 
 //TODO: Create plant quiz and finish animal quiz.
 
-class QuizzezHomePage extends ConsumerStatefulWidget {
+class QuizzezHomePage extends ConsumerWidget {
   const QuizzezHomePage({super.key, required this.title});
 
   final String title;
 
-  @override
-  ConsumerState<QuizzezHomePage> createState() => _QuizzezHomePageState();
-}
 
-class _QuizzezHomePageState extends ConsumerState<QuizzezHomePage> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ctrl = ref.read(quizControllerProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Quizzes"),
@@ -58,22 +59,25 @@ class _QuizzezHomePageState extends ConsumerState<QuizzezHomePage> {
             //   ),
             // ),
             // boxXXL,
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.of(context).push(
-            //       MaterialPageRoute(
-            //         builder: (_) => const QuizLengthPage(),
-            //       ),
-            //     );
-            //   },
-            //   child: const Text(
-            //     "Go To Animal Quiz",
-            //     style: TextStyle(
-            //       fontFamily: "Andromeda",
-            //       fontSize: 22,
-            //     ),
-            //   ),
-            // ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) {
+                      ctrl.updateQuestionType(QuestionType.music);
+                      return QuizLengthPage();
+                    },
+                  ),
+                );
+              },
+              child: const Text(
+                "Go To Music Quiz",
+                style: TextStyle(
+                  fontFamily: "Andromeda",
+                  fontSize: 22,
+                ),
+              ),
+            ),
             const Spacer(),
             TextButton(
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CreditsPage())),

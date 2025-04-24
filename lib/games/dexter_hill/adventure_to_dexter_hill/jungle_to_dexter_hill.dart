@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:sprite/sprite.dart';
 
 import '../../../data/atdh_locations.dart';
+import '../../../utils/screen_utils.dart';
 import '../../../widgets/grid_layout.dart';
 import 'controllers/atdh_ctrl.dart';
 import 'controllers/player_ctrl.dart';
@@ -217,12 +217,6 @@ class JungleTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(aTDhControllerProvider);
 
-    return tileIndex == state.junglePlayerPosition
-        ? const Sprite(
-            size: Size(15, 16),
-            amount: 2,
-            imagePath: "assets/race/robot_spritesheet.png",
-          )
-        : Image.asset("assets/dexter_hill/atdh_jungle_floor_tile.png");
+    return noWidget;
   }
 }

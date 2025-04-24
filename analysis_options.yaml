@@ -36,6 +36,9 @@ analyzer:
   plugins:
     - custom_lint
 
+formatter:
+  page_width: 100
+
 custom_lint:
   rules:
     - unsupported_provider_value: false

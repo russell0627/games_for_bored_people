@@ -29,7 +29,7 @@ class QuizPage extends ConsumerWidget {
           fontFamily: state.questionType == QuestionType.dinosaur ? "dinosauce" : "Induction",
           text: state.questionType == QuestionType.dinosaur ? ["Dinosaur", "Quiz"] : ["Space", "Quiz"],
         ),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.refresh))],
+        actions: [Text("Lives: ${state.lives}/3"), IconButton(onPressed: () {}, icon: const Icon(Icons.refresh))],
       ),
       body: DecoratedBox(
         decoration: BoxDecoration(

@@ -46,7 +46,54 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
             ),
           ),
           child: Center(
-            child: Column(
+            child: state.questionType == QuestionType.music ? Column(
+              children: [                  SizedBox(
+                width: 300,
+                child: TextFormField(
+                  onChanged: (value) {
+                    quizLength = int.tryParse(value) ?? state.minQuizLength;
+                  },
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: const InputDecoration(
+                    label: Text(
+                      "Choose A Quiz Length",
+                      style: TextStyle(fontFamily: "Merienda"),
+                    ),
+                  ),
+                ),
+              ),
+                if (state.endlessQuiz == false)
+                  Text(
+                    "MIN: ${state.minQuizLength}, MAX: ${state.maxQuizLength}",
+                    style: const TextStyle(fontFamily: "Merienda"),
+                  ),
+                boxXXL,
+                ElevatedButton(
+                  onPressed: () {
+                    if (quizLength > state.maxQuizLength || quizLength < state.minQuizLength) {
+                      showDialog(context: context, builder: (_) => const InvalidQuizLengthDialog());
+                      return;
+                    }
+                    if (!state.includeTimePeriodQuestions &&
+                        !state.includeTaxonomyQuestions &&
+                        !state.includeDietQuestions &&
+                        !state.includeOtherQuestions) {
+                      showDialog(context: context, builder: (_) => const InvalidQuizLengthDialog());
+                    }
+                    if (state.endlessQuiz == false) {
+                      ctrl.updateQuizLength(quizLength);
+                    }
+                    Navigator.of(context).pop();
+                    ctrl.resetQuestions();
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizPage()));
+                  },
+                  child: const Text(
+                    "Start Quiz",
+                    style: TextStyle(fontFamily: "erasaur"),
+                  ),
+                ),
+              ],
+            ) : Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -72,6 +119,13 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
                   ),
                 ),
                 const Text("Include Other Questions"),
+                Switch(
+                  value: state.includeOtherQuestions,
+                  onChanged: (_) => ctrl.updateQuestionTypes(
+                    includeOtherQuestions: !state.includeOtherQuestions,
+                  ),
+                ),
+                const Text("1 Life Mode"),
                 Switch(
                   value: state.includeOtherQuestions,
                   onChanged: (_) => ctrl.updateQuestionTypes(
@@ -121,6 +175,11 @@ class _QuizLengthPageState extends ConsumerState<QuizLengthPage> {
                           !state.includeOtherQuestions) {
                         showDialog(context: context, builder: (_) => const InvalidQuizLengthDialog());
                       }
+
+                      if (state.oneLifeMode) {
+                        ctrl.updateLifeCount(1);
+                      }
+
                     if (state.endlessQuiz == false) {
                         ctrl.updateQuizLength(quizLength);
                       }

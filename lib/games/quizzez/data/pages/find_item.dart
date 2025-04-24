@@ -82,5 +82,7 @@ String findBackgroundImage(QuestionType questionType) {
       return "";
     case QuestionType.plant:
       return "";
+    case QuestionType.music:
+      return "";
   }
 }

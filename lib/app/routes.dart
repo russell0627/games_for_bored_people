@@ -10,7 +10,6 @@ import '../games/quizzez/data/pages/dinosaur/taxonomy_of_dinosaurs_page.dart';
 import '../games/quizzez/data/pages/quiz_home.dart';
 import '../games/quizzez/data/pages/quiz_length_page.dart';
 import '../games/quizzez/data/pages/quiz_page.dart';
-import '../games/quizzez/data/pages/stats_page.dart';
 import '../games/ttt/presentation/ttt_page.dart';
 import 'presentation/home_page.dart';
 import 'presentation/not_found_page.dart';
@@ -73,12 +72,7 @@ GoRouter goRouter(Ref ref) {
                     path: AppRoute.quiz.path,
                     builder: (context, state) => const QuizPage(),
                     routes: [
-                      GoRoute(
-                        name: AppRoute.quizStats.name,
-                        path: AppRoute.quizStats.path,
-                        builder: (context, state) => const QuizStatsPage(),
-                      ),
-                      GoRoute(
+                       GoRoute(
                         name: AppRoute.taxonomyPage.name,
                         path: AppRoute.taxonomyPage.path,
                         builder: (context, state) => const TypesOfDinosaursPage(),

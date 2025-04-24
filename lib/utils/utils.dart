@@ -1,6 +1,13 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart' show Widget, EdgeInsets, Padding, TextEditingController, TextSelection;
+import 'package:flutter/material.dart';
+import 'package:tinycolor2/tinycolor2.dart';
+import 'package:uuid/uuid.dart';
+
+const uuid = Uuid();
+
+final infinity = String.fromCharCode(0x221E);
+const endash = '–';
 
 extension NumberX on num {
   T bounded<T extends num>({T? min, T? max}) {
@@ -20,13 +27,15 @@ extension NumberX on num {
   }
 
   /// These reverse the meaning of min/max. [min] means "restrict to minimum value", and vice versa.
-  T min<T extends num>(T minimum) => math.max(this as T, minimum);
+  T minOf<T extends num>(T minimum) => math.max(this as T, minimum);
 
-  T max<T extends num>(T maximum) => math.min(this as T, maximum);
+  T maxOf<T extends num>(T maximum) => math.min(this as T, maximum);
 }
 
 extension StringX on String {
   bool toBool() => this == "true" ? true : false;
+  T toEnum<T extends Enum>(List<T> values) => values.firstWhere((value) => value.name == this);
+  String get initials => split(' ').map((word) => word[0]).join();
 }
 
 extension IterableIntX on Iterable<int> {
@@ -35,7 +44,6 @@ extension IterableIntX on Iterable<int> {
 
 extension IterableBoolX on Iterable<bool> {
   bool get anyTrue => any((value) => value);
-
   bool get allTrue => !any((value) => !value);
 }
 
@@ -61,29 +69,24 @@ extension IterableWidgetX on Iterable<Widget> {
 
   Iterable<Widget> padAll(EdgeInsets padding) {
     return map((widget) {
-      return Padding(
-        padding: padding,
-        child: widget,
-      );
+      return Padding(padding: padding, child: widget);
     });
   }
 }
 
 extension ListX on List {
-  void replaceAt(int index, replacement) {
+  void replaceAt(int index, Object replacement) {
     this[index] = replacement;
   }
 
-  void replaceWith(original, replacement) {
+  void replaceWith(Object original, Object replacement) {
     if (contains(original)) {
       replaceAt(indexOf(original), replacement);
     }
   }
 
-  void replaceWithOrAdd({Object? original, replacement}) {
-    final index = original != null ? indexOf(original) : -1;
-
-    if (index > -1) {
+  void replaceWithOrAdd(Object original, Object replacement) {
+    if (contains(original)) {
       replaceWith(original, replacement);
     } else {
       add(replacement);
@@ -96,6 +99,38 @@ extension ListX on List {
     }
   }
 }
+
+extension SetX on Set {
+  void toggleValue(Object value) {
+    if (!contains(value)) {
+      add(value);
+    } else {
+      remove(value);
+    }
+  }
+
+  void toggleValues(List<Object> values) {
+    for (final value in values) {
+      toggleValue(value);
+    }
+  }
+}
+
+Color dimColor(Color value, {int amount = 30}) =>
+    value.isLight ? value.darken(amount) : value.lighten(amount);
+
+Color foregroundColorForBackground(
+  Color bgColor, {
+  Color light = Colors.white,
+  Color dark = Colors.black,
+}) {
+  return bgColor.computeLuminance() > 0.5 ? dark : light;
+}
+
+T strToEnum<T extends Enum>(List<T> values, String str) =>
+    values.firstWhere((value) => value.name == str);
+T fullStrToEnum<T extends Enum>(List<T> values, String str) =>
+    values.firstWhere((value) => value.toString() == str);
 
 extension TextEditingControllerExt on TextEditingController {
   void selectAll() {

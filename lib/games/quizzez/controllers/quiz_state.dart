@@ -21,11 +21,15 @@ class QuizState {
   final bool includeTimePeriodQuestions;
   final bool includeDietQuestions;
   final bool includeOtherQuestions;
+
+  final bool oneLifeMode;
   final bool endlessQuiz;
   final int quizLength;
   final List<Question> incorrectQuestions;
   final List<dynamic> incorrectQuestionAnswers;
   final List<Question> correctQuestions;
+
+  final int lives;
 
   QuizState({
     this.correctQuestions = const [],
@@ -40,9 +44,11 @@ class QuizState {
     this.includeTimePeriodQuestions = true,
     this.includeOtherQuestions = true,
     this.includeDietQuestions = true,
+    this.oneLifeMode = false,
     this.endlessQuiz = false,
     this.answeredOnFirstTry = true,
     this.quizLength = 0,
+    this.lives = 3,
   });
 
   QuizState copyWith({
@@ -54,6 +60,7 @@ class QuizState {
     int? highestScore,
     int? score,
     int? questionIndex,
+    int? lives,
     bool? includeTimePeriodQuestions,
     bool? includeDietQuestions,
     bool? includeOtherQuestions,
@@ -64,6 +71,7 @@ class QuizState {
   }) {
     return QuizState(
       incorrectQuestions: incorrectQuestions ?? this.incorrectQuestions,
+      lives: lives ?? this.lives,
       incorrectQuestionAnswers: incorrectQuestionAnswers ?? this.incorrectQuestionAnswers,
       correctQuestions: correctQuestions ?? this.correctQuestions,
       questions: questions ?? this.questions,

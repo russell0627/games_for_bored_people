@@ -10,6 +10,7 @@ import '../../../controllers/quiz_state.dart';
 import '../../../widgets/logo_display.dart';
 import '../../models/question.dart';
 import '../find_item.dart';
+import 'dinosaur_viewer.dart';
 
 const dinosaurButtonTextStyle = TextStyle(
   fontFamily: "erasaur",
@@ -81,6 +82,16 @@ class DinosaurHomePage extends ConsumerWidget {
                         ))),
                 child: const Text(
                   "Find a Dinosaur",
+                  style: dinosaurButtonTextStyle,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const
+                    DinosaurViewer()
+                )),
+                child: const Text(
+                  "Dinosaur Viewer",
                   style: dinosaurButtonTextStyle,
                 ),
               ),

@@ -19,4 +19,5 @@ enum QuestionType {
   space,
   animal,
   plant,
+  music;
 }

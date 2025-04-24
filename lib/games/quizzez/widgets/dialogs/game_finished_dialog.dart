@@ -25,25 +25,71 @@ class GameFinishedDialog extends ConsumerWidget {
               TextButton(
                 onPressed: () {
                   SmartDialog.dismiss();
-                  ref.read(goRouterProvider).pushNamed(AppRoute.quizStats.name);
-                },
-                child: const Text(
-                  "View Stats",
-                  style: _textStyle,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  SmartDialog.dismiss();
                   ref.read(goRouterProvider).pop();
                 },
-                child: const Text(
-                  "Return to Menu",
-                  style: _textStyle,
-                ),
+                child: const Text("Return to Menu", style: _textStyle),
               ),
             ],
           ),
+        ),
+      ],
+    );
+  }
+}
+
+class PerfectGameDialog extends ConsumerWidget {
+  final int score;
+  final int numberOfQuestions;
+
+  const PerfectGameDialog({super.key, required this.score, required this.numberOfQuestions});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SimpleDialog(
+      children: [
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("You answered all $numberOfQuestions questions correctly."),
+              Text("Your final score is $score!"),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class HighScoreDialog extends ConsumerWidget {
+  final int score;
+
+  const HighScoreDialog({super.key, required this.score});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SimpleDialog(
+      children: [
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [Text("You got a new high score!"), Text("Your final score was $score!")],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class OutOfLivesDialog extends ConsumerWidget {
+  const OutOfLivesDialog({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SimpleDialog(
+      children: [
+        Center(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [Text("You ran out of lives!")]),
         ),
       ],
     );

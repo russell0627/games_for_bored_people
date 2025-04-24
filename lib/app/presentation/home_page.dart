@@ -10,6 +10,8 @@ import '../../games/race/pages/race_page.dart';
 import '../../settings_dialog.dart';
 import '../routes.dart';
 
+//TODO: Add dinosaur view page where a list of dinosaurs and their diet, order, and time period can be viewed.
+
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
